@@ -9,4 +9,10 @@ return [
             'class' => 'yii\rbac\DbManager',
         ],
     ],
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            //'enableConfirmation' => false // maybe enable later
+        ],
+    ],
 ];
