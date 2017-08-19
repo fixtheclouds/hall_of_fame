@@ -16,14 +16,9 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
-        ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            'name' => 'the-id',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -39,19 +34,14 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
-            'defaultRoles' => ['user', 'admin'],
-            'itemFile' => '@common/components/rbac/items.php',
-            'assignmentFile' => '@common/components/rbac/assignments.php',
-            'ruleFile' => '@common/components/rbac/rules.php'
+            'defaultRoles' => ['user', 'admin']
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
-        ],
-        */
+        ]
     ],
     'params' => $params,
 ];
