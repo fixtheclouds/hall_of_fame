@@ -35,6 +35,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'baseUrl' => '/admin',
             'rules' => [
             ],
         ]
