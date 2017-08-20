@@ -16,6 +16,8 @@ class m170819_155018_create_subtype_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(256)
         ]);
+
+        $this->addForeignKey('fk_subtype_id', 'event', 'subtype_id', 'subtype', 'id');
     }
 
     /**
@@ -23,6 +25,7 @@ class m170819_155018_create_subtype_table extends Migration
      */
     public function down()
     {
+        $this->dropForeignKey('fk_subtype_id', 'event');
         $this->dropTable('subtype');
     }
 }

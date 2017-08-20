@@ -15,19 +15,21 @@ class m170819_154256_create_event_table extends Migration
         $this->createTable('event', [
             'id' => $this->primaryKey(),
             'type' => $this->string(256)->notNull(),
-            'date' => $this->date(),
+            'date' => $this->dateTime(),
             'city_id' => $this->integer(),
             'subtype_id' => $this->integer(),
             'content' => $this->text(),
             'place' => $this->string(512),
             'person_name' => $this->string(256),
-            'image_id' => $this->integer(),
+            'photo' => $this->string(512),
             'status' => $this->string()->defaultValue('pending'),
             'user_id' => $this->integer(),
             'deleted_at' => $this->dateTime(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime()
         ]);
+
+        $this->addForeignKey('fk_user_id', 'event', 'user_id', 'user', 'id');
     }
 
     /**
@@ -35,6 +37,7 @@ class m170819_154256_create_event_table extends Migration
      */
     public function down()
     {
+        $this->dropForeignKey('fk_user_id', 'event');
         $this->dropTable('event');
     }
 }
