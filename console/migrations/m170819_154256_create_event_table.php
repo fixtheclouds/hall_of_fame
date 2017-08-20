@@ -23,6 +23,7 @@ class m170819_154256_create_event_table extends Migration
             'person_name' => $this->string(256),
             'image_id' => $this->integer(),
             'status' => $this->string()->defaultValue('pending'),
+            'user_id' => $this->integer(),
             'deleted_at' => $this->dateTime(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->dateTime()

@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class EventController extends Controller
 {
+
+    public $layout = 'authorized';
     /**
      * @inheritdoc
      */
