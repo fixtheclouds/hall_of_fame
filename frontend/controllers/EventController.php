@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Event;
 use common\models\EventSearch;
+use common\models\Subtype;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

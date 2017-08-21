@@ -33,6 +33,12 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
+     * Types
+     * @var array
+     */
+    public static $types = ['Память', 'Встреча'];
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -49,7 +55,7 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             [['type'], 'required'],
-            [['date', 'deleted_at', 'created_at', 'updated_at'], 'safe'],
+            [['date'], 'safe'],
             [['city_id', 'subtype_id'], 'integer'],
             [['content', 'photo'], 'string'],
             [['type', 'person_name'], 'string', 'max' => 256],
@@ -73,10 +79,7 @@ class Event extends \yii\db\ActiveRecord
             'place' => 'Место',
             'person_name' => 'ФИО гражданина',
             'photo' => 'Фото',
-            'status' => 'Статус',
-            'deleted_at' => 'Удалено',
-            'created_at' => 'Создано',
-            'updated_at' => 'Обновлено',
+            'status' => 'Статус'
         ];
     }
 }
