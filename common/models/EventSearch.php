@@ -18,8 +18,8 @@ class EventSearch extends Event
     public function rules()
     {
         return [
-            [['id', 'city_id', 'subtype_id', 'image_id'], 'integer'],
-            [['type', 'date', 'content', 'place', 'person_name', 'status', 'deleted_at', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'city_id', 'subtype_id'], 'integer'],
+            [['type', 'date', 'content', 'place', 'person_name', 'photo', 'status', 'deleted_at', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -63,7 +63,6 @@ class EventSearch extends Event
             'date' => $this->date,
             'city_id' => $this->city_id,
             'subtype_id' => $this->subtype_id,
-            'image_id' => $this->image_id,
             'deleted_at' => $this->deleted_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

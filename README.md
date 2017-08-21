@@ -3,7 +3,7 @@
 ## Системные требования
 - PHP 5.6+
 - MySQL 5.1+
-- mbsting, GD, imagick
+- mbstring, GD, imagick
 
 ## Установка
 

@@ -24,9 +24,9 @@ class m170819_154256_create_event_table extends Migration
             'photo' => $this->string(512),
             'status' => $this->string()->defaultValue('pending'),
             'user_id' => $this->integer(),
-            'deleted_at' => $this->dateTime(),
-            'created_at' => $this->dateTime(),
-            'updated_at' => $this->dateTime()
+            'deleted_at' => $this->timestamp(),
+            'created_at' => $this->timestamp(),
+            'updated_at' => $this->timestamp()
         ]);
 
         $this->addForeignKey('fk_user_id', 'event', 'user_id', 'user', 'id');

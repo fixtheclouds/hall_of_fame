@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "event".
@@ -15,7 +16,7 @@ use Yii;
  * @property string $content
  * @property string $place
  * @property string $person_name
- * @property integer $image_id
+ * @property string $photo
  * @property string $status
  * @property string $deleted_at
  * @property string $created_at
@@ -34,13 +35,23 @@ class Event extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
             [['type'], 'required'],
             [['date', 'deleted_at', 'created_at', 'updated_at'], 'safe'],
-            [['city_id', 'subtype_id', 'image_id'], 'integer'],
-            [['content'], 'string'],
+            [['city_id', 'subtype_id'], 'integer'],
+            [['content', 'photo'], 'string'],
             [['type', 'person_name'], 'string', 'max' => 256],
             [['place'], 'string', 'max' => 512],
             [['status'], 'string', 'max' => 255],
@@ -54,18 +65,18 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Type',
-            'date' => 'Date',
-            'city_id' => 'City ID',
-            'subtype_id' => 'Subtype ID',
-            'content' => 'Content',
-            'place' => 'Place',
-            'person_name' => 'Person Name',
-            'image_id' => 'Image ID',
-            'status' => 'Status',
-            'deleted_at' => 'Deleted At',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'type' => 'Тип',
+            'date' => 'Дата проведения',
+            'city_id' => 'Город',
+            'subtype_id' => 'Тип мероприятия',
+            'content' => 'Содержание',
+            'place' => 'Место',
+            'person_name' => 'ФИО гражданина',
+            'photo' => 'Фото',
+            'status' => 'Статус',
+            'deleted_at' => 'Удалено',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
         ];
     }
 }

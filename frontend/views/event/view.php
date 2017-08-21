@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             'place',
             'person_name',
-            'image_id',
+            'photo',
             'status',
             'deleted_at',
             'created_at',
