@@ -37,7 +37,47 @@ return [
             'baseUrl' => '/',
             'rules' => [
             ],
-        ]
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@frontend/views/user'
+                ],
+            ],
+        ],
+        /**
+         * Future
+        'authClientCollection' => [
+            'class' => yii\authclient\Collection::className(),
+            'clients' => [
+                'facebook' => [
+                    'class'        => 'dektrium\user\clients\Facebook',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+                'vkontakte' => [
+                    'class'        => 'dektrium\user\clients\VKontakte',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+                'google' => [
+                    'class'        => 'dektrium\user\clients\Google',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+            ],
+        ],*/
     ],
     'params' => $params,
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'modelMap' => [
+                'User' => 'frontend\models\User',
+                'RegistrationForm' => 'frontend\models\RegistrationForm'
+            ],
+            'enableConfirmation' => false,
+            'enableGeneratingPassword' => true
+        ]
+    ]
 ];

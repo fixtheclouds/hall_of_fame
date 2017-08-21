@@ -1,19 +1,14 @@
 <?php
 return [
     'language' => 'ru-RU',
+    'name' => 'Галерея славы',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-        ],
+        ]
     ],
     'modules' => [
-        'user' => [
-            'class' => 'dektrium\user\Module',
-            //'enableConfirmation' => false // maybe enable later
-        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule'
     ],
 ];
