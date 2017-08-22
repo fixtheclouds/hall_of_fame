@@ -38,6 +38,11 @@ class Event extends \yii\db\ActiveRecord
      */
     public static $types = ['Память', 'Встреча'];
 
+    public static function find()
+    {
+        return new EventQuery(get_called_class());
+    }
+
     /**
      * @inheritdoc
      */

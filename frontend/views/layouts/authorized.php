@@ -26,18 +26,18 @@ $this->beginContent('@frontend/views/layouts/main.php'); ?>
         <div class="col-sm-7">
             <div class="col-xs-6">
                 <div>
-                    <a href="#">
-                        Мероприятия, которые я запланировал: 0
+                    <a href="/event/own">
+                        Мероприятия, которые я запланировал: <?= $counts['own'] ?>
                     </a>
                 </div>
                 <div>
-                    <a href="#">
-                        Мероприятия, в которых я участвую: 0
+                    <a href="/event/applied">
+                        Мероприятия, в которых я участвую: <?= $counts['applied'] ?>
                     </a>
                 </div>
                 <div>
-                    <a href="#">
-                        Завершенные мероприятия: 0
+                    <a href="/event/archived">
+                        Завершенные мероприятия: <?= $counts['archived'] ?>
                     </a>
                 </div>
                 <div>

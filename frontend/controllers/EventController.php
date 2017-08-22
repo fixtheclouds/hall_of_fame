@@ -6,6 +6,7 @@ use Yii;
 use common\models\Event;
 use common\models\EventSearch;
 use common\models\Subtype;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,6 +46,92 @@ class EventController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * Lists actual events
+     * @return string
+     */
+    public function actionActual()
+    {
+        $dataProvider = Event::find()->active();
+
+        return $this->render('index', [
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $dataProvider
+            ]),
+            'counts' => [
+                'applied' => $this->getAppliedCount(),
+                'own' => $this->getOwnCount(),
+                'archived' => $this->getArchivedCount()
+            ]
+        ]);
+    }
+
+    /**
+     * Lists archived events
+     * @return string
+     */
+    public function actionArchived() {
+        $dataProvider = Event::find()->active(false);
+
+        return $this->render('index', [
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $dataProvider
+            ])
+        ]);
+    }
+
+    /**
+     * Lists user`s own events
+     * @return string
+     */
+    public function actionOwn() {
+        $dataProvider = Event::find()->byUserId(Yii::$app->user->id);
+
+        return $this->render('index', [
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $dataProvider
+            ])
+        ]);
+    }
+
+    /**
+     * Lists events user had applied to
+     * @return string
+     */
+    public function actionApplied() {
+        $dataProvider = Event::find()->withReportFromUser(Yii::$app->user->id);
+
+        return $this->render('index', [
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $dataProvider
+            ])
+        ]);
+    }
+
+    /**
+     * Count events user has applied to
+     * @return int
+     */
+    public function getAppliedCount() {
+        return Event::find()->withReportFromUser(Yii::$app->user->id)->count();
+    }
+
+    /**
+     * Count events user has created
+     * @return int
+     */
+    public function getOwnCount() {
+        return Event::find()->byUserId(Yii::$app->user->id)->count();
+    }
+
+    /**
+     * Count non-actual events
+     * @return int
+     */
+    public function getArchivedCount() {
+        return Event::find()->active(false)->count();
     }
 
     /**

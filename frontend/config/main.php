@@ -36,6 +36,7 @@ return [
             'showScriptName' => false,
             'baseUrl' => '/',
             'rules' => [
+                'my_account' => 'event/actual'
             ],
         ],
         'view' => [

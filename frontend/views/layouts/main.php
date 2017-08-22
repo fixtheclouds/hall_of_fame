@@ -40,7 +40,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Зарегистрироваться', 'url' => ['/user/registration/register']];
         $menuItems[] = ['label' => 'Войти', 'url' => ['/user/login']];
     } else {
-        $menuItems[] = ['label' => 'Личный кабинет', 'url' => ['/event/index']];
+        $menuItems[] = ['label' => 'Личный кабинет', 'url' => ['/my_account']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
