@@ -32,8 +32,8 @@ use kartik\file\FileInput;
     ]); ?>
 
     <?= $form->field($model, 'city_id')->textInput() ?>
-
-    <?= $form->field($model, 'subtype_id')->dropDownList([]) ?>
+    <?php reset(Event::$types);
+    echo $form->field($model, 'subtype_id')->dropDownList(\common\models\Subtype::find()->byType(key(Event::$types))->asArray()->all()); ?>
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],

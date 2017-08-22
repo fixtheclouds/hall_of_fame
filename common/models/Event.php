@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "event".
@@ -36,7 +37,7 @@ class Event extends \yii\db\ActiveRecord
      * Types
      * @var array
      */
-    public static $types = ['Память', 'Встреча'];
+    public static $types = ['memory' => 'Память', 'legacy' => 'Наследие'];
 
     public static function find()
     {
@@ -50,6 +51,11 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' => false,
+            ]
         ];
     }
 
@@ -59,7 +65,7 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type'], 'required'],
+            [['type', 'date', 'place', 'city_id', 'subtype_id', 'person_name', 'content', 'photo'], 'required'],
             [['date'], 'safe'],
             [['city_id', 'subtype_id'], 'integer'],
             [['content', 'photo'], 'string'],

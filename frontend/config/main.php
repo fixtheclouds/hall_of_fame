@@ -77,6 +77,9 @@ return [
                 'User' => 'frontend\models\User',
                 'RegistrationForm' => 'frontend\models\RegistrationForm'
             ],
+            'controllerMap' => [
+                'settings' => 'frontend\controllers\SettingsController'
+            ],
             'enableConfirmation' => false,
             'enableGeneratingPassword' => true
         ]

@@ -23,6 +23,14 @@ class Subtype extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function find()
+    {
+        return new SubtypeQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [

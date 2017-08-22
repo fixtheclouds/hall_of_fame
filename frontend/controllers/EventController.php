@@ -29,7 +29,7 @@ class EventController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-            ],
+            ]
         ];
     }
 

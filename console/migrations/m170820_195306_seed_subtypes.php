@@ -15,45 +15,44 @@ class m170820_195306_seed_subtypes extends Migration
 
         $this->insert('subtype', [
             'name' => 'Вечер памяти',
-            'type' => 'Память'
+            'type' => 'memory'
         ]);
         $this->insert('subtype', [
             'name' => 'Классный час',
-            'type' => 'Память'
+            'type' => 'memory'
         ]);
         $this->insert('subtype', [
             'name' => 'Встреча с родственниками',
-            'type' => 'Память'
+            'type' => 'memory'
         ]);
         $this->insert('subtype', [
             'name' => 'Размещение памятного знака',
-            'type' => 'Память'
+            'type' => 'memory'
         ]);
         $this->insert('subtype', [
             'name' => 'Высадка растений',
-            'type' => 'Память'
+            'type' => 'memory'
         ]);
         $this->insert('subtype', [
             'name' => 'Благоустройство места захоронения',
-            'type' => 'Память'
+            'type' => 'memory'
         ]);
         $this->insert('subtype', [
             'name' => 'Встреча',
-            'type' => 'Наследие'
+            'type' => 'legacy'
         ]);
         $this->insert('subtype', [
             'name' => 'Совместное мероприятие',
-            'type' => 'Наследие'
+            'type' => 'legacy'
         ]);
         $this->insert('subtype', [
             'name' => 'Интервью',
-            'type' => 'Наследие'
+            'type' => 'legacy'
         ]);
     }
 
     public function down()
     {
-        $this->truncateTable('subtype');
         $this->dropColumn('subtype', 'type');
     }
 }
