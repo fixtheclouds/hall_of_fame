@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 $this->beginContent('@frontend/views/layouts/main.php'); ?>
-    <div class="profile-header panel panel-default clearfix">
+    <div class="profile-header clearfix">
         <div class="col-sm-5">
             <div class="row">
                 <div class="col-xs-4">
@@ -61,5 +61,6 @@ $this->beginContent('@frontend/views/layouts/main.php'); ?>
             </div>
         </div>
     </div>
+    <hr>
     <?= $content ?>
 <?php $this->endContent(); ?>
