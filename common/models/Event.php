@@ -12,7 +12,7 @@ use yii\behaviors\BlameableBehavior;
  * @property integer $id
  * @property string $type
  * @property string $date
- * @property integer $city_id
+ * @property integer $city
  * @property integer $subtype_id
  * @property string $content
  * @property string $place
@@ -65,11 +65,11 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'date', 'place', 'city_id', 'subtype_id', 'person_name', 'content', 'photo'], 'required'],
+            [['type', 'date', 'place', 'city', 'subtype_id', 'person_name', 'content'], 'required'],
             [['date'], 'safe'],
-            [['city_id', 'subtype_id'], 'integer'],
+            [['subtype_id'], 'integer'],
             [['content', 'photo'], 'string'],
-            [['type', 'person_name'], 'string', 'max' => 256],
+            [['type', 'person_name', 'city'], 'string', 'max' => 256],
             [['place'], 'string', 'max' => 512],
             [['status'], 'string', 'max' => 255],
         ];
@@ -84,7 +84,7 @@ class Event extends \yii\db\ActiveRecord
             'id' => 'ID',
             'type' => 'Тип',
             'date' => 'Дата проведения',
-            'city_id' => 'Город',
+            'city' => 'Город',
             'subtype_id' => 'Тип мероприятия',
             'content' => 'Содержание',
             'place' => 'Место',

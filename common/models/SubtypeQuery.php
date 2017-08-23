@@ -12,7 +12,7 @@ use yii\db\ActiveQuery;
 
 class SubtypeQuery extends ActiveQuery
 {
-    public function byType($typeName) {
-        return $this->andWhere(['type' => $typeName]);
+    public function getNamesByType($typeName) {
+        return $this->andWhere(['type' => $typeName])->select('name')->indexBy('id')->asArray();
     }
 }

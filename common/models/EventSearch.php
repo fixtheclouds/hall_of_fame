@@ -18,7 +18,7 @@ class EventSearch extends Event
     public function rules()
     {
         return [
-            [['id', 'city_id', 'subtype_id'], 'integer'],
+            [['id', 'city', 'subtype_id'], 'integer'],
             [['type', 'date', 'content', 'place', 'person_name', 'photo', 'status', 'deleted_at', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -61,7 +61,7 @@ class EventSearch extends Event
         $query->andFilterWhere([
             'id' => $this->id,
             'date' => $this->date,
-            'city_id' => $this->city_id,
+            'city' => $this->city,
             'subtype_id' => $this->subtype_id,
             'deleted_at' => $this->deleted_at,
             'created_at' => $this->created_at,

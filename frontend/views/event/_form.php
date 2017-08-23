@@ -6,6 +6,10 @@ use dosamigos\ckeditor\CKEditor;
 use common\models\Event;
 use kartik\datetime\DateTimePicker;
 use kartik\file\FileInput;
+use kartik\typeahead\Typeahead;
+use common\models\Subtype;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
@@ -18,11 +22,8 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'type')->dropDownList(Event::$types); ?>
 
-    <label class="control-label" for="date">
-        <?= $model->attributeLabels()['date'] ?>
-    </label>
-    <?= DateTimePicker::widget([
-        'name' => 'date',
+
+    <?= $form->field($model, 'date')->widget(DateTimePicker::className(), [
         'type' => DateTimePicker::TYPE_INPUT,
         'value' => date('d-m-Y H:i'),
         'pluginOptions' => [
@@ -31,9 +32,35 @@ use kartik\file\FileInput;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'city_id')->textInput() ?>
+    <?= $form->field($model, 'city')->widget(Typeahead::classname(), [
+        'options' => [
+            'placeholder' => 'Введите название'
+        ],
+        'pluginOptions' => [
+            'highlight' => true,
+            'minLength' => 2
+        ],
+        'dataset' => [
+            [
+                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('label')",
+                'display' => 'label',
+                'remote' => [
+                    'url' => Url::to(['/city/autocomplete']) . '?query=%QUERY',
+                    'wildcard' => '%QUERY'
+                ],
+                'limit' => 10,
+                'templates' => [
+                    'notFound' => '<div class="text-danger" style="padding:0 8px">Ничего не найдено.</div>',
+                ]
+            ]
+        ],
+    ]);
+    ?>
+
     <?php reset(Event::$types);
-    echo $form->field($model, 'subtype_id')->dropDownList(\common\models\Subtype::find()->byType(key(Event::$types))->asArray()->all()); ?>
+    $subtypes = Subtype::find()->getNamesByType(key(Event::$types))->column();
+    echo $form->field($model, 'subtype_id')->dropDownList($subtypes);
+    ?>
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
@@ -44,9 +71,9 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'person_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'photo')->widget(FileInput::classname(), [
+    <?php /* $form->field($model, 'photo')->widget(FileInput::classname(), [
         'options' => ['accept' => 'image/*'],
-    ]); ?>
+    ]); */?>
 
 
     <div class="form-group">

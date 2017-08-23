@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'type',
             'date',
-            'city_id',
+            'city',
             'subtype_id',
             'content:ntext',
             'place',
