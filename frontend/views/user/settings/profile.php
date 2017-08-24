@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\typeahead\Typeahead;
 
 /**
  * @var yii\web\View $this
@@ -40,7 +41,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'name') ?>
 
-                <?= $form->field($model, 'city_id') ?>
+                <?= $form->field($model, 'city')->widget(Typeahead::classname(), [
+                    'options' => [
+                        'placeholder' => 'Введите название'
+                    ],
+                    'pluginOptions' => [
+                        'highlight' => true,
+                        'minLength' => 2
+                    ],
+                    'dataset' => [
+                        [
+                            'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('label')",
+                            'display' => 'label',
+                            'remote' => [
+                                'url' => Url::to(['/city/autocomplete']) . '?query=%QUERY',
+                                'wildcard' => '%QUERY'
+                            ],
+                            'limit' => 10,
+                            'templates' => [
+                                'notFound' => '<div class="text-danger" style="padding:0 8px">Ничего не найдено.</div>',
+                            ]
+                        ]
+                    ],
+                ]);
+                ?>
 
                 <?= $form->field($userModel, 'email') ?>
 

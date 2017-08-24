@@ -15,7 +15,7 @@ class m170820_141315_create_message_table extends Migration
         $this->createTable('message', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
-            'created_at' => $this->timestamp(),
+            'created_at' => $this->integer(11),
             'deleted_at' => $this->timestamp(),
             'state' => $this->string()->defaultValue('pending'),
             'content' => $this->text()

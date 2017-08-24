@@ -71,7 +71,9 @@ use yii\web\JsExpression;
 
     <?= $form->field($model, 'person_name')->textInput(['maxlength' => true]) ?>
 
-    <?php /* $form->field($model, 'photo')->widget(FileInput::classname(), [
+    <?php /*
+        @todo implement and uncomment
+        $form->field($model, 'photo')->widget(FileInput::classname(), [
         'options' => ['accept' => 'image/*'],
     ]); */?>
 
