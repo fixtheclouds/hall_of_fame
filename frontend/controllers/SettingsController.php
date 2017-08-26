@@ -35,10 +35,18 @@ class SettingsController extends BaseController
         $this->performAjaxValidation($model);
 
         $this->trigger(self::EVENT_BEFORE_PROFILE_UPDATE, $event);
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
-            $this->trigger(self::EVENT_AFTER_PROFILE_UPDATE, $event);
-            return $this->refresh();
+        if ($model->load(\Yii::$app->request->post())) {
+            //die(var_dump(\Yii::$app->request->post()));
+            $email = \Yii::$app->request->post()['settings-form']['email'];
+            if ($email) {
+                $userModel->email = $email;
+                $userModel->save();
+            }
+            if ($model->save()) {
+                \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Your profile has been updated'));
+                $this->trigger(self::EVENT_AFTER_PROFILE_UPDATE, $event);
+                return $this->refresh();
+            }
         }
 
         return $this->render('profile', [

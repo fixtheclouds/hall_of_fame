@@ -75,7 +75,8 @@ return [
             'class' => 'dektrium\user\Module',
             'modelMap' => [
                 'User' => 'frontend\models\User',
-                'RegistrationForm' => 'frontend\models\RegistrationForm'
+                'RegistrationForm' => 'frontend\models\RegistrationForm',
+                'Profile' => 'frontend\models\Profile'
             ],
             'controllerMap' => [
                 'settings' => 'frontend\controllers\SettingsController'
