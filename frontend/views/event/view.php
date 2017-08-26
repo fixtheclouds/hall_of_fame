@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
 
-$this->title = $model->id;
+$this->title = $model->humanType();
 $this->params['breadcrumbs'][] = ['label' => 'Events', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,33 +15,72 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php if ($model->user_id == Yii::$app->user->id) { ?>
+            <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите удалить?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php } ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'type',
-            'date',
-            'city',
-            'subtype_id',
-            'content:ntext',
-            'place',
-            'person_name',
-            'photo',
-            'status',
-            'deleted_at',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
+    <div class="row">
+        <div class="col-md-6 col-xs-12 text-center">
+            <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $model->photo ?>">
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <h5><?= $model->person_name ?></h5>
+            <h5><?= $model->humanType() ?></h5>
+            <p>
+                Город: <?= $model->city ?>
+            </p>
+            <p>
+                Место: <?= $model->place ?>
+            </p>
+            <p>
+                Дата проведения мероприятия: <?= $model->date ?>
+            </p>
+            <?php if ($model->user_id != Yii::$app->user->id) { ?>
+                <button type="button" class="btn btn-primary">
+                    Подать отчет
+                </button>
+            <?php } ?>
+        </div>
+    </div>
+    <p>
+        <?= $model->content ?>
+    </p>
+    <?php if ($model->user_id != Yii::$app->user->id) { ?>
+        <button type="button" class="btn btn-primary">
+            Подать отчет
+        </button>
+    <?php } ?>
+    <?php if (Yii::$app->user->identity->isAdmin) { ?>
+        <?php if ($model->status == 'pending') { ?>
+            <?= Html::a('Опубликовать', ['publish', 'id' => $model->id], [
+                'class' => 'btn btn-success'
+            ]) ?>
+            <?= Html::a('Отклонить', ['dismiss', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите отклонить мероприятие?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php }
+        if ($model->status == 'published') { ?>
+            <?= Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'reverse' => true], [
+                'class' => 'btn btn-default',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите скрыть мероприятие?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        <?php } ?>
+    <?php }?>
 
 </div>
+

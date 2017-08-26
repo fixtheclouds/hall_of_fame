@@ -73,6 +73,7 @@ return [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'admins' => ['admin'],
             'modelMap' => [
                 'User' => 'frontend\models\User',
                 'RegistrationForm' => 'frontend\models\RegistrationForm',

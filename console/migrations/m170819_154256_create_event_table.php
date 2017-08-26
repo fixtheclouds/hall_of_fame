@@ -24,7 +24,7 @@ class m170819_154256_create_event_table extends Migration
             'photo' => $this->string(512),
             'status' => $this->string()->defaultValue('pending'),
             'user_id' => $this->integer(),
-            'deleted_at' => $this->timestamp(),
+            'deleted_at' => $this->integer(11),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11)
         ]);

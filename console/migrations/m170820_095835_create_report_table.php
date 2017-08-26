@@ -18,7 +18,7 @@ class m170820_095835_create_report_table extends Migration
             'content' => $this->text(),
             'status' => $this->string()->defaultValue('pending'),
             'user_id' => $this->integer(),
-            'deleted_at' => $this->timestamp(),
+            'deleted_at' => $this->integer(11),
             'created_at' => $this->integer(11),
             'updated_at' => $this->integer(11)
         ]);

@@ -22,11 +22,11 @@
         "kartik-v/yii2-widget-typeahead": "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "kartik-v/yii2-widget-growl": "*",
-        "dektrium/yii2-rbac": "1.0.0-alpha@dev",
         "2amigos/yii2-ckeditor-widget": "^2.1",
         "kartik-v/yii2-widget-datetimepicker": "*",
-        "kartik-v/yii2-dialog": "@dev"
+        "kartik-v/yii2-dialog": "@dev",
+        "bower-asset/bootbox": "^4.4",
+        "nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

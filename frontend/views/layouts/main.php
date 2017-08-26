@@ -50,7 +50,7 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <?php /*Alert::widget() */ ?>
+        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 </div>

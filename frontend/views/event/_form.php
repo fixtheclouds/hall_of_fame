@@ -28,7 +28,7 @@ use yii\web\JsExpression;
         'value' => date('d-m-Y H:i'),
         'pluginOptions' => [
             'autoclose'=>true,
-            'format' => 'dd-mm-yyyy hh:ii'
+            //'format' => 'dd-mm-yyyy hh:ii'
         ]
     ]); ?>
 
@@ -71,11 +71,14 @@ use yii\web\JsExpression;
 
     <?= $form->field($model, 'person_name')->textInput(['maxlength' => true]) ?>
 
-    <?php /*
-        @todo implement and uncomment
-        $form->field($model, 'photo')->widget(FileInput::classname(), [
-        'options' => ['accept' => 'image/*'],
-    ]); */?>
+    <?= $form->field($model, 'image')->widget(FileInput::classname(), [
+            'options' => [
+                'accept' => 'image/*',
+            ],
+            'pluginOptions' => [
+                'allowedFileExtensions' => ['jpg', 'gif', 'png']
+            ]
+    ]) ?>
 
 
     <div class="form-group">

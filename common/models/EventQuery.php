@@ -24,8 +24,8 @@ class EventQuery extends ActiveQuery
      */
     public function active($state = true)
     {
-        $operator = $state ? '>' : '<=';
-        return $this->andWhere([$operator, 'date', date('Y-m-d H:i:s')]);
+        $operator = $state ? '>=' : '<';
+        return $this->andWhere([$operator, 'DATE(date)', date('Y-m-d')]);
     }
 
     /**

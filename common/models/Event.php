@@ -26,6 +26,39 @@ use yii\behaviors\BlameableBehavior;
 class Event extends \yii\db\ActiveRecord
 {
     /**
+     * Служебное поле для изображения
+     * @var
+     */
+    public $image;
+
+    const HUMAN_STATES = [
+        'pending' => 'На рассмотрении',
+        'dismissed' => 'Отклонено',
+        'published' => 'Опубликовано'
+    ];
+
+    const HUMAN_TYPES = [
+        'memory' => 'Память',
+        'legacy' => 'Наследие'
+    ];
+
+    /**
+     * Отобразить тип на русском
+     * @return string
+     */
+    public function humanType() {
+        return self::HUMAN_TYPES[$this->type];
+    }
+
+    /**
+     * Отобразить состояние на русском
+     * @return string
+     */
+    public function humanState() {
+        return self::HUMAN_STATES[$this->status];
+    }
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -72,6 +105,9 @@ class Event extends \yii\db\ActiveRecord
             [['type', 'person_name', 'city'], 'string', 'max' => 256],
             [['place'], 'string', 'max' => 512],
             [['status'], 'string', 'max' => 255],
+            [['image'], 'safe'],
+            [['image'], 'file', 'extensions' => 'jpg, gif, png'],
+            [['image'], 'file', 'maxSize' => 1024 * 1024 * 10]
         ];
     }
 
@@ -89,7 +125,7 @@ class Event extends \yii\db\ActiveRecord
             'content' => 'Содержание',
             'place' => 'Место',
             'person_name' => 'ФИО гражданина',
-            'photo' => 'Фото',
+            'photo' => 'Фотография мероприятия',
             'status' => 'Статус'
         ];
     }

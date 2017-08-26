@@ -1,42 +1,30 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ListView;
 use yii\widgets\Pjax;
+use nirvana\infinitescroll\InfiniteScrollPager;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EventSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Events';
+$this->title = 'Мероприятия';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Event', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-<?php Pjax::begin(); ?>    <?= GridView::widget([
+    <?php Pjax::begin(); ?>
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'type',
-            'date',
-            'city',
-            'subtype_id',
-            // 'content:ntext',
-            // 'place',
-            // 'person_name',
-            // 'image_id',
-            // 'status',
-            // 'deleted_at',
-            // 'created_at',
-            // 'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
+        'itemView' => '_item',
+        'id' => 'my-listview-id',
+        'layout' => "{summary}\n<div class=\"items\">{items}</div>\n{pager}",
+        'pager' => [
+            'class' => InfiniteScrollPager::className(),
+            'widgetId' => 'my-listview-id',
+            'itemsCssClass' => 'items',
         ],
-    ]); ?>
-<?php Pjax::end(); ?></div>
+    ]);?>
+    <?php Pjax::end(); ?></div>

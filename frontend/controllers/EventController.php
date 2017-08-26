@@ -9,7 +9,10 @@ use common\models\Subtype;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use dektrium\user\filters\AccessRule;
 
 /**
  * EventController implements the CRUD actions for Event model.
@@ -18,6 +21,7 @@ class EventController extends Controller
 {
 
     public $layout = 'authorized';
+
     /**
      * @inheritdoc
      */
@@ -29,7 +33,26 @@ class EventController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
-            ]
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'own', 'actual', 'applied', 'archived', 'view'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['publish', 'dismiss'],
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ]
+
+                ],
+            ],
         ];
     }
 
@@ -155,13 +178,22 @@ class EventController extends Controller
     {
         $model = new Event();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->saveImage($model);
+            if (Yii::$app->user->identity->isAdmin) {
+                $model->status = 'published';
+                $message = 'Мероприятие успешно опубликовано';
+            } else {
+                $message = 'Мероприятие отправлено на модерацию';
+            }
+            if ($model->save()) {
+                \Yii::$app->getSession()->setFlash('success', $message);
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -174,12 +206,27 @@ class EventController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            $this->saveImage($model);
+            if ($model->save()) {
+                \Yii::$app->getSession()->setFlash('success', 'Данные мероприятия успешно обновлены');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    private function saveImage($model) {
+        $image = UploadedFile::getInstance($model, 'image');
+        if ($image) {
+            $names = explode(".", $image->name);
+            $ext = end($names);
+            $model->photo = Yii::$app->security->generateRandomString() . ".{$ext}";
+            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/event/';
+            $path = Yii::$app->params['uploadPath'] . $model->photo;
+            $image->saveAs($path);
         }
     }
 
@@ -191,9 +238,32 @@ class EventController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $this->findModel($id)->updateAttributes(['deleted_at' => time()]);
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Опубликовать мероприятие
+     * @param $id
+     * @param $reverse
+     * @return \yii\web\Response
+     */
+    public function actionPublish($id, $reverse = false) {
+        $newStatus = $reverse ? 'pending' : 'published';
+        $model = $this->findModel($id);
+        $model->updateAttributes(['status' => $newStatus]);
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /**
+     * Отклонить мероприятие
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionDismiss($id) {
+        $model = $this->findModel($id);
+        $model->updateAttributes(['status' => 'dismissed']);
+        return $this->redirect(['view', 'id' => $model->id]);
     }
 
     /**

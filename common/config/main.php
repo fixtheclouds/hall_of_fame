@@ -7,8 +7,5 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ]
-    ],
-    'modules' => [
-        'rbac' => 'dektrium\rbac\RbacWebModule'
-    ],
+    ]
 ];
