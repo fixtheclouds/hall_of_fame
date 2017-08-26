@@ -1,9 +1,7 @@
-yii.confirm = function (message, okCallback, cancelCallback) {
+yii.confirm = function (message, okCallback) {
     bootbox.confirm(message, function (confirmed) {
         if (confirmed) {
             okCallback();
-        } else {
-            cancelCallback();
         }
     });
     return false;

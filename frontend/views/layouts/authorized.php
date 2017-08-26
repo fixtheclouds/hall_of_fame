@@ -7,8 +7,13 @@
 use yii\helpers\Html;
 use yii\web\View;
 use kartik\dialog\Dialog;
+use common\models\Event;
 
-$counts = ['own' => 2, 'applied' => '7', 'archived' => 89];
+$counts = [
+    'own' => Event::find()->byUserId(Yii::$app->user->id)->count(),
+    'applied' => Event::find()->withReportFromUser(Yii::$app->user->id)->count(),
+    'archived' => Event::find()->active(false)->count()
+];
 
 $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
@@ -60,17 +65,20 @@ if (!Yii::$app->user->isGuest) {
                 </p>
             </div>
             <div class="col-xs-6">
-                <?php
-                echo Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Выйти',
-                        ['class' => 'btn btn-default logout']
-                    )
-                    . Html::endForm()
+                <?= Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Выйти',
+                    ['class' => 'btn btn-default logout']
+                )
+                . Html::endForm()
                 ?>
-                <a href="javascript://" id="password-reset-btn">
-                    Запросить новый пароль
-                </a>
+                <?= Html::a('Запросить новый пароль', ['/user/create_new_password'], [
+                    'data' => [
+                        'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль. 
+                        "Ваш текущей пароль станет недейтвителен. Вы уверены?',
+                        'method' => 'post',
+                    ]
+                ]) ?>
             </div>
         </div>
     </div>
