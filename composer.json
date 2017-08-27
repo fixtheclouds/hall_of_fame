@@ -26,7 +26,8 @@
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-dialog": "@dev",
         "bower-asset/bootbox": "^4.4",
-        "nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
+        "nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
+        "noam148/yii2-image-resize": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

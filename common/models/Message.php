@@ -2,8 +2,8 @@
 
 namespace common\models;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "message".
@@ -33,7 +33,16 @@ class Message extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+            ],
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' => false,
+            ]
         ];
     }
 
@@ -43,8 +52,8 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['content'], 'required'],
             [['user_id'], 'integer'],
-            [['created_at', 'deleted_at'], 'safe'],
             [['content'], 'string'],
             [['state'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -62,7 +71,7 @@ class Message extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'deleted_at' => 'Deleted At',
             'state' => 'State',
-            'content' => 'Content',
+            'content' => 'Текст сообщения',
         ];
     }
 

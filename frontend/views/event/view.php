@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p>
                 Дата проведения мероприятия: <?= $model->date ?>
             </p>
-            <?php if ($model->user_id != Yii::$app->user->id) { ?>
+            <?php if (!$model->isMine()&& !$model->hasMyReport()) { ?>
                 <button type="button" class="btn btn-primary">
                     Подать отчет
                 </button>

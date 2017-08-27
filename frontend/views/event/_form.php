@@ -20,11 +20,12 @@ use yii\web\JsExpression;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type')->dropDownList(Event::$types); ?>
+    <?= $form->field($model, 'type')->radioList (Event::$types)->label('Какое мероприятие вы хотите запланировать?'); ?>
 
 
     <?= $form->field($model, 'date')->widget(DateTimePicker::className(), [
-        'type' => DateTimePicker::TYPE_INPUT,
+        'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+        'layout' => '{input}{picker}',
         'value' => date('d-m-Y H:i'),
         'pluginOptions' => [
             'autoclose'=>true,
@@ -72,17 +73,20 @@ use yii\web\JsExpression;
     <?= $form->field($model, 'person_name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'image')->widget(FileInput::classname(), [
-            'options' => [
-                'accept' => 'image/*',
-            ],
-            'pluginOptions' => [
-                'allowedFileExtensions' => ['jpg', 'gif', 'png']
-            ]
+        'options' => [
+            'accept' => 'image/*',
+        ],
+        'pluginOptions' => [
+            'allowedFileExtensions' => ['jpg', 'gif', 'png']
+        ]
     ]) ?>
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?php $createMessage = Yii::$app->user->identity->isAdmin ? 'Создать мероприятие' : 'Отправить мероприятие администратору сайта';?>
+        <?= Html::submitButton($model->isNewRecord ? $createMessage : 'Обновить мероприятие', [
+            'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

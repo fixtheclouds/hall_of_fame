@@ -43,22 +43,6 @@ class Event extends \yii\db\ActiveRecord
     ];
 
     /**
-     * Отобразить тип на русском
-     * @return string
-     */
-    public function humanType() {
-        return self::HUMAN_TYPES[$this->type];
-    }
-
-    /**
-     * Отобразить состояние на русском
-     * @return string
-     */
-    public function humanState() {
-        return self::HUMAN_STATES[$this->status];
-    }
-
-    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -75,6 +59,56 @@ class Event extends \yii\db\ActiveRecord
     public static function find()
     {
         return new EventQuery(get_called_class());
+    }
+
+    /**
+     * Получить связанный отчет
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReports() {
+        return $this->hasMany(Report::className(), ['event_id' => 'id']);
+    }
+
+    /**
+     * Получить подптип
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubtype() {
+        return $this->hasOne(Subtype::className(), ['id' => 'subtype_id']);
+    }
+
+    /**
+     * Отобразить тип на русском
+     * @return string
+     */
+    public function humanType() {
+        return self::HUMAN_TYPES[$this->type];
+    }
+
+    /**
+     * Отобразить состояние на русском
+     * @return string
+     */
+    public function humanState() {
+        return self::HUMAN_STATES[$this->status];
+    }
+
+    /**
+     * Возвращает true, если мероприятие создано
+     * текущим пользователем
+     * @return bool
+     */
+    public function isMine() {
+        return $this->user_id === Yii::$app->user->id;
+    }
+
+    /**
+     * Возвращает true, если мероприятие имеет
+     * отчет от текущего пользователя
+     * @return bool
+     */
+    public function hasMyReport() {
+        return $this->getReports()->andWhere(['user_id' => Yii::$app->user->id])->exists();
     }
 
     /**
@@ -118,15 +152,16 @@ class Event extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'type' => 'Тип',
+            'type' => 'Тип мероприятия',
             'date' => 'Дата проведения',
             'city' => 'Город',
             'subtype_id' => 'Тип мероприятия',
-            'content' => 'Содержание',
+            'content' => 'Подробное описание вашего мероприятия',
             'place' => 'Место',
-            'person_name' => 'ФИО гражданина',
+            'person_name' => 'ФИО гражданина, которому посвящено мероприятие',
             'photo' => 'Фотография мероприятия',
-            'status' => 'Статус'
+            'status' => 'Статус',
+            'image' => 'Фотография мероприятия'
         ];
     }
 }

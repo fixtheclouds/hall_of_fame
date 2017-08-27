@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
-use yii\widgets\Pjax;
-use nirvana\infinitescroll\InfiniteScrollPager;
+use yii\bootstrap\Tabs;
+use common\models\Message;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EventSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -15,16 +15,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php Pjax::begin(); ?>
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemView' => '_item',
-        'id' => 'my-listview-id',
-        'layout' => "{summary}\n<div class=\"items\">{items}</div>\n{pager}",
-        'pager' => [
-            'class' => InfiniteScrollPager::className(),
-            'widgetId' => 'my-listview-id',
-            'itemsCssClass' => 'items',
-        ],
-    ]);?>
-    <?php Pjax::end(); ?></div>
+
+    <?= Tabs::widget([
+        'items' => [
+            [
+                'label' => 'Память',
+                'content' => $this->render('_memory', ['dataProvider' => $dataProvider]),
+                'active' => true
+            ],
+            [
+                'label' => 'Наследие',
+                'content' => $this->render('_legacy', ['dataProvider' => $dataProvider]),
+            ],
+            [
+                'label' => 'Гордость',
+                'content' => $this->render('@frontend/views/message/_form', ['model' => new Message()])
+            ]
+        ]
+    ])
+    ?>

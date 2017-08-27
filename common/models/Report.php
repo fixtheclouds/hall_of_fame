@@ -75,6 +75,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
+     * Получить данные пользователя
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -83,6 +84,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
+     * Получить связанное мероприятие
      * @return \yii\db\ActiveQuery
      */
     public function getEvent()
@@ -91,6 +93,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
+     * Получить фото мероприятия
      * @return \yii\db\ActiveQuery
      */
     public function getReportPhotos()
