@@ -22,7 +22,7 @@ if (!Yii::$app->user->isGuest) {
         <div class="col-sm-5">
             <div class="row">
                 <div class="col-xs-4">
-
+                    <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
                 </div>
                 <div class="col-xs-8">
                     <h5>
