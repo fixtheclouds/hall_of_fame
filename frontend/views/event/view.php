@@ -29,7 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-md-6 col-xs-12 text-center">
-            <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $model->photo ?>">
+            <?php if (file_exists(\Yii::$app->basePath . 'web/uploads/event/' . $model->photo)) { ?>
+                <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $model->photo ?>">
+            <?php } ?>
         </div>
         <div class="col-md-6 col-xs-12">
             <h5><?= $model->person_name ?></h5>

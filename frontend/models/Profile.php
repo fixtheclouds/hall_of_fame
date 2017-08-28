@@ -37,7 +37,7 @@ class Profile extends BaseProfile
      */
     public function getAvatarUrl() {
         $path = \Yii::$app->homeUrl  . 'uploads/profile/' . $this->photo;
-        $basePath = \Yii::$app->basePath . 'web/uploads/profile' . $this->photo;
+        $basePath = \Yii::$app->basePath . '/web/uploads/profile/' . $this->photo;
         if (!$this->photo || !file_exists($basePath)) {
             return \Yii::$app->homeUrl . 'images/'  . 'default_avatar.jpg';
         }

@@ -46,6 +46,12 @@ return [
                 ],
             ],
         ],
+        'imageresize' => [
+            'class' => 'noam148\imageresize\ImageResize',
+            'cachePath' => 'assets/images',
+            'useFilename' => true,
+            'absoluteUrl' => false,
+        ],
         /**
          * Future
         'authClientCollection' => [

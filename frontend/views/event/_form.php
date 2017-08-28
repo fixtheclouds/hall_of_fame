@@ -9,7 +9,6 @@ use kartik\file\FileInput;
 use kartik\typeahead\Typeahead;
 use common\models\Subtype;
 use yii\helpers\Url;
-use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */

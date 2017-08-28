@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\web\UploadedFile;
 
 
 /**
@@ -33,6 +34,11 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
+     * @var UploadedFile
+     */
+    public $images;
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -48,6 +54,7 @@ class Report extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['images'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 10],
             [['event_id', 'user_id'], 'integer'],
             [['content'], 'string'],
             [['deleted_at', 'created_at', 'updated_at'], 'safe'],
@@ -64,13 +71,14 @@ class Report extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'event_id' => 'Event ID',
-            'content' => 'Content',
-            'status' => 'Status',
-            'user_id' => 'User ID',
-            'deleted_at' => 'Deleted At',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'event_id' => 'ID мероприятия',
+            'content' => 'Содержание',
+            'status' => 'Статус',
+            'user_id' => 'ID пользователя',
+            'deleted_at' => 'Удалено',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
+            'images' => 'Изображения'
         ];
     }
 

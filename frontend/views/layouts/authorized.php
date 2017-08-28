@@ -7,6 +7,8 @@
 use yii\helpers\Html;
 use yii\web\View;
 use kartik\dialog\Dialog;
+use kartik\file\FileInput;
+use yii\widgets\ActiveForm;
 use common\models\Event;
 
 $counts = [
@@ -15,6 +17,12 @@ $counts = [
     'archived' => Event::find()->active(false)->count()
 ];
 
+$profileModel = \Yii::$app->user->identity->profile;
+
+$customBtn = '<button type="button" class="btn btn-default" title="Add picture tags"' .
+    '<i class="glyphicon glyphicon-tag"></i>' .
+    '</button>';
+
 $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
     ?>
@@ -22,7 +30,11 @@ if (!Yii::$app->user->isGuest) {
         <div class="col-sm-5">
             <div class="row">
                 <div class="col-xs-4">
+                    <?php $form = ActiveForm::begin([
+                        'action' => '/profile/upload_avatar'
+                    ]); ?>
                     <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
+                    <?php ActiveForm::end(); ?>
                 </div>
                 <div class="col-xs-8">
                     <h5>
@@ -89,23 +101,8 @@ if (!Yii::$app->user->isGuest) {
         ]
     ]); ?>
 
-    <?php
-    $js = <<< JS
-    $("#password-reset-btn").on("click", function() {
-        krajeeDialog.confirm("На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль. " +
-         "Ваш текущей пароль станет недейтвителен. Вы уверены?", function (result) {
-            if (result) {
-                $.post('/user/generate_password', function() {
-                  
-                });
-            }
-        });
-    });
-JS;
-
-    $this->registerJs($js, View::POS_END); ?>
-
     <?= $content ?>
     <?php
 }
 $this->endContent(); ?>
+

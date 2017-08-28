@@ -5,7 +5,9 @@ use yii\helpers\Html;
 <div class="event-item panel panel-default">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $model->photo ?>">
+            <?php if (file_exists(\Yii::$app->basePath . '/web/uploads/event/' . $model->photo)) { ?>
+                <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $model->photo ?>">
+            <?php } ?>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
             <h4>
