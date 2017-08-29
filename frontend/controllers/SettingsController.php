@@ -9,7 +9,7 @@
 namespace frontend\controllers;
 
 use dektrium\user\controllers\SettingsController as BaseController;
-use dektrium\user\models\SettingsForm;
+use frontend\models\User;
 use dektrium\user\models\Profile;
 
 
@@ -23,7 +23,7 @@ class SettingsController extends BaseController
     public function actionProfile()
     {
         $model = $this->finder->findProfileById(\Yii::$app->user->identity->getId());
-        $userModel = \Yii::createObject(SettingsForm::className());
+        $userModel = $this->finder->findUserById(\Yii::$app->user->identity->getId());
 
         if ($model == null) {
             $model = \Yii::createObject(Profile::className());
@@ -36,8 +36,7 @@ class SettingsController extends BaseController
 
         $this->trigger(self::EVENT_BEFORE_PROFILE_UPDATE, $event);
         if ($model->load(\Yii::$app->request->post())) {
-            //die(var_dump(\Yii::$app->request->post()));
-            $email = \Yii::$app->request->post()['settings-form']['email'];
+            $email = \Yii::$app->request->post('User')['email'];
             if ($email) {
                 $userModel->email = $email;
                 $userModel->save();
