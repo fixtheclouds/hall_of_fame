@@ -128,3 +128,11 @@ form div.required label.control-label::after {
 .bottom-10 {
     margin-bottom: 10px;
 }
+
+.event-item {
+    padding: 15px;
+}
+
+.profile-header, .profile-header a {
+    font-size: 12px;
+}

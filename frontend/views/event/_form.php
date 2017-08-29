@@ -64,7 +64,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
-        'preset' => 'basic'
+        'preset' => 'full'
     ]) ?>
 
     <?= $form->field($model, 'place')->textInput(['maxlength' => true]) ?>

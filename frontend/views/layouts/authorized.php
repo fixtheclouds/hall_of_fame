@@ -10,6 +10,7 @@ use kartik\dialog\Dialog;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 use common\models\Event;
+use frontend\models\User;
 
 $counts = [
     'own' => Event::find()->byUserId(Yii::$app->user->id)->count(),
@@ -40,57 +41,64 @@ if (!Yii::$app->user->isGuest) {
                     <h5>
                         <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
                     </h5>
-                    Email: <?= Yii::$app->user->identity->email ?>
                     <div>
+                        <strong>Email: <?= Yii::$app->user->identity->email ?></strong>
+                    </div>
+                    <div>
+                        <strong>Город: <?= Yii::$app->user->identity->profile->city ?></strong>
+                    </div>
+                    <div>
+                        <strong>Телефон: <?= Yii::$app->user->identity->profile->phone ?></strong>
+                    </div>
+                    <p>
                         <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
-                    </div>
-                    <div>
+                        <br>
                         <?= Html::a('Изменить фотографию', ['#']) ?>
-                    </div>
+                    </p>
                 </div>
             </div>
         </div>
         <div class="col-sm-7">
             <div class="col-xs-6">
-                <div>
+                <p>
                     <a href="/event/own">
                         Мероприятия, которые я запланировал: <?= $counts['own'] ?>
                     </a>
-                </div>
-                <div>
+                </p>
+                <p>
                     <a href="/event/applied">
                         Мероприятия, в которых я участвую: <?= $counts['applied'] ?>
                     </a>
-                </div>
-                <div>
+                </p>
+                <p>
                     <a href="/event/archived">
                         Завершенные мероприятия: <?= $counts['archived'] ?>
                     </a>
-                </div>
-                <div>
+                </p>
+                <p>
                     <span>
-                        Баллы, которые я заработал: 0
+                        Баллы, которые я заработал:
+                        <?=User::findIdentity(\Yii::$app->user->id)->getScore() ?>&nbsp;<i class="glyphicon glyphicon-star-empty"></i>
                     </span>
-                </div>
+                </p>
                 <p>
                     <?= Html::a('Запланировать новое мероприятие', ['create'], ['class' => 'btn btn-success']) ?>
                 </p>
             </div>
             <div class="col-xs-6">
-                <?= Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выйти',
-                    ['class' => 'btn btn-default logout']
-                )
-                . Html::endForm()
-                ?>
-                <?= Html::a('Запросить новый пароль', ['/user/create_new_password'], [
-                    'data' => [
-                        'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль. 
-                        "Ваш текущей пароль станет недейтвителен. Вы уверены?',
-                        'method' => 'post',
-                    ]
-                ]) ?>
+                <p>
+                    <i class="glyphicon glyphicon-log-out"></i>
+                    <?= Html::a('Выйти', ['/site/logout']) ?>
+                </p>
+                <p>
+                    <?= Html::a('Запросить новый пароль', ['/user/create_new_password'], [
+                        'data' => [
+                            'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
+                                'Ваш текущей пароль станет недейтвителен. Вы уверены?',
+                            'method' => 'post',
+                        ]
+                    ]) ?>
+                </p>
             </div>
         </div>
     </div>

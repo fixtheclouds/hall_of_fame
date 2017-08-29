@@ -18,7 +18,7 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
-        'preset' => 'basic'
+        'preset' => 'full'
     ]) ?>
 
     <?= $form->field($model, 'images[]')->widget(FileInput::classname(), [
