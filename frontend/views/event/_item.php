@@ -19,12 +19,14 @@ use yii\helpers\Html;
 
             <div class="row">
                 <div class="col-xs-6">
-                    <?= Html::a('Подать отчёт', [
-                        'report/create', 'event_id' => $model->id
-                    ], [
-                        'class' => 'btn btn-primary'
-                    ]) ?>
-                </div>
+                    <?php if (!$model->isMine()&& !$model->hasMyReport()) { ?>
+                        <?= Html::a('Подать отчёт', [
+                            'report/create', 'event_id' => $model->id
+                        ], [
+                            'class' => 'btn btn-primary'
+                        ]) ?>
+                    <?php } ?>
+                    </div>
                 <div class="col-xs-6">
                     <?= Html::a('Подробнее', ['view', 'id' => $model->id]) ?>
                 </div>

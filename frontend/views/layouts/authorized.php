@@ -86,19 +86,20 @@ if (!Yii::$app->user->isGuest) {
                 </p>
             </div>
             <div class="col-xs-6">
-                <p>
-                    <i class="glyphicon glyphicon-log-out"></i>
-                    <?= Html::a('Выйти', ['/site/logout']) ?>
-                </p>
-                <p>
-                    <?= Html::a('Запросить новый пароль', ['/user/create_new_password'], [
-                        'data' => [
-                            'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
-                                'Ваш текущей пароль станет недейтвителен. Вы уверены?',
-                            'method' => 'post',
-                        ]
-                    ]) ?>
-                </p>
+                <?= Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Выйти',
+                    ['class' => 'btn btn-default logout']
+                )
+                . Html::endForm()
+                ?>
+                <?= Html::a('Запросить новый пароль', ['/user/create_new_password'], [
+                    'data' => [
+                        'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль. 
+                        "Ваш текущей пароль станет недейтвителен. Вы уверены?',
+                        'method' => 'post',
+                    ]
+                ]) ?>
             </div>
         </div>
     </div>
