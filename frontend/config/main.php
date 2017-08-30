@@ -81,7 +81,7 @@ return [
             'class' => 'dektrium\user\Module',
             'admins' => ['admin'],
             'modelMap' => [
-                'User' => 'frontend\models\User',
+                'User' => 'common\models\User',
                 'RegistrationForm' => 'frontend\models\RegistrationForm',
                 'Profile' => 'frontend\models\Profile'
             ],

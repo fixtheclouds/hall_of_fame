@@ -38,8 +38,8 @@ class City extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'region' => 'Region',
+            'name' => 'Название',
+            'region' => 'Край/Область',
         ];
     }
 }

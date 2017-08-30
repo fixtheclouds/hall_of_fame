@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\ScoreSystem;
-use common\models\ScoreSystemSearch;
+use common\models\Message;
+use common\models\MessageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ScoreSystemController implements the CRUD actions for ScoreSystem model.
+ * MessageController implements the CRUD actions for Message model.
  */
-class ScoreSystemController extends Controller
+class MessageController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Lists all ScoreSystem models.
+     * Lists all Message models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ScoreSystemSearch();
+        $searchModel = new MessageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Displays a single ScoreSystem model.
+     * Displays a single Message model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Creates a new ScoreSystem model.
+     * Creates a new Message model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ScoreSystem();
+        $model = new Message();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Updates an existing ScoreSystem model.
+     * Updates an existing Message model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Deletes an existing ScoreSystem model.
+     * Deletes an existing Message model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Finds the ScoreSystem model based on its primary key value.
+     * Finds the Message model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ScoreSystem the loaded model
+     * @return Message the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ScoreSystem::findOne($id)) !== null) {
+        if (($model = Message::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

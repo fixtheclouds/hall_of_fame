@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Event;
+use common\models\User;
 
 /**
- * EventSearch represents the model behind the search form about `common\models\Event`.
+ * UserSearch represents the model behind the search form about `common\models\User`.
  */
-class EventSearch extends Event
+class UserSearch extends User
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class EventSearch extends Event
     public function rules()
     {
         return [
-            [['id', 'subtype_id', 'user_id', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
-            [['type', 'date', 'city', 'content', 'place', 'person_name', 'photo', 'status'], 'safe'],
+            [['id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags', 'last_login_at'], 'integer'],
+            [['username', 'email', 'password_hash', 'auth_key', 'unconfirmed_email', 'registration_ip'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class EventSearch extends Event
      */
     public function search($params)
     {
-        $query = Event::find();
+        $query = User::find();
 
         // add conditions that should always apply here
 
@@ -60,21 +60,20 @@ class EventSearch extends Event
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
-            'subtype_id' => $this->subtype_id,
-            'user_id' => $this->user_id,
+            'confirmed_at' => $this->confirmed_at,
+            'blocked_at' => $this->blocked_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'deleted_at' => $this->deleted_at,
+            'flags' => $this->flags,
+            'last_login_at' => $this->last_login_at,
         ]);
 
-        $query->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'place', $this->place])
-            ->andFilterWhere(['like', 'person_name', $this->person_name])
-            ->andFilterWhere(['like', 'photo', $this->photo])
-            ->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'unconfirmed_email', $this->unconfirmed_email])
+            ->andFilterWhere(['like', 'registration_ip', $this->registration_ip]);
 
         return $dataProvider;
     }

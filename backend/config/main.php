@@ -41,4 +41,16 @@ return [
         ]
     ],
     'params' => $params,
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'admins' => ['admin'],
+            'modelMap' => [
+                'User' => 'common\models\User',
+            ],
+            'controllerMap' => [
+                //'user' => 'backend\controllers\UserController'
+            ]
+        ]
+    ]
 ];

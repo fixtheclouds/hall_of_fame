@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Event;
+use common\models\City;
 
 /**
- * EventSearch represents the model behind the search form about `common\models\Event`.
+ * CitySearch represents the model behind the search form about `common\models\City`.
  */
-class EventSearch extends Event
+class CitySearch extends City
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class EventSearch extends Event
     public function rules()
     {
         return [
-            [['id', 'subtype_id', 'user_id', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
-            [['type', 'date', 'city', 'content', 'place', 'person_name', 'photo', 'status'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'region'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class EventSearch extends Event
      */
     public function search($params)
     {
-        $query = Event::find();
+        $query = City::find();
 
         // add conditions that should always apply here
 
@@ -60,21 +60,10 @@ class EventSearch extends Event
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date' => $this->date,
-            'subtype_id' => $this->subtype_id,
-            'user_id' => $this->user_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'deleted_at' => $this->deleted_at,
         ]);
 
-        $query->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'place', $this->place])
-            ->andFilterWhere(['like', 'person_name', $this->person_name])
-            ->andFilterWhere(['like', 'photo', $this->photo])
-            ->andFilterWhere(['like', 'status', $this->status]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'region', $this->region]);
 
         return $dataProvider;
     }

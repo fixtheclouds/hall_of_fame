@@ -4,27 +4,32 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\SubtypeSearch */
+/* @var $searchModel common\models\ReportSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Подтипы мероприятий';
+$this->title = 'Отчеты о проделанной работе';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="subtype-index">
+<div class="report-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Создать подтип', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'name',
-            'type',
+
+            'id',
+            'event_id',
+            'content:ntext',
+            'status',
+            'user_id',
+            // 'deleted_at',
+            // 'created_at',
+            // 'updated_at',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

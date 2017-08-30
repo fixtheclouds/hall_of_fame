@@ -9,7 +9,7 @@
 namespace frontend\controllers;
 
 use dektrium\user\controllers\SettingsController as BaseController;
-use frontend\models\User;
+use common\models\User;
 use dektrium\user\models\Profile;
 
 

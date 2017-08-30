@@ -10,7 +10,7 @@ use kartik\dialog\Dialog;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 use common\models\Event;
-use frontend\models\User;
+use common\models\User;
 
 $counts = [
     'own' => Event::find()->byUserId(Yii::$app->user->id)->count(),
@@ -95,8 +95,8 @@ if (!Yii::$app->user->isGuest) {
                 ?>
                 <?= Html::a('Запросить новый пароль', ['/user/create_new_password'], [
                     'data' => [
-                        'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль. 
-                        "Ваш текущей пароль станет недейтвителен. Вы уверены?',
+                        'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
+                            'Ваш текущий пароль станет недейтвителен. Вы уверены?',
                         'method' => 'post',
                     ]
                 ]) ?>

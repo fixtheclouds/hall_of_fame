@@ -40,9 +40,9 @@ class ScoreSystem extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'module' => 'Module',
-            'action' => 'Action',
-            'amount' => 'Amount',
+            'module' => 'Модуль',
+            'action' => 'Действие',
+            'amount' => 'Количество',
         ];
     }
 }

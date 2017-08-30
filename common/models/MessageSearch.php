@@ -18,8 +18,8 @@ class MessageSearch extends Message
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['created_at', 'deleted_at', 'state', 'content'], 'safe'],
+            [['id', 'user_id', 'created_at'], 'integer'],
+            [['deleted_at', 'state', 'content'], 'safe'],
         ];
     }
 

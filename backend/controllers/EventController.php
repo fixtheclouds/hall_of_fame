@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\ScoreSystem;
-use common\models\ScoreSystemSearch;
+use common\models\Event;
+use common\models\EventSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ScoreSystemController implements the CRUD actions for ScoreSystem model.
+ * EventController implements the CRUD actions for Event model.
  */
-class ScoreSystemController extends Controller
+class EventController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Lists all ScoreSystem models.
+     * Lists all Event models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ScoreSystemSearch();
+        $searchModel = new EventSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Displays a single ScoreSystem model.
+     * Displays a single Event model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Creates a new ScoreSystem model.
+     * Creates a new Event model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ScoreSystem();
+        $model = new Event();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Updates an existing ScoreSystem model.
+     * Updates an existing Event model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Deletes an existing ScoreSystem model.
+     * Deletes an existing Event model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class ScoreSystemController extends Controller
     }
 
     /**
-     * Finds the ScoreSystem model based on its primary key value.
+     * Finds the Event model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ScoreSystem the loaded model
+     * @return Event the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ScoreSystem::findOne($id)) !== null) {
+        if (($model = Event::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
