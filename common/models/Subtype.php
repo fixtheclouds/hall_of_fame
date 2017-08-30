@@ -34,6 +34,7 @@ class Subtype extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'type'], 'required'],
             [['name'], 'string', 'max' => 256],
         ];
     }
@@ -48,5 +49,9 @@ class Subtype extends \yii\db\ActiveRecord
             'name' => 'Название',
             'type' => 'Тип'
         ];
+    }
+
+    public function humanType() {
+        return Event::HUMAN_TYPES[$this->type];
     }
 }

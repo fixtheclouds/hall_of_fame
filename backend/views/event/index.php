@@ -21,11 +21,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'type',
+            [
+                'attribute' => 'type',
+                'content' => function($data) {
+                    return $data->humanType();
+                }
+            ],
             'date',
             'city',
-            'subtype_id',
+            [
+                'attribute' => 'subtype_id',
+                'label' => 'Подтип',
+                'content' => function($data) {
+                    return $data->subtype->name;
+                }
+            ],
+            'user.profile.name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

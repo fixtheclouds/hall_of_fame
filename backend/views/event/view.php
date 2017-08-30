@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
 
-$this->title = $model->id;
+$this->title = $model->humanType();
 $this->params['breadcrumbs'][] = ['label' => 'Events', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,19 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'type',
+            [
+                'attribute' => 'type',
+                'content' => function($data) {
+                    return $data->humanType();
+                }
+            ],
             'date',
             'city',
             'subtype_id',
-            'content:ntext',
+            'content:html',
             'place',
             'person_name',
             'photo',
             'status',
-            'user_id',
-            'created_at',
-            'updated_at',
-            'deleted_at',
+            'user.profile.name',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

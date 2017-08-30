@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Subtype */
 
-$this->title = 'Create Subtype';
+$this->title = 'Создать подтип мероприятия';
 $this->params['breadcrumbs'][] = ['label' => 'Subtypes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

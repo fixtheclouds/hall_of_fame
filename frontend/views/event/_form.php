@@ -19,7 +19,7 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type')->radioList (Event::$types)->label('Какое мероприятие вы хотите запланировать?'); ?>
+    <?= $form->field($model, 'type')->radioList(Event::$types)->label('Какое мероприятие вы хотите запланировать?'); ?>
 
 
     <?= $form->field($model, 'date')->widget(DateTimePicker::className(), [

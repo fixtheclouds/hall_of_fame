@@ -164,4 +164,12 @@ class Event extends \yii\db\ActiveRecord
             'image' => 'Фотография мероприятия'
         ];
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
 }

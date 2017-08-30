@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\ScoreSystem */
 
-$this->title = 'Create Score System';
+$this->title = 'Добавить правило системы начисления баллов';
 $this->params['breadcrumbs'][] = ['label' => 'Score Systems', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

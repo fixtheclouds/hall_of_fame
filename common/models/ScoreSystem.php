@@ -42,7 +42,7 @@ class ScoreSystem extends \yii\db\ActiveRecord
             'id' => 'ID',
             'module' => 'Модуль',
             'action' => 'Действие',
-            'amount' => 'Количество',
+            'amount' => 'Количество баллов',
         ];
     }
 }

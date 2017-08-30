@@ -27,6 +27,15 @@ class Message extends \yii\db\ActiveRecord
         return 'message';
     }
 
+    const HUMAN_STATES = [
+        'pending' => 'Новое',
+        'read' => 'Прочитано'
+    ];
+
+    public function humanState() {
+        return static::HUMAN_STATES[$this->state];
+    }
+
     /**
      * @inheritdoc
      */
@@ -67,10 +76,9 @@ class Message extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'created_at' => 'Created At',
-            'deleted_at' => 'Deleted At',
-            'state' => 'State',
+            'user_id' => 'ID пользователя',
+            'created_at' => 'Создано',
+            'state' => 'Статус',
             'content' => 'Текст сообщения',
         ];
     }
