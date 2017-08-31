@@ -2,7 +2,7 @@
 /**
  * Override dektrium Profile model
  */
-namespace frontend\models;
+namespace common\models;
 
 use dektrium\user\models\Profile as BaseProfile;
 

@@ -47,10 +47,23 @@ return [
             'admins' => ['admin'],
             'modelMap' => [
                 'User' => 'common\models\User',
+                'Profile' => 'common\models\Profile'
             ],
             'controllerMap' => [
-                //'user' => 'backend\controllers\UserController'
-            ]
+                'security' => [
+                    'class' => 'dektrium\user\controllers\SecurityController',
+                    'layout' => '@backend/views/layouts/login'
+                ],
+                'recovery' => [
+                    'class' => 'dektrium\user\controllers\RecoveryController',
+                    'layout' => '@backend/views/layouts/login'
+                ],
+                'registration' => [
+                    'class' => 'dektrium\user\controllers\RegistrationController',
+                    'layout' => '@backend/views/layouts/login'
+                ]
+            ],
+            'enableRegistration' => false
         ]
     ]
 ];

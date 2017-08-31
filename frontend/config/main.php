@@ -83,7 +83,7 @@ return [
             'modelMap' => [
                 'User' => 'common\models\User',
                 'RegistrationForm' => 'frontend\models\RegistrationForm',
-                'Profile' => 'frontend\models\Profile'
+                'Profile' => 'common\models\Profile'
             ],
             'controllerMap' => [
                 'settings' => 'frontend\controllers\SettingsController'

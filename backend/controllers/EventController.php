@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\Event;
 use common\models\EventSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * EventController implements the CRUD actions for Event model.
  */
-class EventController extends Controller
+class EventController extends BackendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Event models.

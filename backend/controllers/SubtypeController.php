@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\Subtype;
 use common\models\SubtypeSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SubtypeController implements the CRUD actions for Subtype model.
  */
-class SubtypeController extends Controller
+class SubtypeController extends BackendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Subtype models.

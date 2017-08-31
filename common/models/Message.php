@@ -39,6 +39,14 @@ class Message extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public static function find()
+    {
+        return new MessageQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -89,5 +97,9 @@ class Message extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public static function getUnreadCount() {
+        return static::find()->unread()->count();
     }
 }

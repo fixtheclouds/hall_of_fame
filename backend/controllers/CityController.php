@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\City;
 use common\models\CitySearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CityController implements the CRUD actions for City model.
  */
-class CityController extends Controller
+class CityController extends BackendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all City models.

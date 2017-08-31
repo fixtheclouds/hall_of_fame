@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\Report;
 use common\models\ReportSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ReportController implements the CRUD actions for Report model.
  */
-class ReportController extends Controller
+class ReportController extends BackendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all Report models.

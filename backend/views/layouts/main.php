@@ -37,24 +37,25 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/admin" class="site_title"><i class="fa fa-paw"></i> <span>Галерея славы</span></a>
+                    <a href="/admin" class="site_title"><i class="fa fa-star"></i> <span>Галерея славы</span></a>
                 </div>
                 <div class="clearfix"></div>
 
                 <!-- menu prile quick info -->
-                <div class="profile">
-                    <div class="profile_pic">
-                        <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
+                <?php if (!Yii::$app->user->isGuest) { ?>
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
+                        </div>
+                        <div class="profile_info">
+                            <span>Добро пожаловать,</span>
+                            <h2><?= Yii::$app->user->identity->profile->name ?></h2>
+                        </div>
                     </div>
-                    <div class="profile_info">
-                        <span>Добро пожаловать,</span>
-                        <h2><?= Yii::$app->user->identity->profile->name ?></h2>
-                    </div>
-                </div>
+                <?php } ?>
                 <!-- /menu prile quick info -->
-
+                <div class="row"></div>
                 <br />
-                <hr>
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
@@ -114,11 +115,13 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                     </div>
 
+                    <?php if (!Yii::$app->user->isGuest) { ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="http://placehold.it/128x128" alt=""><?= Yii::$app->user->identity->profile->name ?>
-                                <span class=" fa fa-angle-down"></span>
+                                <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => '']) ?>
+                                <span><?= Yii::$app->user->identity->profile->name ?></span>
+                                <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li>
@@ -129,8 +132,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 <li>
                                     <?= Html::a('Выйти <i class="fa fa-sign-out"></i>', ['/site/logout'],  [
                                         'data' => [
-                                            'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
-                                                'Ваш текущий пароль станет недейтвителен. Вы уверены?',
+                                            'confirm' => 'Вы уверены, что хотите выйти?',
                                             'method' => 'post',
                                         ]
                                     ])?>
@@ -141,7 +143,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         <li role="presentation" class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
+                                <span class="badge bg-green"><?= common\models\Message::getUnreadCount() ?></span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                 <li>
@@ -202,8 +204,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                                 </li>
                                 <li>
                                     <div class="text-center">
-                                        <a href="/">
-                                            <strong>See All Alerts</strong>
+                                        <a href="/admin/message/index">
+                                            <strong>Смотреть все сообщения</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
@@ -212,6 +214,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         </li>
 
                     </ul>
+                    <?php } ?>
                 </nav>
             </div>
 

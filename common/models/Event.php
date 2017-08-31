@@ -51,11 +51,14 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
-     * Types
+     * Типы
      * @var array
      */
     public static $types = ['memory' => 'Память', 'legacy' => 'Наследие'];
 
+    /**
+     * @inheritdoc
+     */
     public static function find()
     {
         return new EventQuery(get_called_class());

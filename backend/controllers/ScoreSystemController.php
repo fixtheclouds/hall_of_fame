@@ -5,29 +5,13 @@ namespace backend\controllers;
 use Yii;
 use common\models\ScoreSystem;
 use common\models\ScoreSystemSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ScoreSystemController implements the CRUD actions for ScoreSystem model.
  */
-class ScoreSystemController extends Controller
+class ScoreSystemController extends BackendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all ScoreSystem models.

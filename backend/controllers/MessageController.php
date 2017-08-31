@@ -5,29 +5,14 @@ namespace backend\controllers;
 use Yii;
 use common\models\Message;
 use common\models\MessageSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * MessageController implements the CRUD actions for Message model.
  */
-class MessageController extends Controller
+class MessageController extends BackendController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Message models.
