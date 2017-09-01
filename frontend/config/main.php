@@ -74,6 +74,10 @@ return [
                 ],
             ],
         ],*/
+        'thumbnail' => [
+            'class' => 'sadovojav\image\Thumbnail',
+            'cachePath' => '@webroot/cache'
+        ]
     ],
     'params' => $params,
     'modules' => [
@@ -91,5 +95,8 @@ return [
             'enableConfirmation' => false,
             'enableGeneratingPassword' => true
         ]
+    ],
+    'aliases' => [
+        //'@thumb' => '/',
     ]
 ];

@@ -5,8 +5,14 @@ use yii\helpers\Html;
 <div class="event-item panel panel-default">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <?php if (file_exists(\Yii::$app->basePath . '/web/uploads/event/' . $model->photo)) { ?>
-                <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $model->photo ?>">
+            <?php
+            if (file_exists($model->getPhotoPath())) { ?>
+                <?= Yii::$app->thumbnail->img($model->getPhotoPath(), [ 'thumbnail' => [
+                    'width' => 320,
+                    'height' => 240,
+                ]], [
+                    'class' => 'img img-responsive'
+                ]); ?>
             <?php } ?>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
@@ -26,7 +32,7 @@ use yii\helpers\Html;
                             'class' => 'btn btn-primary'
                         ]) ?>
                     <?php } ?>
-                    </div>
+                </div>
                 <div class="col-xs-6">
                     <?= Html::a('Подробнее', ['view', 'id' => $model->id]) ?>
                 </div>

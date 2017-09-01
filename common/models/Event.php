@@ -175,4 +175,11 @@ class Event extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    /**
+     * @return string
+     */
+    public function getPhotoPath() {
+        return \Yii::$app->basePath . '/web/uploads/event/' . $this->photo;
+    }
 }
