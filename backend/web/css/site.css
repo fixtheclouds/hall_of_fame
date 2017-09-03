@@ -125,3 +125,6 @@ form div.required label.control-label::after {
     color:red;
 }
 
+.padded {
+    padding: 20px;
+}

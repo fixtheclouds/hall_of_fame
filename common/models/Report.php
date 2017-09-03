@@ -26,6 +26,12 @@ use yii\web\UploadedFile;
  */
 class Report extends \yii\db\ActiveRecord
 {
+
+    const HUMAN_STATUS = [
+        'pending' => 'На рассмотрении',
+        'published' => 'Опубликован',
+        'dismissed' => 'Отклонен'
+    ];
     /**
      * @inheritdoc
      */
@@ -114,5 +120,9 @@ class Report extends \yii\db\ActiveRecord
     public function getReportPhotos()
     {
         return $this->hasMany(ReportPhoto::className(), ['report_id' => 'id']);
+    }
+
+    public function humanStatus() {
+        return static::HUMAN_STATUS[$this->status];
     }
 }

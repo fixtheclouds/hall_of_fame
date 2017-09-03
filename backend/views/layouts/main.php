@@ -6,6 +6,7 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $bundle = yiister\gentelella\assets\Asset::register($this);
 
@@ -116,104 +117,59 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     </div>
 
                     <?php if (!Yii::$app->user->isGuest) { ?>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => '']) ?>
-                                <span><?= Yii::$app->user->identity->profile->name ?></span>
-                                <span class="fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li>
-                                    <a href="javascript:;">
-                                        <span>Настройки профиля</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <?= Html::a('Выйти <i class="fa fa-sign-out"></i>', ['/site/logout'],  [
-                                        'data' => [
-                                            'confirm' => 'Вы уверены, что хотите выйти?',
-                                            'method' => 'post',
-                                        ]
-                                    ])?>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green"><?= common\models\Message::getUnreadCount() ?></span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                                        <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                                        <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                                        <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                                        <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                                        <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                                        <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                      <span class="image">
-                                        <img src="http://placehold.it/128x128" alt="Profile Image" />
-                                    </span>
-                                        <span>
-                                        <span>John Smith</span>
-                      <span class="time">3 mins ago</span>
-                      </span>
-                                        <span class="message">
-                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a href="/admin/message/index">
-                                            <strong>Смотреть все сообщения</strong>
-                                            <i class="fa fa-angle-right"></i>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => '']) ?>
+                                    <span><?= Yii::$app->user->identity->profile->name ?></span>
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span>Настройки профиля</span>
                                         </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('Выйти <i class="fa fa-sign-out"></i>', ['/site/logout'],  [
+                                            'data' => [
+                                                'confirm' => 'Вы уверены, что хотите выйти?',
+                                                'method' => 'post',
+                                            ]
+                                        ])?>
+                                    </li>
+                                </ul>
+                            </li>
 
-                    </ul>
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green"><?= common\models\Message::getUnreadCount() ?></span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <?php foreach (common\models\Message::find()->unread()->all() as $msg) { ?>
+                                        <li>
+                                            <a href="<?= Url::to(['/admin/message/view'], ['id' => $msg->id]) ?>">
+                                                <span><?= $msg->user->profile->name ?></span>
+                                                <span class="time"><?= date('d-m-Y H:i:s', $msg->created_at) ?></span>
+                                                <span class="message">
+                                            <?= $msg->content ?>
+                                        </span>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                    <li>
+                                        <div class="text-center">
+                                            <a href="/admin/message/index">
+                                                <strong>Смотреть все сообщения</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
                     <?php } ?>
                 </nav>
             </div>

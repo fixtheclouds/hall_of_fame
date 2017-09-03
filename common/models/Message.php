@@ -99,6 +99,9 @@ class Message extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * @return int|string
+     */
     public static function getUnreadCount() {
         return static::find()->unread()->count();
     }

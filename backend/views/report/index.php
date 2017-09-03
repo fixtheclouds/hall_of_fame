@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ReportSearch */
@@ -23,13 +24,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'event_id',
             'content:ntext',
-            'status',
-            'user_id',
+            [
+                'attribute' => 'status',
+                'label' => 'Статус',
+                'content' => function($data) {
+                    return $data->humanStatus();
+                }
+            ],
+            'user.profile.name',
             // 'deleted_at',
             // 'created_at',
             // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::className(),'template'=>'{view} {update}' ],
         ],
     ]); ?>
 </div>
