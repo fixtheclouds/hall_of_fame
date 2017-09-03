@@ -10,6 +10,8 @@ $this->title = $model->humanType();
 $this->params['breadcrumbs'][] = ['label' => 'Events', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?= Html::a('<i class="glyphicon glyphicon-menu-left"></i>&nbsp;Назад', Yii::$app->request->referrer) ?>
 <div class="event-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -30,36 +32,49 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6 col-xs-12 text-center">
             <?php if (file_exists($model->getPhotoPath())) { ?>
-                <img class="img img-responsive" src="<?= $model->getPhotoPath() ?>">
+                <?= Html::img('@web/uploads/event/' . $model->photo, [
+                        'class' => 'img img-responsive'
+                ]) ?>
             <?php } ?>
         </div>
         <div class="col-md-6 col-xs-12">
-            <h5><?= $model->person_name ?></h5>
-            <h5><?= $model->humanType() ?></h5>
-            <p>
-                Город: <?= $model->city ?>
-            </p>
-            <p>
-                Место: <?= $model->place ?>
-            </p>
-            <p>
-                Дата проведения мероприятия: <?= $model->date ?>
-            </p>
-            <?php if (!$model->isMine()&& !$model->hasMyReport()) { ?>
-                <button type="button" class="btn btn-primary">
-                    Подать отчет
-                </button>
+            <h4><i class="glyphicon glyphicon-user"
+                   title="ФИО почетного гражданина, которому посвящено мероприятие"></i>
+                <?= $model->person_name ?>
+            </h4>
+            <h4><?= $model->humanType() ?></h4>
+            <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
+            <p><i class="glyphicon glyphicon-home" title="Место"></i> <?= $model->place ?></p>
+            <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i> <?= $model->date ?></p>
+            <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+                <div class="col-xs-6 col-sm-3">
+                    <?= Html::a('Подать отчёт', [
+                        'report/create', 'event_id' => $model->id
+                    ], [
+                        'class' => 'btn btn-primary'
+                    ]) ?>
+                </div>
             <?php } ?>
         </div>
     </div>
     <p>
         <?= $model->content ?>
     </p>
-    <?php if ($model->user_id != Yii::$app->user->id) { ?>
-        <button type="button" class="btn btn-primary">
-            Подать отчет
-        </button>
-    <?php } ?>
+    <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+        <div class="col-xs-6 col-sm-3">
+            <?= Html::a('Подать отчёт', [
+                'report/create', 'event_id' => $model->id
+            ], [
+                'class' => 'btn btn-primary'
+            ]) ?>
+        </div>
+    <?php } else {
+        if ($model->getMyReport()->status == 'dismissed') { ?>
+            <div class="text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
+        <?php } else if ($model->getMyReport()->status == 'pending') { ?>
+            <div class="text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
+        <?php }
+    }?>
     <?php if (Yii::$app->user->identity->isAdmin) { ?>
         <?php if ($model->status == 'pending') { ?>
             <?= Html::a('Опубликовать', ['publish', 'id' => $model->id], [

@@ -24,13 +24,14 @@ use yii\helpers\Html;
             <h4>
                 <?= Html::a(Html::encode($model->subtype->name), ['view', 'id' => $model->id]) ?>
             </h4>
-            <p><i class="glyphicon glyphicon-user"></i> <?= $model->person_name ?></p>
-            <p><i class="glyphicon glyphicon-map-marker"></i> <?= $model->city ?></p>
-            <p><i class="glyphicon glyphicon-calendar"></i> <?= $model->date ?></p>
+            <p><i class="glyphicon glyphicon-user"
+                  title="ФИО почетного гражданина, которому посвящено мероприятие"></i> <?= $model->person_name ?></p>
+            <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
+            <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i> <?= $model->date ?></p>
 
             <div class="row">
-                <?php if (!$model->isMine()&& !$model->hasMyReport()) { ?>
-                    <div class="col-xs-6">
+                <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+                    <div class="col-xs-6 col-sm-3">
                         <?= Html::a('Подать отчёт', [
                             'report/create', 'event_id' => $model->id
                         ], [
@@ -38,7 +39,7 @@ use yii\helpers\Html;
                         ]) ?>
                     </div>
                 <?php } ?>
-                <div class="col-xs-6">
+                <div class="col-xs-6 col-sm-3">
                     <?= Html::a('Подробнее', ['view', 'id' => $model->id], [
                         'class' => 'btn btn-default'
                     ]) ?>

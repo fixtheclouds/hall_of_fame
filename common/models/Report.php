@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 use yii\web\UploadedFile;
 
 
@@ -45,6 +46,11 @@ class Report extends \yii\db\ActiveRecord
     {
         return [
             TimestampBehavior::className(),
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' => false,
+            ]
         ];
     }
 
@@ -54,8 +60,9 @@ class Report extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['images'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 10],
+            [['images'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 10],
             [['event_id', 'user_id'], 'integer'],
+            [['content'], 'required'],
             [['content'], 'string'],
             [['deleted_at', 'created_at', 'updated_at'], 'safe'],
             [['status'], 'string', 'max' => 255],

@@ -115,6 +115,13 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return $this
+     */
+    public function getMyReport() {
+        return $this->getReports()->andWhere(['user_id' => Yii::$app->user->id])->one();
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()

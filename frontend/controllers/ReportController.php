@@ -58,9 +58,10 @@ class ReportController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $this->saveImages($model);
+            $model->save();
             if ($model->save()) {
                 \Yii::$app->getSession()->setFlash('success', 'Отчет успешно отправлен на модерацию');
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['event/view', 'id' => $model->event_id]);
             }
         }
         return $this->render('create', [

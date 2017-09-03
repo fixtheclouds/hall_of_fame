@@ -16,6 +16,7 @@ class User extends BaseUser
     public function rules() {
         $rules = parent::rules();
         unset($rules['usernameRequired']);
+        $rules[] = [['email'], 'required'];
         return $rules;
     }
 

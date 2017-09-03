@@ -137,6 +137,15 @@ form div.required label.control-label::after {
     font-size: 12px;
 }
 
+.event-item {
+    margin-bottom: 0;
+    min-height: 272px;
+}
+
 .event-item img {
     margin: 0 auto;
+}
+
+.top-20 {
+    margin-top: 20px;
 }

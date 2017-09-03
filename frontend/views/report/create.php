@@ -18,22 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-md-6 col-xs-12 text-center">
-            <?php if (file_exists(\Yii::$app->basePath . 'web/uploads/event/' . $eventModel->photo)) { ?>
-                <img class="img img-responsive" src="<?= Yii::$app->homeUrl . '/uploads/event/' . $eventModel->photo ?>">
+            <?php if (file_exists($eventModel->getPhotoPath())) { ?>
+                <?= Yii::$app->thumbnail->img($eventModel->getPhotoPath(), [
+                    'thumbnail' => [
+                        'width' => 500,
+                        'height' => 500,
+                    ]
+                ], [
+                    'class' => 'img img-responsive'
+                ]); ?>
             <?php } ?>
         </div>
         <div class="col-md-6 col-xs-12">
-            <h5><?= $eventModel->person_name ?></h5>
-            <h5><?= $eventModel->humanType() ?></h5>
-            <p>
-                Город: <?= $eventModel->city ?>
-            </p>
-            <p>
-                Место: <?= $eventModel->place ?>
-            </p>
-            <p>
-                Дата проведения мероприятия: <?= $eventModel->date ?>
-            </p>
+            <h4><i class="glyphicon glyphicon-user"
+                   title="ФИО почетного гражданина, которому посвящено мероприятие"></i>
+                <?= $eventModel->person_name ?>
+            </h4>
+            <h4><?= $eventModel->humanType() ?></h4>
+            <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $eventModel->city ?></p>
+            <p><i class="glyphicon glyphicon-home" title="Место"></i> <?= $eventModel->place ?></p>
+            <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i> <?= $eventModel->date ?></p>
         </div>
     </div>
 

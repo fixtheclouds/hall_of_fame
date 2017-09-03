@@ -125,7 +125,7 @@ class EventController extends Controller
         $dataProvider = Event::find()->published()->withReportFromUser(Yii::$app->user->id);
 
         return $this->render('index', [
-            'pageTitle' => 'Мероприятия, в которых я учавствую',
+            'pageTitle' => 'Мероприятия, в которых я участвую',
             'dataProvider' => new ActiveDataProvider([
                 'query' => $dataProvider
             ])
@@ -163,6 +163,7 @@ class EventController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'main';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

@@ -23,7 +23,7 @@ class Profile extends BaseProfile
     {
         $rules = parent::rules();
         $rules[] = [['city', 'phone'], 'string'];
-        $rules[] = [['city', 'phone'], 'required'];
+        $rules[] = [['city', 'phone', 'name'], 'required'];
         $rules[] = [
             'image',
             'image',
@@ -59,6 +59,7 @@ class Profile extends BaseProfile
         return $path;
     }
 
+    /*
     public function afterSave($insert, $changedAttributes)
     {
         // open image
@@ -104,5 +105,5 @@ class Profile extends BaseProfile
             . '.'
             . $this->image->getExtension()
         );
-    }
+    }*/
 }
