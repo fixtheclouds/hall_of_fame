@@ -3,6 +3,7 @@ namespace frontend\models;
 
 use dektrium\user\models\Profile;
 use dektrium\user\models\RegistrationForm as BaseRegistrationForm;
+use common\models\User;
 
 class RegistrationForm extends BaseRegistrationForm
 {

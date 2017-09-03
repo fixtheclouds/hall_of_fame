@@ -93,7 +93,8 @@ return [
                 'settings' => 'frontend\controllers\SettingsController'
             ],
             'enableConfirmation' => false,
-            'enableGeneratingPassword' => true
+            'enableGeneratingPassword' => true,
+            'enableFlashMessages' => false
         ]
     ],
     'aliases' => [
