@@ -8,7 +8,7 @@ use common\models\Message;
 /* @var $searchModel common\models\EventSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Мероприятия';
+$this->title = isset($pageTitle) ? $pageTitle : 'Мероприятия';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="event-index">

@@ -11,11 +11,12 @@ use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 use common\models\Event;
 use common\models\User;
+use bupy7\cropbox\CropboxWidget;
 
 $counts = [
-    'own' => Event::find()->byUserId(Yii::$app->user->id)->count(),
-    'applied' => Event::find()->withReportFromUser(Yii::$app->user->id)->count(),
-    'archived' => Event::find()->active(false)->count()
+    'own' => Event::find()->published()->byUserId(Yii::$app->user->id)->count(),
+    'applied' => Event::find()->published()->withReportFromUser(Yii::$app->user->id)->count(),
+    'archived' => Event::find()->published()->active(false)->count()
 ];
 
 $profileModel = \Yii::$app->user->identity->profile;
@@ -32,6 +33,7 @@ if (!Yii::$app->user->isGuest) {
             <div class="row">
                 <div class="col-xs-4">
                     <?php $form = ActiveForm::begin([
+                        'options' => ['enctype'=>'multipart/form-data'],
                         'action' => '/profile/upload_avatar'
                     ]); ?>
                     <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>

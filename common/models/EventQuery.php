@@ -17,6 +17,10 @@ class EventQuery extends ActiveQuery
         parent::init();
     }
 
+    public function published() {
+        return $this->andWhere(['event.status' => 'published']);
+    }
+
     /**
      * Get only active events
      * @param bool $state

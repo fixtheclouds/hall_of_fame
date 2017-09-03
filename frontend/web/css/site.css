@@ -136,3 +136,7 @@ form div.required label.control-label::after {
 .profile-header, .profile-header a {
     font-size: 12px;
 }
+
+.event-item img {
+    margin: 0 auto;
+}

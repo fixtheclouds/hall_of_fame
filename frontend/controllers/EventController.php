@@ -66,7 +66,7 @@ class EventController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'pageTitle' => 'Мероприятия',
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -77,17 +77,13 @@ class EventController extends Controller
      */
     public function actionActual()
     {
-        $dataProvider = Event::find()->active();
+        $dataProvider = Event::find()->published()->active();
 
         return $this->render('index', [
+            'pageTitle' => 'Мероприятия',
             'dataProvider' => new ActiveDataProvider([
                 'query' => $dataProvider
-            ]),
-            'counts' => [
-                'applied' => $this->getAppliedCount(),
-                'own' => $this->getOwnCount(),
-                'archived' => $this->getArchivedCount()
-            ]
+            ])
         ]);
     }
 
@@ -96,9 +92,10 @@ class EventController extends Controller
      * @return string
      */
     public function actionArchived() {
-        $dataProvider = Event::find()->active(false);
+        $dataProvider = Event::find()->published()->active(false);
 
         return $this->render('index', [
+            'pageTitle' => 'Завершенные мероприятия',
             'dataProvider' => new ActiveDataProvider([
                 'query' => $dataProvider
             ])
@@ -110,9 +107,10 @@ class EventController extends Controller
      * @return string
      */
     public function actionOwn() {
-        $dataProvider = Event::find()->byUserId(Yii::$app->user->id);
+        $dataProvider = Event::find()->published()->byUserId(Yii::$app->user->id);
 
         return $this->render('index', [
+            'pageTitle' => 'Мероприятия, которые я запланировал',
             'dataProvider' => new ActiveDataProvider([
                 'query' => $dataProvider
             ])
@@ -124,9 +122,10 @@ class EventController extends Controller
      * @return string
      */
     public function actionApplied() {
-        $dataProvider = Event::find()->withReportFromUser(Yii::$app->user->id);
+        $dataProvider = Event::find()->published()->withReportFromUser(Yii::$app->user->id);
 
         return $this->render('index', [
+            'pageTitle' => 'Мероприятия, в которых я учавствую',
             'dataProvider' => new ActiveDataProvider([
                 'query' => $dataProvider
             ])
@@ -138,7 +137,7 @@ class EventController extends Controller
      * @return int
      */
     public function getAppliedCount() {
-        return Event::find()->withReportFromUser(Yii::$app->user->id)->count();
+        return Event::find()->published()->withReportFromUser(Yii::$app->user->id)->count();
     }
 
     /**
@@ -146,7 +145,7 @@ class EventController extends Controller
      * @return int
      */
     public function getOwnCount() {
-        return Event::find()->byUserId(Yii::$app->user->id)->count();
+        return Event::find()->published()->byUserId(Yii::$app->user->id)->count();
     }
 
     /**
@@ -154,7 +153,7 @@ class EventController extends Controller
      * @return int
      */
     public function getArchivedCount() {
-        return Event::find()->active(false)->count();
+        return Event::find()->published()->active(false)->count();
     }
 
     /**
