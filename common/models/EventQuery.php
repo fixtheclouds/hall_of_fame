@@ -52,4 +52,8 @@ class EventQuery extends ActiveQuery
         return $this->innerJoin('report', 'report.event_id = event.id')
             ->andWhere(['report.user_id' => $id]);
     }
+
+    public function byType($type) {
+        return $this->andFilterWhere(['type' => $type]);
+    }
 }

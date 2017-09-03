@@ -57,34 +57,13 @@ class EventController extends Controller
     }
 
     /**
-     * Lists all Event models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new EventSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'pageTitle' => 'Мероприятия',
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
      * Lists actual events
      * @return string
      */
     public function actionActual()
     {
-        $dataProvider = Event::find()->published()->active();
-
-        return $this->render('index', [
-            'pageTitle' => 'Мероприятия',
-            'dataProvider' => new ActiveDataProvider([
-                'query' => $dataProvider
-            ])
-        ]);
+        return $this->renderIndex('Мероприятия',
+            Event::find()->published()->active());
     }
 
     /**
@@ -92,14 +71,8 @@ class EventController extends Controller
      * @return string
      */
     public function actionArchived() {
-        $dataProvider = Event::find()->published()->active(false);
-
-        return $this->render('index', [
-            'pageTitle' => 'Завершенные мероприятия',
-            'dataProvider' => new ActiveDataProvider([
-                'query' => $dataProvider
-            ])
-        ]);
+        return $this->renderIndex('Мероприятия',
+            Event::find()->published()->active(false));
     }
 
     /**
@@ -107,14 +80,8 @@ class EventController extends Controller
      * @return string
      */
     public function actionOwn() {
-        $dataProvider = Event::find()->published()->byUserId(Yii::$app->user->id);
-
-        return $this->render('index', [
-            'pageTitle' => 'Мероприятия, которые я запланировал',
-            'dataProvider' => new ActiveDataProvider([
-                'query' => $dataProvider
-            ])
-        ]);
+        return $this->renderIndex('Мероприятия',
+            Event::find()->published()->byUserId(Yii::$app->user->id));
     }
 
     /**
@@ -122,14 +89,33 @@ class EventController extends Controller
      * @return string
      */
     public function actionApplied() {
-        $dataProvider = Event::find()->published()->withReportFromUser(Yii::$app->user->id);
+        return $this->renderIndex('Мероприятия',
+            Event::find()->published()->withReportFromUser(Yii::$app->user->id));
+    }
 
-        return $this->render('index', [
-            'pageTitle' => 'Мероприятия, в которых я участвую',
+    /**
+     * @param $pageTitle
+     * @param $query
+     * @return string
+     */
+    private function renderIndex($pageTitle, $query) {
+        $request = Yii::$app->request;
+        $type = $request->get('type');
+        if (!$type) {
+            $type = 'memory';
+        }
+        $data = [
+            'pageTitle' => $pageTitle,
             'dataProvider' => new ActiveDataProvider([
-                'query' => $dataProvider
+                'query' => $query->byType($type)
             ])
-        ]);
+        ];
+        $type = $request->get('type');
+        if ($request->isAjax && in_array($type, ['legacy', 'memory'])) {
+            return $this->renderPartial("_$type", $data);
+        } else {
+            return $this->render('index', $data);
+        }
     }
 
     /**
