@@ -101,7 +101,7 @@ if (!Yii::$app->user->isGuest) {
                 )
                 . Html::endForm()
                 ?>
-                <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/create_new_password'], [
+                <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/recovery/resend-password'], [
                     'data' => [
                         'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
                             'Ваш текущий пароль станет недейтвителен. Вы уверены?',

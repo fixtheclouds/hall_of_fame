@@ -29,7 +29,9 @@ use kartik\file\FileInput;
         'pluginOptions' => [
             'allowedFileExtensions' => ['jpg', 'gif', 'png']
         ]
-    ])->label('Добавить фотографии к отчету') ?>
+    ])->label('Добавить фотографии к отчету    <p class="text-muted">
+        <small>Для загрузки нескольких файлов удерживайте клавишу CTRL в окне выбора файлов</small>
+    </p>') ?>
 
 
     <div class="form-group">

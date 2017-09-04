@@ -90,7 +90,8 @@ return [
                 'Profile' => 'common\models\Profile'
             ],
             'controllerMap' => [
-                'settings' => 'frontend\controllers\SettingsController'
+                'settings' => 'frontend\controllers\SettingsController',
+                'recovery' => 'frontend\controllers\RecoveryController'
             ],
             'enableConfirmation' => false,
             'enableGeneratingPassword' => true,

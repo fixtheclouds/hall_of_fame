@@ -32,9 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6 col-xs-12 text-center">
             <?php if (file_exists($model->getPhotoPath())) { ?>
-                <?= Html::img('@web/uploads/event/' . $model->photo, [
-                        'class' => 'img img-responsive'
-                ]) ?>
+                <?= Yii::$app->thumbnail->img($model->getPhotoPath(), [
+                    'thumbnail' => [
+                        'width' => 500,
+                        'height' => 500,
+                    ]
+                ], [
+                    'class' => 'img img-responsive'
+                ]); ?>
             <?php } ?>
         </div>
         <div class="col-md-6 col-xs-12">
