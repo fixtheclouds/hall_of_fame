@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
@@ -50,7 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4><?= $model->humanType() ?></h4>
             <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
             <p><i class="glyphicon glyphicon-home" title="Место"></i> <?= $model->place ?></p>
-            <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i> <?= $model->date ?></p>
+            <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
+                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
             <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
                 <div class="col-xs-6 col-sm-3">
                     <?= Html::a('Подать отчёт', [
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'btn btn-primary'
             ]) ?>
         </div>
-    <?php } else {
+    <?php } else if ($model->getMyReport()) {
         if ($model->getMyReport()->status == 'dismissed') { ?>
             <div class="text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
         <?php } else if ($model->getMyReport()->status == 'pending') { ?>

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -26,16 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel panel-default padded">
         <p>
-            <label>Мероприятие:</label> <?= Html::a($model->event->humanType(), ['event/view', 'id' => $model->event_id]) ?>
+            <label>Мероприятие:</label>&nbsp;<?= Html::a($model->event->humanType(), ['event/view', 'id' => $model->event_id]) ?>
         </p>
         <p>
-            <label>Статус:</label><?= $model->humanStatus() ?>
+            <label>Статус:</label>&nbsp;<?= $model->humanStatus() ?>
         </p>
         <p>
-            <label>Создано:</label><?= date('d-m-Y H:i:s', $model->created_at) ?>
+            <label>Создано:</label>&nbsp;<?= date('d-m-Y H:i:s', $model->created_at) ?>
         </p>
         <p>
-            <label>Содержание:</label> <?= $model->content ?>
+            <label>Содержание:</label>&nbsp;<?= $model->content ?>
         </p>
     </div>
     <p>
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::a('Отклонить', ['publish', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
-                    'confirm' => 'Вы уверены, что хотите отклонить мероприятие?',
+                    'confirm' => 'Вы уверены, что хотите отклонить отчет?',
                     'method' => 'post',
                 ],
             ]);
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'reverse' => true], [
                 'class' => 'btn btn-default',
                 'data' => [
-                    'confirm' => 'Вы уверены, что хотите скрыть мероприятие?',
+                    'confirm' => 'Вы уверены, что хотите скрыть отчет?',
                     'method' => 'post',
                 ],
             ]);

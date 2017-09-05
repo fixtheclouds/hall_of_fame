@@ -96,6 +96,10 @@ class Event extends \yii\db\ActiveRecord
         return self::HUMAN_STATES[$this->status];
     }
 
+    public function isArchived() {
+        return strtotime($this->date) < time();
+    }
+
     /**
      * Возвращает true, если мероприятие создано
      * текущим пользователем
@@ -165,7 +169,7 @@ class Event extends \yii\db\ActiveRecord
             'type' => 'Тип мероприятия',
             'date' => 'Дата проведения',
             'city' => 'Город',
-            'subtype_id' => 'Тип мероприятия',
+            'subtype_id' => 'Подтип мероприятия',
             'content' => 'Подробное описание вашего мероприятия',
             'place' => 'Место',
             'person_name' => 'ФИО гражданина, которому посвящено мероприятие',

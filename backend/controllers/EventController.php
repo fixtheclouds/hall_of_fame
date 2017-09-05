@@ -105,4 +105,28 @@ class EventController extends BackendController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    /**
+     * Опубликовать мероприятие
+     * @param $id
+     * @param $reverse
+     * @return \yii\web\Response
+     */
+    public function actionPublish($id, $reverse = false) {
+        $newStatus = $reverse ? 'pending' : 'published';
+        $model = $this->findModel($id);
+        $model->updateAttributes(['status' => $newStatus]);
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    /**
+     * Отклонить мероприятие
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionDismiss($id) {
+        $model = $this->findModel($id);
+        $model->updateAttributes(['status' => 'dismissed']);
+        return $this->redirect(['view', 'id' => $model->id]);
+    }
 }

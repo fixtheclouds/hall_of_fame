@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -38,6 +39,16 @@ return [
             'baseUrl' => '/admin',
             'rules' => [
             ],
+        ],
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => $_SERVER['DOCUMENT_ROOT'] . '/frontend/web/uploads/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
+        'thumbnail' => [
+            'class' => 'sadovojav\image\Thumbnail',
+            'cachePath' => '@webroot/cache'
         ]
     ],
     'params' => $params,

@@ -15,38 +15,74 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            [
-                'attribute' => 'type',
-                'content' => function($data) {
-                    return $data->humanType();
-                }
-            ],
-            'date',
-            'city',
-            'subtype_id',
-            'content:html',
-            'place',
-            'person_name',
-            'photo',
-            'status',
-            'user.profile.name',
-            'created_at:datetime',
-            'updated_at:datetime',
-        ],
-    ]) ?>
+    <div class="panel panel-default padded">
+        <?php
+        $photoPath = Yii::$app->urlManagerFrontend->baseUrl . '/event/' . $model->photo;
+        if (file_exists($photoPath)) { ?>
+            <?= Yii::$app->thumbnail->img($photoPath, [
+                'thumbnail' => [
+                    'width' => 500,
+                    'height' => 500,
+                ]
+            ], [
+                'class' => 'img img-responsive'
+            ]); ?>
+        <?php } ?>
+        <p>
+            <label>Статус:</label>&nbsp;<?= $model->humanState() ?>
+        </p>
+        <p>
+            <label>Создано:</label>&nbsp;
+            <?= \Yii::$app->formatter->asDate($model->created_at, 'd MMMM y года, HH:mm') ?>
+        </p>
+        <p>
+            <label>ФИО гражданина, которому посвящено мероприятие:</label>&nbsp;
+            <?= $model->person_name ?>
+        </p>
+        <p>
+            <label>Город:</label>&nbsp;<?= $model->city ?>
+        </p>
+        <p>
+            <label>Дата проведения:</label>&nbsp;
+            <?= \Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?>
+        </p>
+        <p>
+            <label>Содержание:</label> <?= $model->content ?>
+        </p>
+    </div>
+
+    <p>
+        <?php if ($model->status == 'pending') {
+            echo Html::a('Опубликовать', ['publish', 'id' => $model->id], [
+                'class' => 'btn btn-success',
+                'data' => ['method' => 'post']
+            ]);
+            echo Html::a('Отклонить', ['publish', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите отклонить мероприятие?',
+                    'method' => 'post',
+                ],
+            ]);
+        }
+        else if ($model->status == 'published') {
+            echo Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'reverse' => true], [
+                'class' => 'btn btn-default',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите скрыть мероприятие?',
+                    'method' => 'post',
+                ],
+            ]);
+        } ?>
+    </p>
 
 </div>
