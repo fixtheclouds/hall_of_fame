@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\ScoreSystemSearch */
@@ -20,14 +21,23 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'module',
-            'action',
+            [
+                'attribute' => 'module',
+                'content' => function($data) {
+                    return $data->humanModule();
+                }
+            ],
+            [
+                'attribute' => 'action',
+                'content' => function($data) {
+                    return $data->humanAction();
+                }
+            ],
             'amount',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::className(), 'template' => '{update} {delete}' ],
         ],
     ]); ?>
 </div>

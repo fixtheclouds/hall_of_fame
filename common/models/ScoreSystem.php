@@ -14,12 +14,33 @@ use Yii;
  */
 class ScoreSystem extends \yii\db\ActiveRecord
 {
+
+    const MODULES = [
+        'event' => 'Мероприятия',
+        'report' => 'Отчеты',
+        'message' => 'Сообщения'
+    ];
+
+    const ACTIONS = [
+        'create' => 'Создание',
+        'publish' => 'Публикация'
+    ];
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'score_system';
+    }
+
+    public function humanModule()
+    {
+        return static::MODULES[$this->module];
+    }
+
+    public function humanAction()
+    {
+        return static::ACTIONS[$this->action];
     }
 
     /**
@@ -30,6 +51,7 @@ class ScoreSystem extends \yii\db\ActiveRecord
         return [
             [['amount'], 'integer'],
             [['module', 'action'], 'string', 'max' => 255],
+            [['module', 'action'], 'unique', 'targetAttribute' => ['module', 'action']]
         ];
     }
 
@@ -44,5 +66,25 @@ class ScoreSystem extends \yii\db\ActiveRecord
             'action' => 'Действие',
             'amount' => 'Количество баллов',
         ];
+    }
+
+    /**
+     * @param $module
+     * @param $action
+     * @return bool
+     */
+    public static function hasModuleAction($module, $action) {
+        return static::find()->andWhere(['module' => $module, 'action' => $action])->exists();
+    }
+
+    /**
+     * @param $module
+     * @param $action
+     * @return bool
+     */
+    public static function createScore($module, $action) {
+        $rule = static::find()->andWhere(['module' => $module, 'action' => $action])->one();
+        $amount = $rule->amount();
+        return false;
     }
 }

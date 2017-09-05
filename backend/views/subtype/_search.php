@@ -11,28 +11,18 @@ use yii\bootstrap\ActiveForm;
 <div class="subtype-search">
 
     <?php $form = ActiveForm::begin([
-        'layout' => 'horizontal',
         'action' => ['index'],
         'method' => 'get',
         'fieldConfig' => [
             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-            'horizontalCssClasses' => [
-                'label' => 'col-sm-4',
-                'offset' => 'col-sm-offset-4',
-                'wrapper' => 'col-sm-8',
-                'error' => '',
-                'hint' => '',
-            ],
         ],
     ]); ?>
 
-    <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'type')->dropDownList(\common\models\Event::HUMAN_TYPES) ?>
+    <?= $form->field($model, 'type')->dropDownList(\common\models\Event::HUMAN_TYPES, ['prompt' => 'Выбрать...']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Сбросить', ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Сбросить', ['index'], ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

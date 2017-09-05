@@ -14,11 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="report-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -36,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'created_at',
             // 'updated_at',
 
-            ['class' => ActionColumn::className(),'template'=>'{view} {update}' ],
+            ['class' => ActionColumn::className(), 'template' => '{view} {delete}' ],
         ],
     ]); ?>
 </div>

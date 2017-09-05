@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EventSearch */
@@ -43,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'user.profile.name',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::className(), 'template' => '{view} {delete}' ],
         ],
     ]); ?>
 </div>

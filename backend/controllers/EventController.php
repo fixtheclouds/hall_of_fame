@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Event;
 use common\models\EventSearch;
+use common\models\ScoreSystem;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -12,6 +13,21 @@ use yii\web\NotFoundHttpException;
  */
 class EventController extends BackendController
 {
+    /*
+     * @todo coming soon
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        if (ScoreSystem::hasModuleAction($this->uniqueid, $this->action->id)) {
+            ScoreSystem::createScore($this->uniqueid, $this->action->id);
+        }
+
+        return true;
+    }
+    */
 
     /**
      * Lists all Event models.

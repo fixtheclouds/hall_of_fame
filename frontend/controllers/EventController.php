@@ -4,8 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Event;
-use common\models\EventSearch;
-use common\models\Subtype;
+use common\models\ScoreSystem;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

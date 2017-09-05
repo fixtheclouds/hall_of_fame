@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\ScoreSystem;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\ScoreSystem */
@@ -12,9 +13,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'module')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'module')->dropDownList(ScoreSystem::MODULES) ?>
 
-    <?= $form->field($model, 'action')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'action')->dropDownList(ScoreSystem::ACTIONS) ?>
 
     <?= $form->field($model, 'amount')->textInput(['type' => 'number', 'min' => 0]) ?>
 
