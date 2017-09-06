@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use common\models\Score;
 
 /**
  * This is the model class for table "score_system".
@@ -82,9 +83,12 @@ class ScoreSystem extends \yii\db\ActiveRecord
      * @param $action
      * @return bool
      */
-    public static function createScore($module, $action) {
+    public static function createScore($module, $action, $userId) {
         $rule = static::find()->andWhere(['module' => $module, 'action' => $action])->one();
-        $amount = $rule->amount();
-        return false;
+        $amount = $rule->amount;
+        $score = new Score();
+        $score->user_id = $userId;
+        $score->amount = $amount;
+        return $score->save();
     }
 }

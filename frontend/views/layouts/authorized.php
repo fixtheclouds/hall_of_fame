@@ -116,7 +116,7 @@ if (!Yii::$app->user->isGuest) {
                 <p>
                     <span>
                         Баллы, которые я заработал:
-                        <?=User::findIdentity(\Yii::$app->user->id)->getScore() ?>&nbsp;<i class="glyphicon glyphicon-star-empty"></i>
+                        <?= User::findIdentity(\Yii::$app->user->id)->getScore() ?>&nbsp;<i class="glyphicon glyphicon-star-empty"></i>
                     </span>
                 </p>
                 <p>

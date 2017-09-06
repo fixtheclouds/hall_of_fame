@@ -25,6 +25,10 @@ class User extends BaseUser
      * @return \yii\db\ActiveQuery
      */
     public function getScore() {
-        return $this->hasMany(Score::className(), ['user_id' => 'id'])->sum('amount');
+        $score = $this->hasMany(Score::className(), ['user_id' => 'id'])->sum('amount');
+        if ($score) {
+            return $score;
+        }
+        return 0;
     }
 }

@@ -131,7 +131,8 @@ class EventController extends BackendController
     public function actionPublish($id, $reverse = false) {
         $newStatus = $reverse ? 'pending' : 'published';
         $model = $this->findModel($id);
-        $model->updateAttributes(['status' => $newStatus]);
+        $model->status = $newStatus;
+        $model->save();
         return $this->redirect(['view', 'id' => $model->id]);
     }
 

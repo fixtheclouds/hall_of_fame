@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\traits\TrackScore;
 use Yii;
 use common\models\Event;
 use common\models\ScoreSystem;
