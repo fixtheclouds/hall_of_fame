@@ -30,39 +30,69 @@ $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
     ?>
     <div class="profile-header clearfix">
-        <div class="col-sm-5">
+        <div class="col-sm-4">
+            <?php $form = ActiveForm::begin([
+                'options' => ['enctype'=>'multipart/form-data'],
+                'action' => '/profile/upload-avatar'
+            ]); ?>
+            <?php // Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
+
+            <?= $form->field($profileModel, 'image')->widget(FileInput::className(), [
+                'pluginOptions' => [
+                    'initialPreview'=>[
+                        Yii::$app->user->identity->profile->getAvatarUrl()
+                    ],
+                    'initialPreviewAsData' => true,
+                    'overwriteInitial' => true,
+                    'showRemove' => false,
+                    'showUpload' => false,
+                    'showCaption' => false,
+                    'uploadUrl' => '/user/profile/upload-avatar',
+                    'browseLabel' => 'Изменить фотографию'
+                ]
+            ])->label(false) ?>
+            <?php ActiveForm::end(); ?>
+        </div>
+        <div class="col-xs-4">
+            <h4>
+                <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
+            </h4>
+            <p>
+                <strong>Email: <?= Yii::$app->user->identity->email ?></strong>
+            </p>
+            <p>
+                <strong>Город: <?= Yii::$app->user->identity->profile->city ?></strong>
+            </p>
+            <p>
+                <strong>Телефон: <?= Yii::$app->user->identity->profile->phone ?></strong>
+            </p>
+            <p>
+                <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
+            </p>
+        </div>
+
+        <div class="col-sm-4">
             <div class="row">
-                <div class="col-xs-4">
-                    <?php $form = ActiveForm::begin([
-                        'options' => ['enctype'=>'multipart/form-data'],
-                        'action' => '/profile/upload_avatar'
-                    ]); ?>
-                    <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
-                    <?php ActiveForm::end(); ?>
-                </div>
-                <div class="col-xs-8">
-                    <h4>
-                        <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
-                    </h4>
-                    <p>
-                        <strong>Email: <?= Yii::$app->user->identity->email ?></strong>
-                    </p>
-                    <p>
-                        <strong>Город: <?= Yii::$app->user->identity->profile->city ?></strong>
-                    </p>
-                    <p>
-                        <strong>Телефон: <?= Yii::$app->user->identity->profile->phone ?></strong>
-                    </p>
-                    <p>
-                        <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
-                        <br>
-                        <?= Html::a('Изменить фотографию', ['#']) ?>
-                    </p>
+                <div class="col-xs-12">
+            <?= Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                '<i class="glyphicon glyphicon-log-out"></i>&nbsp;Выйти',
+                ['class' => 'btn btn-default logout col-xs-12']
+            )
+            . Html::endForm()
+            ?>
+            <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/recovery/resend-password'], [
+                'data' => [
+                    'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
+                        'Ваш текущий пароль станет недейтвителен. Вы уверены?',
+                    'method' => 'post',
+                ],
+                'class' => 'btn btn-default top-20 col-xs-12'
+            ]) ?>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-7">
-            <div class="col-xs-6">
+            <div class="clearfix top-20">
+                <hr>
                 <p>
                     <a href="/event/actual">
                         Предстоящие мероприятия: <?= $counts['active'] ?>
@@ -92,23 +122,6 @@ if (!Yii::$app->user->isGuest) {
                 <p>
                     <?= Html::a('Запланировать новое мероприятие', ['create'], ['class' => 'btn btn-success']) ?>
                 </p>
-            </div>
-            <div class="col-xs-6">
-                <?= Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    '<i class="glyphicon glyphicon-log-out"></i>&nbsp;Выйти',
-                    ['class' => 'btn btn-default logout col-xs-12']
-                )
-                . Html::endForm()
-                ?>
-                <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/recovery/resend-password'], [
-                    'data' => [
-                        'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
-                            'Ваш текущий пароль станет недейтвителен. Вы уверены?',
-                        'method' => 'post',
-                    ],
-                    'class' => 'btn btn-default top-20 col-xs-12'
-                ]) ?>
             </div>
         </div>
     </div>

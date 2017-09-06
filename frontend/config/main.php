@@ -92,7 +92,8 @@ return [
             ],
             'controllerMap' => [
                 'settings' => 'frontend\controllers\SettingsController',
-                'recovery' => 'frontend\controllers\RecoveryController'
+                'recovery' => 'frontend\controllers\RecoveryController',
+                'profile' => 'frontend\controllers\ProfileController'
             ],
             'enableConfirmation' => false,
             'enableGeneratingPassword' => true,

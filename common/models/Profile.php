@@ -30,7 +30,6 @@ class Profile extends BaseProfile
             'extensions' => ['jpg', 'jpeg', 'png', 'gif'],
             'mimeTypes' => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif'],
         ];
-        $rules[] = [['crop_info'], 'safe'];
         return $rules;
     }
 
