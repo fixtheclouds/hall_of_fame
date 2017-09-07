@@ -19,7 +19,15 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type')->radioList(Event::$types)->label('Какое мероприятие вы хотите запланировать?'); ?>
+    <?= $form->field($model, 'type')->radioList(Event::$types, [
+        'prompt' => 'Выбрать...',
+        'onchange'=>'
+                    var type = $("input[name=\"Event[type]\"]:checked").val();
+                    $.get( "'.Yii::$app->urlManager->createUrl('subtype/list?type=').'" + type, function( data ) {
+                      $( "select#subtype" ).html( data );
+                    });
+                    '
+    ])->label('Какое мероприятие вы хотите запланировать?'); ?>
 
 
     <?= $form->field($model, 'date')->widget(DateTimePicker::className(), [
@@ -59,7 +67,10 @@ use yii\helpers\Url;
 
     <?php reset(Event::$types);
     $subtypes = Subtype::find()->getNamesByType(key(Event::$types))->column();
-    echo $form->field($model, 'subtype_id')->dropDownList($subtypes);
+    echo $form->field($model, 'subtype_id')->dropDownList([], [
+        'prompt' => 'Выбрать...',
+        'id' => 'subtype'
+    ]);
     ?>
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [

@@ -156,8 +156,7 @@ class Event extends \yii\db\ActiveRecord
             [['place'], 'string', 'max' => 512],
             [['status'], 'string', 'max' => 255],
             [['image'], 'safe'],
-            [['image'], 'file', 'extensions' => 'jpg, gif, png'],
-            [['image'], 'file', 'maxSize' => 1024 * 1024 * 10]
+            [['image'], 'file', 'extensions' => 'jpg, gif, png', 'maxSize' => 1024 * 1024 * 10]
         ];
     }
 
