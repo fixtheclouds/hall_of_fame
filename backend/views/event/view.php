@@ -45,6 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= \Yii::$app->formatter->asDate($model->created_at, 'd MMMM y года, HH:mm') ?>
         </p>
         <p>
+            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;&lt;<?= $model->user->username ?>&gt;
+        </p>
+        <p>
             <label>ФИО гражданина, которому посвящено мероприятие:</label>&nbsp;
             <?= $model->person_name ?>
         </p>

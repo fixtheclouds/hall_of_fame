@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $eventModel->city ?></p>
             <p><i class="glyphicon glyphicon-home" title="Место"></i> <?= $eventModel->place ?></p>
             <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
-                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
+                <?= Yii::$app->formatter->asDate($eventModel->date, 'd MMMM y года, HH:mm') ?></p>
         </div>
     </div>
 

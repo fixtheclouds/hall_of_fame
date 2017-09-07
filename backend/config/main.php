@@ -48,7 +48,8 @@ return [
         ],
         'thumbnail' => [
             'class' => 'sadovojav\image\Thumbnail',
-            'cachePath' => '@webroot/cache'
+            'cachePath' => '@webroot/cache',
+            'prefixPath' => '/admin/'
         ]
     ],
     'params' => $params,

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Report */
 
-$this->title = 'Отчет от ' . date('d-m-Y H:i:s', $model->created_at);
+$this->title = 'Отчет от ' . \Yii::$app->formatter->asDate($model->created_at);
 $this->params['breadcrumbs'][] = ['label' => 'Reports', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -32,10 +32,31 @@ $this->params['breadcrumbs'][] = $this->title;
             <label>Статус:</label>&nbsp;<?= $model->humanStatus() ?>
         </p>
         <p>
-            <label>Создано:</label>&nbsp;<?= date('d-m-Y H:i:s', $model->created_at) ?>
+            <label>Создано:</label>&nbsp;<?= \Yii::$app->formatter->asDate($model->created_at, 'd MMMM y года, HH:mm') ?>
+        </p>
+        <p>
+            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;&lt;<?= $model->user->username ?>&gt;
         </p>
         <p>
             <label>Содержание:</label>&nbsp;<?= $model->content ?>
+        </p>
+        <p>
+            <label>Фото:</label>
+        <div>
+            <?php foreach ($model->reportPhotos as $photo) {
+                $absPath = \Yii::$app->urlManagerFrontend->baseUrl . '/report/' . $photo->photo;
+                if (file_exists($absPath)) { ?>
+                    <?= \Yii::$app->thumbnail->img($absPath, [
+                        'thumbnail' => [
+                            'width' => 300,
+                            'height' => 300,
+                            'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
+                        ]
+                    ], [
+                    ]);
+                }
+            } ?>
+        </div>
         </p>
     </div>
     <p>

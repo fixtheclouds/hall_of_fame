@@ -57,9 +57,8 @@ class ReportController extends Controller
         $eventModel = Event::find($event_id)->one();
 
         if ($model->load(Yii::$app->request->post())) {
-            $this->saveImages($model);
-            $model->save();
             if ($model->save()) {
+                $this->saveImages($model);
                 \Yii::$app->getSession()->setFlash('success', 'Отчет успешно отправлен на модерацию');
                 return $this->redirect(['event/view', 'id' => $model->event_id]);
             }
