@@ -19,28 +19,31 @@ $counts = [
     'applied' => Event::find()->published()->withReportFromUser(Yii::$app->user->id)->distinct()->count(),
     'archived' => Event::find()->published()->active(false)->count()
 ];
-
 $profileModel = \Yii::$app->user->identity->profile;
-
-$customBtn = '<button type="button" class="btn btn-default" title="Add picture tags"' .
-    '<i class="glyphicon glyphicon-tag"></i>' .
-    '</button>';
-
 $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
     ?>
     <div class="profile-header clearfix">
-        <div class="col-sm-4">
+        <div class="col-md-3 col-sm-6 col-xs-12">
             <?php $form = ActiveForm::begin([
                 'options' => ['enctype'=>'multipart/form-data'],
                 'action' => '/profile/upload-avatar'
-            ]); ?>
-            <?php // Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
+            ]);
 
-            <?= $form->field($profileModel, 'image')->widget(FileInput::className(), [
+            $avatarUrl = Yii::$app->user->identity->profile->getAvatarUrl(true);
+            $thumbUrl = Yii::$app->thumbnail->url($avatarUrl, [
+                'thumbnail' => [
+                    'width' => 200,
+                    'height' => 200,
+                ]
+            ]); ?>
+
+            <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb']) ?>
+
+            <?= $form->field($profileModel, 'image', ['options' => ['style' => 'display: none']])->widget(FileInput::className(), [
                 'pluginOptions' => [
                     'initialPreview'=>[
-                        Yii::$app->user->identity->profile->getAvatarUrl()
+                        $thumbUrl
                     ],
                     'initialPreviewAsData' => true,
                     'overwriteInitial' => true,
@@ -48,12 +51,12 @@ if (!Yii::$app->user->isGuest) {
                     'showUpload' => false,
                     'showCaption' => false,
                     'uploadUrl' => '/user/profile/upload-avatar',
-                    'browseLabel' => 'Изменить фотографию'
+                    'browseLabel' => 'Выбрать файл'
                 ]
             ])->label(false) ?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="col-xs-4">
+        <div class="col-md-5 col-sm-6 col-xs-12">
             <h4>
                 <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
             </h4>
@@ -69,9 +72,12 @@ if (!Yii::$app->user->isGuest) {
             <p>
                 <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
             </p>
+            <p>
+                <?= Html::a('Изменить фотографию', '#', ['class' => 'profile-link', 'id' => 'upload-mode']) ?>
+            </p>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-md-4 col-sm-12">
             <div class="row">
                 <div class="col-xs-12">
             <?= Html::beginForm(['/site/logout'], 'post')
