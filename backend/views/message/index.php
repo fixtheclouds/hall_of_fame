@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\MessageSearch */
@@ -20,7 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'user.profile.name',
+            [
+                'attribute' => 'user',
+                'label' => 'Автор',
+                'content' => function($data){
+                    return $data->user->profile->name . '&nbsp;&lt;' . $data->user->username .'&gt;';
+                },
+            ],
             'created_at:datetime',
             [
                     'attribute' => 'state',
@@ -28,9 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $data->humanState();
                     },
             ],
-            'content:ntext',
+            [
+                'attribute' => 'content',
+                'content' => function($data){
+                    return \yii\helpers\StringHelper::truncate($data->content, 30);
+                },
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::className(), 'template' => '{view} {delete}' ],
         ],
     ]); ?>
 </div>

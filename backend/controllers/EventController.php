@@ -57,24 +57,6 @@ class EventController extends BackendController
     }
 
     /**
-     * Creates a new Event model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Event();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
      * Updates an existing Event model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id

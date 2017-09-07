@@ -148,9 +148,9 @@ AppAsset::register($this);
                                     <span class="badge bg-green"><?= common\models\Message::getUnreadCount() ?></span>
                                 </a>
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                    <?php foreach (common\models\Message::find()->unread()->all() as $msg) { ?>
+                                    <?php foreach (common\models\Message::fresh()->all() as $msg) { ?>
                                         <li>
-                                            <a href="<?= Url::to(['/admin/message/view'], ['id' => $msg->id]) ?>">
+                                            <a href="<?= Url::to(['message/view', 'id' => $msg->id]) ?>">
                                                 <span><?= $msg->user->profile->name ?></span>
                                                 <span class="time"><?= date('d-m-Y H:i:s', $msg->created_at) ?></span>
                                                 <span class="message">

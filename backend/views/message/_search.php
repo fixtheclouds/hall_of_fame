@@ -15,13 +15,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'state')->dropDownList(common\models\Message::HUMAN_STATES) ?>
+    <?= $form->field($model, 'state')->dropDownList(common\models\Message::HUMAN_STATES, [
+        'prompt' => 'Выбрать...'
+    ]) ?>
 
     <?php // echo $form->field($model, 'content') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Сбросить', ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Сбросить', ['index'], ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

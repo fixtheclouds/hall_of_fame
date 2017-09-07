@@ -36,8 +36,12 @@ class MessageController extends BackendController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if ($model->state == 'pending') {
+            $this->setAsRead($model);
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -76,6 +80,15 @@ class MessageController extends BackendController
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * @param $model Message
+     * @return mixed
+     */
+    private function setAsRead($model) {
+        $model->state = 'read';
+        return $model->save();
     }
 
     /**

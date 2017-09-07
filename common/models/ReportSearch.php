@@ -47,6 +47,9 @@ class ReportSearch extends Report
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10
+            ]
         ]);
 
         $this->load($params);

@@ -21,6 +21,7 @@ use yii\behaviors\BlameableBehavior;
 class Message extends \yii\db\ActiveRecord
 {
     use \common\traits\TrackScore;
+
     /**
      * @inheritdoc
      */
@@ -34,7 +35,8 @@ class Message extends \yii\db\ActiveRecord
         'read' => 'Прочитано'
     ];
 
-    public function humanState() {
+    public function humanState()
+    {
         return static::HUMAN_STATES[$this->state];
     }
 
@@ -44,6 +46,14 @@ class Message extends \yii\db\ActiveRecord
     public static function find()
     {
         return new MessageQuery(get_called_class());
+    }
+
+    /**
+     * @return $this
+     */
+    public static function fresh()
+    {
+        return static::find()->unread()->orderBy('created_at DESC')->limit(5);
     }
 
     /**

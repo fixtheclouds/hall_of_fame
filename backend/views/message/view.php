@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Message */
 
-$this->title = $model->id;
+$this->title = 'Сообщение от ' . \Yii::$app->formatter->asDatetime($model->created_at);
 $this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,25 +15,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'user_id',
-            'created_at',
-            'deleted_at',
-            'state',
-            'content:ntext',
-        ],
-    ]) ?>
+    <div class="panel panel-default padded">
+        <p>
+            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;&lt;<?= $model->user->username ?>&gt;
+        </p>
+        <p>
+            <label>Содержание:</label>
+            <div>
+                <?= $model->content ?>
+            </div>
+        </p>
+    </div>
 
 </div>
