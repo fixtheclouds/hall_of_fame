@@ -54,7 +54,7 @@ class Profile extends BaseProfile
         $basePath = \Yii::$app->basePath . '/web/uploads/profile/' . $this->photo;
         if (!$this->photo || !file_exists($basePath)) {
             $defaultPath = '/images/default_avatar.jpg';
-            return $full ? \Yii::$app->basePath . $defaultPath : \Yii::$app->homeUrl . $defaultPath;
+            return $full ? \Yii::$app->basePath . '/web/' . $defaultPath : \Yii::$app->homeUrl . $defaultPath;
         } else if ($full) {
             return $basePath;
         }

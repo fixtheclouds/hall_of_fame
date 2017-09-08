@@ -47,7 +47,7 @@ class ProfileController extends BaseController
             $model->photo = \Yii::$app->security->generateRandomString() . ".{$ext}";
             \Yii::$app->params['uploadPath'] = \Yii::$app->basePath . '/web/uploads/profile/';
             $path = \Yii::$app->params['uploadPath'] . $model->photo;
-            $result = $image->saveAs($path) && $model->save();
+            $result = $image->saveAs($path) && $model->save(false);
         }
         $response = $result ? ['uploaded' => 'OK'] : ['uploaded' => 'ERROR'];
         echo Json::encode($response);
