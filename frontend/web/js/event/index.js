@@ -1,3 +1,5 @@
+/*
+@todo возможно надо удалить, сейчас не используется
 $(document).on('click', 'a.tab', function(){
     var self = $(this);
     var $container = $(self.attr('href'));
@@ -11,3 +13,4 @@ $(document).on('click', 'a.tab', function(){
         }
     );
 });
+*/

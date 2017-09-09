@@ -8,7 +8,8 @@ use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EventSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $memoryProvider yii\data\ActiveDataProvider */
+/* @var $legacyProvider yii\data\ActiveDataProvider */
 
 $this->title = isset($pageTitle) ? $pageTitle : 'Мероприятия';
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'items' => [
         [
             'label' => 'Память',
-            'content' => $this->render('_memory', ['dataProvider' => $dataProvider]),
+            'content' => $this->render('_memory', ['memoryDataProvider' => $memoryDataProvider]),
             'active' => true,
             'linkOptions' => [
                 'class' => 'tab',
@@ -31,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'label' => 'Наследие',
-            'content' => $this->render('_legacy', ['dataProvider' => $dataProvider]),
+            'content' => $this->render('_legacy', ['legacyDataProvider' => $legacyDataProvider]),
             'linkOptions' => [
                 'class' => 'tab',
                 'data-type' => 'legacy'

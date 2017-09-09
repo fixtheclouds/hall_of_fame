@@ -7,6 +7,7 @@ use Yii;
 use common\models\Event;
 use common\models\ScoreSystem;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
@@ -100,19 +101,24 @@ class EventController extends Controller
      */
     private function renderIndex($pageTitle, $query) {
         $request = Yii::$app->request;
-        $type = $request->get('type');
-        if (!$type) {
-            $type = 'memory';
+        $types = array_keys(Event::HUMAN_TYPES);
+        $providers = [];
+        $pagerParams = $_GET;
+
+        foreach ($types as $type) {
+            $pagerParams['type'] = $type;
+            $typedQuery = clone $query;
+            $providers[$type . 'DataProvider'] = new ActiveDataProvider([
+                'query' => $typedQuery->byType($type),
+                'pagination' => [
+                    'pageSize' => 5,
+                    'params' => $pagerParams
+                ]
+            ]);
         }
-        $data = [
-            'pageTitle' => $pageTitle,
-            'dataProvider' => new ActiveDataProvider([
-                'query' => $query->byType($type)
-            ])
-        ];
-        $type = $request->get('type');
-        if ($request->isAjax && in_array($type, ['legacy', 'memory'])) {
-            return $this->renderPartial("_$type", $data);
+        $data = array_merge(['pageTitle' => $pageTitle], $providers);
+        if ($request->isAjax && in_array($request->get('type'), ['legacy', 'memory'])) {
+            return $this->renderPartial("_{$request->get('type')}", $data);
         } else {
             return $this->render('index', $data);
         }

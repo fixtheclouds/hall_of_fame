@@ -6,7 +6,7 @@ use nirvana\infinitescroll\InfiniteScrollPager;
 <div>
     <?php Pjax::begin(); ?>
     <?= ListView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $legacyDataProvider,
         'itemView' => '_item',
         'id' => 'events-legacy',
         'layout' => "<div class=\"items\">{items}</div>\n{pager}",
@@ -14,8 +14,17 @@ use nirvana\infinitescroll\InfiniteScrollPager;
             'class' => InfiniteScrollPager::className(),
             'widgetId' => 'events-legacy',
             'itemsCssClass' => 'items',
+            'nextPageLabel' => 'Показать ещё',
+            'pluginOptions' => [
+                'loading' => [
+                    'msgText' => "<b>Загрузка...</b>",
+                    'finishedMsg' => "<b>Вы достигли конца списка</b>",
+                ],
+            ]
         ],
         'emptyText' => '<h3>Мероприятий не найдено.</h3>'
     ]);?>
     <?php Pjax::end(); ?>
 </div>
+
+
