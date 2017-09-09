@@ -35,8 +35,7 @@ use yii\helpers\Url;
         'layout' => '{input}{picker}',
         'value' => date('d-m-Y H:i'),
         'pluginOptions' => [
-            'autoclose'=>true,
-            //'format' => 'dd-mm-yyyy hh:ii'
+            'autoclose'=>true
         ]
     ]); ?>
 
@@ -45,13 +44,12 @@ use yii\helpers\Url;
             'placeholder' => 'Введите название'
         ],
         'pluginOptions' => [
-            'highlight' => true,
-            'minLength' => 2
+            'highlight' => true
         ],
         'dataset' => [
             [
-                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('label')",
-                'display' => 'label',
+                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('name')",
+                'display' => 'name',
                 'remote' => [
                     'url' => Url::to(['/city/autocomplete']) . '?query=%QUERY',
                     'wildcard' => '%QUERY'
