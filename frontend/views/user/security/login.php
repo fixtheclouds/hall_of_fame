@@ -84,47 +84,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '3']) ?>
 
+                <div class="text-center top-20 bottom-20">
+                    <?= ULogin::widget([
+                        'display' => ULogin::D_PANEL,
+                        'fields' => [ULogin::F_FIRST_NAME, ULogin::F_LAST_NAME, ULogin::F_EMAIL, ULogin::F_CITY],
+                        'optional' => [ULogin::F_PHONE, ULogin::F_PHOTO_BIG],
+                        'providers' => [ULogin::P_VKONTAKTE, ULogin::P_FACEBOOK, ULogin::P_GOOGLE],
+                        'hidden' => [],
+                        'redirectUri' => ['/user/registration/ulogin'],
+                        'language' => ULogin::L_RU,
+                        'sortProviders' => ULogin::S_DEFAULT,
+                        'mobileButtons' => '1',
+                    ]) ?>
+                </div>
+
                 <?= Html::submitButton(
                     Yii::t('user', 'Sign in'),
                     ['class' => 'btn btn-primary btn-block', 'tabindex' => '4']
                 ) ?>
 
                 <?php ActiveForm::end(); ?>
-
-                <?php
-                /**
-                 * @todo later
-
-                ULogin::widget([
-                // widget look'n'feel
-                'display' => ULogin::D_PANEL,
-
-                // required fields
-                'fields' => [ULogin::F_FIRST_NAME, ULogin::F_LAST_NAME, ULogin::F_EMAIL, ULogin::F_CITY],
-
-                // optional fields
-                'optional' => [ULogin::F_PHONE, ULogin::F_PHOTO_BIG],
-
-                // login providers
-                'providers' => [ULogin::P_VKONTAKTE, ULogin::P_FACEBOOK, ULogin::P_GOOGLE],
-
-                // login providers that are shown when user clicks on additonal providers button
-                'hidden' => [],
-
-                // where to should ULogin redirect users after successful login
-                'redirectUri' => ['sign/ulogin'],
-
-                // optional params (can be ommited)
-                // force widget language (autodetect by default)
-                'language' => ULogin::L_RU,
-
-                // providers sorting ('relevant' by default)
-                'sortProviders' => ULogin::S_DEFAULT,
-
-                // mobile buttons style (enabled by default)
-                'mobileButtons' => '1',
-                ])
-                 */ ?>
             </div>
         </div>
         <?php if ($module->enableConfirmation): ?>

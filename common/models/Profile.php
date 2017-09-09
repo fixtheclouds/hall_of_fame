@@ -23,7 +23,7 @@ class Profile extends BaseProfile
     {
         $rules = parent::rules();
         $rules[] = [['city', 'phone'], 'string'];
-        $rules[] = [['city', 'phone', 'name'], 'required'];
+        $rules[] = [['name'], 'required'];
         $rules[] = [
             'image',
             'image',

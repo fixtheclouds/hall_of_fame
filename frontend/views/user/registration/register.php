@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use rmrevin\yii\ulogin\ULogin;
 
 /**
  * @var yii\web\View $this
@@ -36,6 +37,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php if ($module->enableGeneratingPassword == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>
                 <?php endif ?>
+
+                <div class="text-center top-20 bottom-20">
+                    <?= ULogin::widget([
+                        'display' => ULogin::D_PANEL,
+                        'fields' => [ULogin::F_FIRST_NAME, ULogin::F_LAST_NAME, ULogin::F_EMAIL, ULogin::F_CITY],
+                        'optional' => [ULogin::F_PHONE, ULogin::F_PHOTO_BIG],
+                        'providers' => [ULogin::P_VKONTAKTE, ULogin::P_FACEBOOK, ULogin::P_GOOGLE],
+                        'hidden' => [],
+                        'redirectUri' => ['user/registration/ulogin'],
+                        'language' => ULogin::L_RU,
+                        'sortProviders' => ULogin::S_DEFAULT,
+                        'mobileButtons' => '1',
+                    ]) ?>
+                </div>
 
                 <?= Html::submitButton(Yii::t('user', 'Sign up'), ['class' => 'btn btn-success btn-block']) ?>
 
