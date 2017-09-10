@@ -81,7 +81,8 @@ class ScoreSystem extends \yii\db\ActiveRecord
     /**
      * @param $module
      * @param $action
-     * @return bool
+     * @param $userId
+     * @return bool|int|mixed
      */
     public static function createScore($module, $action, $userId) {
         $rule = static::find()->andWhere(['module' => $module, 'action' => $action])->one();
@@ -89,6 +90,10 @@ class ScoreSystem extends \yii\db\ActiveRecord
         $score = new Score();
         $score->user_id = $userId;
         $score->amount = $amount;
-        return $score->save();
+        if ($score->save()) {
+            return $score->amount;
+        };
+
+        return false;
     }
 }

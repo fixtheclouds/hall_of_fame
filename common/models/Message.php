@@ -30,6 +30,13 @@ class Message extends \yii\db\ActiveRecord
         return 'message';
     }
 
+    /**
+     * @return string
+     */
+    public static function moduleName() {
+        return 'сообщение';
+    }
+
     const HUMAN_STATES = [
         'pending' => 'Новое',
         'read' => 'Прочитано'

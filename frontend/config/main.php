@@ -53,28 +53,6 @@ return [
             'useFilename' => true,
             'absoluteUrl' => false,
         ],
-        /**
-         * Future
-        'authClientCollection' => [
-            'class' => yii\authclient\Collection::className(),
-            'clients' => [
-                'facebook' => [
-                    'class'        => 'dektrium\user\clients\Facebook',
-                    'clientId'     => 'CLIENT_ID',
-                    'clientSecret' => 'CLIENT_SECRET',
-                ],
-                'vkontakte' => [
-                    'class'        => 'dektrium\user\clients\VKontakte',
-                    'clientId'     => 'CLIENT_ID',
-                    'clientSecret' => 'CLIENT_SECRET',
-                ],
-                'google' => [
-                    'class'        => 'dektrium\user\clients\Google',
-                    'clientId'     => 'CLIENT_ID',
-                    'clientSecret' => 'CLIENT_SECRET',
-                ],
-            ],
-        ],*/
         'thumbnail' => [
             'class' => 'sadovojav\image\Thumbnail',
             'cachePath' => '@webroot/cache'

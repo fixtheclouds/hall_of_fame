@@ -53,6 +53,13 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public static function moduleName() {
+        return 'мероприятие';
+    }
+
+    /**
      * Типы
      * @var array
      */

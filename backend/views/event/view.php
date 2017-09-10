@@ -76,15 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
                 ],
             ]);
-        }
-        else if ($model->status == 'published') {
-            echo Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'reverse' => true], [
-                'class' => 'btn btn-default',
-                'data' => [
-                    'confirm' => 'Вы уверены, что хотите скрыть мероприятие?',
-                    'method' => 'post',
-                ],
-            ]);
         } ?>
     </p>
 

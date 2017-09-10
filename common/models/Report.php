@@ -43,6 +43,13 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public static function moduleName() {
+        return 'отчет';
+    }
+
+    /**
      * @var UploadedFile
      */
     public $images;
