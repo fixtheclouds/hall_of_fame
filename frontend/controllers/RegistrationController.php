@@ -63,7 +63,7 @@ class RegistrationController extends BaseController
             } else {
                 \Yii::$app->getSession()->setFlash('error', 'Вы уже авторизованы на портале.');
             }
-            return $this->redirect(['/my_account']);
+            return $this->redirect(['/']);
         } else {
             // Регистрация
             $userParams = [
@@ -87,7 +87,7 @@ class RegistrationController extends BaseController
                 $this->createAccount($attributes, $userModel->id);
                 \Yii::$app->user->login($userModel,  $this->module->rememberFor);
                 \Yii::$app->getSession()->setFlash('success', 'Вы успешно зарегистрированы и авторизованы');
-                return $this->redirect(['/my_account']);
+                return $this->redirect(['/']);
             } else {
                 $errors = $regFormModel->getErrors();
                 if (!empty($errors['email'])) {

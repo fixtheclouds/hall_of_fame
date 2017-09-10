@@ -4,7 +4,7 @@ namespace frontend\models;
 
 use Yii;
 use common\models\User;
-
+use yii\behaviors\TimestampBehavior;
 /**
  * This is the model class for table "social_account".
  *
@@ -28,6 +28,20 @@ class SocialAccount extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'social_account';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+            ]
+        ];
     }
 
     /**

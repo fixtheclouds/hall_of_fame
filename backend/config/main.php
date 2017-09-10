@@ -46,6 +46,12 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
+        'urlManagerCommon' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
         'thumbnail' => [
             'class' => 'sadovojav\image\Thumbnail',
             'cachePath' => '@webroot/cache',

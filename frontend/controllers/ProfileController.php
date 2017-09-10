@@ -37,11 +37,17 @@ class ProfileController extends BaseController
         return ArrayHelper::merge($behaviors, parent::behaviors());
     }
 
+    /**
+     *
+     */
     public function actionUploadAvatar()
     {
         $model = \Yii::$app->user->identity->profile;
         $image = UploadedFile::getInstance($model, 'image');
         if ($image) {
+            if ($model->photo) {
+                $this->deletePhoto($model->photo);
+            }
             $names = explode(".", $image->name);
             $ext = end($names);
             $model->photo = \Yii::$app->security->generateRandomString() . ".{$ext}";
@@ -51,5 +57,17 @@ class ProfileController extends BaseController
         }
         $response = $result ? ['uploaded' => 'OK'] : ['uploaded' => 'ERROR'];
         echo Json::encode($response);
+    }
+
+    /**
+     * @param $photo
+     * @return bool
+     */
+    protected function deletePhoto($photo) {
+        $baseUrl = \Yii::$app->basePath . '/web/uploads/profile/' . $photo;
+        if (file_exists($baseUrl)) {
+            return unlink($baseUrl);
+        }
+        return false;
     }
 }

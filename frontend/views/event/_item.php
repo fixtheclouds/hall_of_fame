@@ -22,7 +22,7 @@ use yii\helpers\Html;
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
             <h4>
-                <?= Html::a(Html::encode($model->subtype->name), ['view', 'id' => $model->id]) ?>
+                <?= Html::a(Html::encode($model->subtype->name), ['view', 'id' => $model->id], ['data-pjax' => 0]) ?>
             </h4>
             <p><i class="glyphicon glyphicon-user"
                   title="ФИО почетного гражданина, которому посвящено мероприятие"></i> <?= $model->person_name ?></p>
@@ -32,12 +32,13 @@ use yii\helpers\Html;
                 <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
 
             <div class="row">
-                <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+                <?php if (!$model->isMine() && !$model->hasMyReport() && !$model->isArchived()) { ?>
                     <div class="col-xs-6 col-sm-3">
                         <?= Html::a('Подать отчёт', [
                             'report/create', 'event_id' => $model->id
                         ], [
-                            'class' => 'btn btn-primary'
+                            'class' => 'btn btn-primary',
+                            'data-pjax' => 0
                         ]) ?>
                     </div>
                 <?php } ?>
@@ -48,7 +49,8 @@ use yii\helpers\Html;
                 <?php } ?>
                 <div class="col-xs-6 col-sm-3">
                     <?= Html::a('Подробнее', ['view', 'id' => $model->id], [
-                        'class' => 'btn btn-default'
+                        'class' => 'btn btn-default',
+                        'data-pjax' => 0
                     ]) ?>
                 </div>
             </div>

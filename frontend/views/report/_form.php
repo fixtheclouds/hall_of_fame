@@ -8,6 +8,23 @@ use kartik\file\FileInput;
 /* @var $this yii\web\View */
 /* @var $model common\models\Report */
 /* @var $form yii\widgets\ActiveForm */
+
+$thumbs = [];
+
+if ($model->getReportPhotos()) {
+    foreach ($model->getReportPhotos()->all() as $photo) {
+        if (file_exists($photo->getPhotoPath())) {
+            $thumbs[] = \Yii::$app->thumbnail->url($photo->getPhotoPath(), [
+                'thumbnail' => [
+                    'width' => 300,
+                    'height' => 300,
+                    'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
+                ]
+            ]);
+        }
+    }
+}
+
 ?>
 
 <div class="report-form">
@@ -27,6 +44,8 @@ use kartik\file\FileInput;
             'multiple' => true
         ],
         'pluginOptions' => [
+            'initialPreview' => $thumbs,
+            'initialPreviewAsData' => true,
             'allowedFileExtensions' => ['jpg', 'gif', 'png']
         ]
     ])->label('Добавить фотографии к отчету    <p class="text-muted">

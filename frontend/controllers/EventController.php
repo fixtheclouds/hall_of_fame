@@ -6,6 +6,7 @@ use frontend\traits\TrackScore;
 use Yii;
 use common\models\Event;
 use common\models\ScoreSystem;
+use common\models\Report;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -82,7 +83,7 @@ class EventController extends Controller
      */
     public function actionOwn() {
         return $this->renderIndex('Мероприятия',
-            Event::find()->published()->byUserId(Yii::$app->user->id));
+            Event::find()->byUserId(Yii::$app->user->id));
     }
 
     /**
@@ -156,8 +157,20 @@ class EventController extends Controller
     public function actionView($id)
     {
         $this->layout = 'main';
+        $model = $this->findModel($id);
+
+        if ($model->status == 'pending' && !$model->isMine()) {
+            $this->redirect('/');
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'reportsDataProvider' => new ActiveDataProvider([
+                'query' => $model->getReports()->published(),
+                'pagination' => [
+                    'pageSize' => 5
+                ]
+            ])
         ]);
     }
 
@@ -198,6 +211,10 @@ class EventController extends Controller
     {
         $model = $this->findModel($id);
 
+        if ($model->status == 'published' || !$model->isMine()) {
+            $this->redirect('/');
+        }
+
         if ($model->load(Yii::$app->request->post())) {
             $this->saveImage($model);
             if ($model->save()) {
@@ -230,7 +247,11 @@ class EventController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->updateAttributes(['deleted_at' => time()]);
+        $model = $this->findModel($id);
+        if (!$model->isMine()) {
+            $this->redirect('/');
+        }
+        $model->updateAttributes(['deleted_at' => time()]);
         return $this->redirect(['index']);
     }
 
@@ -243,6 +264,9 @@ class EventController extends Controller
     public function actionPublish($id, $reverse = false) {
         $newStatus = $reverse ? 'pending' : 'published';
         $model = $this->findModel($id);
+        if (!$model->isMine()) {
+            $this->redirect('/');
+        }
         $model->updateAttributes(['status' => $newStatus]);
         return $this->redirect(['view', 'id' => $model->id]);
     }

@@ -17,8 +17,18 @@ class EventQuery extends ActiveQuery
         parent::init();
     }
 
+    /**
+     * @return $this
+     */
     public function published() {
         return $this->andWhere(['event.status' => 'published']);
+    }
+
+    /**
+     * @return $this
+     */
+    public function pending() {
+        return $this->andWhere(['event.status' => 'pending']);
     }
 
     /**

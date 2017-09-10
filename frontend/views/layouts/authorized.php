@@ -10,14 +10,16 @@ use kartik\dialog\Dialog;
 use kartik\file\FileInput;
 use yii\widgets\ActiveForm;
 use common\models\Event;
+use common\models\Report;
 use common\models\User;
-use bupy7\cropbox\CropboxWidget;
 
 $counts = [
     'active' => Event::find()->published()->active()->count(),
-    'own' => Event::find()->published()->byUserId(Yii::$app->user->id)->count(),
+    'own' => Event::find()->byUserId(Yii::$app->user->id)->count(),
     'applied' => Event::find()->published()->withReportFromUser(Yii::$app->user->id)->distinct()->count(),
-    'archived' => Event::find()->published()->active(false)->count()
+    'archived' => Event::find()->published()->active(false)->count(),
+    'events-pending' => Event::find()->pending()->byUserId(Yii::$app->user->id)->count(),
+    'reports-pending' => Report::find()->pending()->byUserId(Yii::$app->user->id)->count()
 ];
 $profileModel = \Yii::$app->user->identity->profile;
 $this->beginContent('@frontend/views/layouts/main.php');
@@ -118,6 +120,14 @@ if (!Yii::$app->user->isGuest) {
                     <a href="/event/archived">
                         Завершенные мероприятия: <?= $counts['archived'] ?>
                     </a>
+                </p>
+                <p>
+                    <div class="text-muted">
+                        Мероприятий на рассмотрении: <?= $counts['events-pending'] ?>
+                    </div>
+                    <div class="text-muted">
+                        Отчетов на рассмотрении: <?= $counts['reports-pending'] ?>
+                    </div>
                 </p>
                 <p>
                     <span>

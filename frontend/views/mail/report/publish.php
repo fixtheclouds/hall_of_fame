@@ -1,9 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 
-$url = Url::toRoute(['report/view', 'id' => $model->id], true);
+$url = \Yii::$app->urlManagerCommon->createAbsoluteUrl(['report/view', 'id' => $model->id]);
 
 ?>
 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
@@ -13,6 +12,6 @@ $url = Url::toRoute(['report/view', 'id' => $model->id], true);
         Вам начислено <?= $score ?> баллов.
     <?php } ?>
 </p>
-<p>
+<p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6; font-weight: normal; margin: 0 0 10px; padding: 0;">
     Просмотреть отчет: <?= Html::a($url, $url) ?>
 </p>

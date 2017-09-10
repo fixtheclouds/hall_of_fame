@@ -115,7 +115,10 @@ class ReportController extends BackendController
     public function actionPublish($id, $reverse = false) {
         $newStatus = $reverse ? 'pending' : 'published';
         $model = $this->findModel($id);
-        $model->updateAttributes(['status' => $newStatus]);
+        $model->status = $newStatus;
+        if (!$model->save()) {
+            \Yii::$app->getSession()->setFlash('error', 'Возникла ошибка при обновлении записи');
+        }
         return $this->redirect(['view', 'id' => $model->id]);
     }
 

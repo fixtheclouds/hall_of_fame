@@ -52,7 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'height' => 300,
                             'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
                         ]
-                    ], [
                     ]);
                 }
             } ?>
@@ -69,15 +68,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Вы уверены, что хотите отклонить отчет?',
-                    'method' => 'post',
-                ],
-            ]);
-        }
-        else if ($model->status == 'published') {
-            echo Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'reverse' => true], [
-                'class' => 'btn btn-default',
-                'data' => [
-                    'confirm' => 'Вы уверены, что хотите скрыть отчет?',
                     'method' => 'post',
                 ],
             ]);

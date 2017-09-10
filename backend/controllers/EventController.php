@@ -98,7 +98,9 @@ class EventController extends BackendController
         $newStatus = $reverse ? 'pending' : 'published';
         $model = $this->findModel($id);
         $model->status = $newStatus;
-        $model->save();
+        if (!$model->save()) {
+            \Yii::$app->getSession()->setFlash('error', 'Возникла ошибка при обновлении записи');
+        }
         return $this->redirect(['view', 'id' => $model->id]);
     }
 

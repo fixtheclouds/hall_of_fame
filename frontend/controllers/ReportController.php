@@ -39,8 +39,14 @@ class ReportController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if ($model->status == 'pending' && !$model->isMine()) {
+            $this->redirect('/');
+        }
+        $eventModel = $model->getEvent()->one();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'eventModel' => $eventModel
         ]);
     }
 
@@ -54,7 +60,7 @@ class ReportController extends Controller
         $model = new Report();
         $model->event_id = $event_id;
 
-        $eventModel = Event::find($event_id)->one();
+        $eventModel = $model->getEvent()->one();
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
@@ -94,12 +100,17 @@ class ReportController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->status == 'published' || !$model->isMine()) {
+            $this->redirect('/');
+        }
+        $eventModel = $model->getEvent()->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'eventModel' => $eventModel
             ]);
         }
     }
@@ -112,8 +123,12 @@ class ReportController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        if (!$model->isMine()) {
+            $this->redirect('/');
+        }
 
+        $model->delete();
         return $this->redirect(['index']);
     }
 

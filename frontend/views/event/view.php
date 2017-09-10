@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\Pjax;
+use yii\widgets\ListView;
+use nirvana\infinitescroll\InfiniteScrollPager;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
@@ -15,9 +18,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php if ($model->status == 'pending') { ?>
+        <p class="text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Мероприятие находится на рассмотрении</p>
+    <?php } ?>
     <p>
         <?php if ($model->user_id == Yii::$app->user->id) { ?>
-            <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?php
+            if ($model->status == 'pending') {
+                echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+            }
+            ?>
             <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
@@ -28,45 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php } ?>
     </p>
 
-    <div class="row">
-        <div class="col-md-6 col-xs-12 text-center">
-            <?php if (file_exists($model->getPhotoPath())) { ?>
-                <?= Yii::$app->thumbnail->img($model->getPhotoPath(), [
-                    'thumbnail' => [
-                        'width' => 500,
-                        'height' => 500,
-                    ]
-                ], [
-                    'class' => 'img img-responsive'
-                ]); ?>
-            <?php } ?>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <?= $this->render('@frontend/views/user/_user', ['user' => $model->user]) ?>
-            <hr>
-            <h4><i class="glyphicon glyphicon-user"
-                   title="ФИО почетного гражданина, которому посвящено мероприятие"></i>
-                <?= $model->person_name ?>
-            </h4>
-            <h4><?= $model->humanType() ?></h4>
-            <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
-            <p><i class="glyphicon glyphicon-home" title="Место"></i> <?= $model->place ?></p>
-            <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
-                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?>
-            </p>
-            <div class="row">
-                <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
-                    <div class="col-xs-6 col-sm-3">
-                        <?= Html::a('Подать отчёт', [
-                            'report/create', 'event_id' => $model->id
-                        ], [
-                            'class' => 'btn btn-primary'
-                        ]) ?>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
-    </div>
+    <?= $this->render('_header', ['model' => $model]) ?>
+
     <p>
         <?= $model->content ?>
     </p>
@@ -81,9 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         <?php } else if ($model->getMyReport()) {
             if ($model->getMyReport()->status == 'dismissed') { ?>
-                <div class="text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
+                <div class="col-xs-12 text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
             <?php } else if ($model->getMyReport()->status == 'pending') { ?>
-                <div class="text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
+                <div class="col-xs-12 text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
             <?php }
         }?>
         <?php if (Yii::$app->user->identity->isAdmin) {
@@ -101,5 +74,32 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php }
         }?>
     </div>
+    <hr>
+    <h1>Отчеты</h1>
+
+    <div>
+        <?php Pjax::begin(); ?>
+        <?= ListView::widget([
+            'dataProvider' => $reportsDataProvider,
+            'itemView' => '@frontend/views/report/_item',
+            'id' => 'events-legacy',
+            'layout' => "<div class=\"items\">{items}</div>\n{pager}",
+            'pager' => [
+                'class' => InfiniteScrollPager::className(),
+                'widgetId' => 'events-legacy',
+                'itemsCssClass' => 'items',
+                'nextPageLabel' => 'Показать ещё',
+                'pluginOptions' => [
+                    'loading' => [
+                        'msgText' => "<b>Загрузка...</b>",
+                        'finishedMsg' => "<b>Вы достигли конца списка</b>",
+                    ],
+                ]
+            ],
+            'emptyText' => '<h3>Отчетов не найдено.</h3>'
+        ]);?>
+        <?php Pjax::end(); ?>
+    </div>
+
 </div>
 

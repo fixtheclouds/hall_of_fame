@@ -131,7 +131,18 @@ class Report extends \yii\db\ActiveRecord
         return $this->hasMany(ReportPhoto::className(), ['report_id' => 'id']);
     }
 
+    /**
+     * @return mixed
+     */
     public function humanStatus() {
         return static::HUMAN_STATUS[$this->status];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function find()
+    {
+        return new ReportQuery(get_called_class());
     }
 }

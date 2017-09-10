@@ -37,8 +37,14 @@ return [
             'showScriptName' => false,
             'baseUrl' => '/',
             'rules' => [
-                'my_account' => 'event/actual'
+                '/' => 'event/actual',
             ],
+        ],
+        'urlManagerCommon' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
         ],
         'view' => [
             'theme' => [

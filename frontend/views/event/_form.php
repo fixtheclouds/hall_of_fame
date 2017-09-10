@@ -13,6 +13,17 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
 /* @var $form yii\widgets\ActiveForm */
+$thumb = null;
+
+if ($model->photo && file_exists($model->getPhotoPath())) {
+    $thumb = Yii::$app->thumbnail->url($model->getPhotoPath(), [
+        'thumbnail' => [
+            'width' => 300,
+            'height' => 300,
+            'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
+        ]
+    ]);
+}
 ?>
 
 <div class="event-form">
@@ -85,6 +96,8 @@ use yii\helpers\Url;
             'accept' => 'image/*',
         ],
         'pluginOptions' => [
+            'initialPreview' => $thumb,
+            'initialPreviewAsData' => true,
             'allowedFileExtensions' => ['jpg', 'gif', 'png']
         ]
     ]) ?>

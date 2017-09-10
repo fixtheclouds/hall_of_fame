@@ -1,42 +1,57 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Report */
+/* @var $eventModel common\models\Event */
 
-$this->title = $model->id;
+$this->title = 'Отчет';
 $this->params['breadcrumbs'][] = ['label' => 'Reports', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="report-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::a($eventModel->humanType(), ['event/view', 'id' => $eventModel->id]) ?></h2>
+    <?= $this->render('@frontend/views/event/_header', ['model' => $eventModel]) ?>
 
+    <h1 class="text-center">Отчет о проделанной работе</h1>
+
+    <?= $this->render('@frontend/views/user/_user', ['user' => $model->user]) ?>
+    <hr>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= $model->content ?>
+    </p>
+    <div>
+        <?php foreach ($model->reportPhotos as $photo) {
+            $absPath = $photo->getPhotoPath();
+
+            if (file_exists($absPath)) { ?>
+                <?= \Yii::$app->thumbnail->img($absPath, [
+                    'thumbnail' => [
+                        'width' => 300,
+                        'height' => 300,
+                        'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
+                    ]
+                ], [
+                ]);
+            }
+        } ?>
+    </div>
+    <p class="top-20">
+        <?php
+            if ($model->status == 'pending') {
+                echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+            } ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'event_id',
-            'content:ntext',
-            'status',
-            'user_id',
-            'deleted_at',
-            'created_at',
-            'updated_at',
-        ],
-    ]) ?>
+
 
 </div>
