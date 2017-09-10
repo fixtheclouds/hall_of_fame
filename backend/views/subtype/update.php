@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Subtype */
 
-$this->title = 'Update Subtype: ' . $model->name;
+$this->title = 'Обновить подтип: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Subtypes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

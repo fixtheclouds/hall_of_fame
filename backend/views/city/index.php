@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CitySearch */
@@ -26,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'region',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::className(), 'template' => '{update} {delete}' ],
         ],
     ]); ?>
 </div>

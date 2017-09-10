@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\grid\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\SubtypeSearch */
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->humanType();
                 }
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => ActionColumn::className(), 'template' => '{update} {delete}' ],
         ],
     ]); ?>
 </div>

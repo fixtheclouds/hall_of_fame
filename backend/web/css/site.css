@@ -128,3 +128,20 @@ form div.required label.control-label::after {
 .padded {
     padding: 20px;
 }
+
+.counters {
+    font-size: 15px;
+}
+
+.counters h2 {
+    font-size: 40px;
+}
+
+.rounded {
+    border-radius: 50%;
+}
+
+.profile {
+    padding: 5px;
+    margin-top: 10px;
+}

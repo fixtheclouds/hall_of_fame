@@ -47,7 +47,7 @@ AppAsset::register($this);
                 <?php if (!Yii::$app->user->isGuest) { ?>
                     <div class="profile">
                         <div class="profile_pic">
-                            <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive']) ?>
+                            <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive rounded']) ?>
                         </div>
                         <div class="profile_info">
                             <span>Добро пожаловать,</span>

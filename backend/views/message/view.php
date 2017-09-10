@@ -26,7 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel panel-default padded">
         <p>
-            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;&lt;<?= $model->user->username ?>&gt;
+            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;
+            &lt;<?= Html::mailto($model->user->username,  $model->user->email) ?>&gt;
         </p>
         <p>
             <label>Содержание:</label>
