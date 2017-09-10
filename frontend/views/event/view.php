@@ -42,6 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php } ?>
         </div>
         <div class="col-md-6 col-xs-12">
+            <?= $this->render('@frontend/views/user/_user', ['user' => $model->user]) ?>
+            <hr>
             <h4><i class="glyphicon glyphicon-user"
                    title="ФИО почетного гражданина, которому посвящено мероприятие"></i>
                 <?= $model->person_name ?>
@@ -50,59 +52,54 @@ $this->params['breadcrumbs'][] = $this->title;
             <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
             <p><i class="glyphicon glyphicon-home" title="Место"></i> <?= $model->place ?></p>
             <p><i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
-                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
-            <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
-                <div class="col-xs-6 col-sm-3">
-                    <?= Html::a('Подать отчёт', [
-                        'report/create', 'event_id' => $model->id
-                    ], [
-                        'class' => 'btn btn-primary'
-                    ]) ?>
-                </div>
-            <?php } ?>
+                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?>
+            </p>
+            <div class="row">
+                <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+                    <div class="col-xs-6 col-sm-3">
+                        <?= Html::a('Подать отчёт', [
+                            'report/create', 'event_id' => $model->id
+                        ], [
+                            'class' => 'btn btn-primary'
+                        ]) ?>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
     <p>
         <?= $model->content ?>
     </p>
-    <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
-        <div class="col-xs-6 col-sm-3">
-            <?= Html::a('Подать отчёт', [
-                'report/create', 'event_id' => $model->id
-            ], [
-                'class' => 'btn btn-primary'
-            ]) ?>
-        </div>
-    <?php } else if ($model->getMyReport()) {
-        if ($model->getMyReport()->status == 'dismissed') { ?>
-            <div class="text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
-        <?php } else if ($model->getMyReport()->status == 'pending') { ?>
-            <div class="text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
-        <?php }
-    }?>
-    <?php if (Yii::$app->user->identity->isAdmin) { ?>
-        <?php if ($model->status == 'pending') { ?>
-            <?= Html::a('Опубликовать', ['publish', 'id' => $model->id], [
-                'class' => 'btn btn-success'
-            ]) ?>
-            <?= Html::a('Отклонить', ['dismiss', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => 'Вы уверены, что хотите отклонить мероприятие?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-        <?php }
-        if ($model->status == 'published') { ?>
-            <?= Html::a('Снять с публикации', ['publish', 'id' => $model->id, 'reverse' => true], [
-                'class' => 'btn btn-default',
-                'data' => [
-                    'confirm' => 'Вы уверены, что хотите скрыть мероприятие?',
-                    'method' => 'post',
-                ],
-            ]) ?>
-        <?php } ?>
-    <?php }?>
-
+    <div class="row">
+        <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+            <div class="col-xs-6 col-sm-3">
+                <?= Html::a('Подать отчёт', [
+                    'report/create', 'event_id' => $model->id
+                ], [
+                    'class' => 'btn btn-primary'
+                ]) ?>
+            </div>
+        <?php } else if ($model->getMyReport()) {
+            if ($model->getMyReport()->status == 'dismissed') { ?>
+                <div class="text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
+            <?php } else if ($model->getMyReport()->status == 'pending') { ?>
+                <div class="text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
+            <?php }
+        }?>
+        <?php if (Yii::$app->user->identity->isAdmin) {
+            if ($model->status == 'pending') { ?>
+                <?= Html::a('Опубликовать', ['publish', 'id' => $model->id], [
+                    'class' => 'btn btn-success'
+                ]) ?>
+                <?= Html::a('Отклонить', ['dismiss', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => 'Вы уверены, что хотите отклонить мероприятие?',
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            <?php }
+        }?>
+    </div>
 </div>
 

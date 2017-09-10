@@ -153,3 +153,15 @@ form div.required label.control-label::after {
 .bottom-20 {
     margin-bottom: 20px;
 }
+
+.right-10 {
+    margin-right: 10px;
+}
+
+.user-name {
+    line-height: 50px;
+}
+
+.rounded {
+    border-radius: 50%;
+}

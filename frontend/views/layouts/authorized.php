@@ -38,7 +38,7 @@ if (!Yii::$app->user->isGuest) {
                 ]
             ]); ?>
 
-            <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb']) ?>
+            <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb rounded']) ?>
 
             <?= $form->field($profileModel, 'image', ['options' => ['style' => 'display: none']])->widget(FileInput::className(), [
                 'pluginOptions' => [

@@ -5,11 +5,7 @@
 namespace common\models;
 
 use dektrium\user\models\Profile as BaseProfile;
-use yii\helpers\FileHelper;
-use yii\imagine\Image;
-use yii\helpers\Json;
-use Imagine\Image\Box;
-use Imagine\Image\Point;
+
 
 class Profile extends BaseProfile
 {
@@ -24,6 +20,7 @@ class Profile extends BaseProfile
         $rules = parent::rules();
         $rules[] = [['city', 'phone'], 'string'];
         $rules[] = [['name'], 'required'];
+        $rules[] = [['city', 'phone'], 'required', 'on' => 'update'];
         $rules[] = [
             'image',
             'image',
