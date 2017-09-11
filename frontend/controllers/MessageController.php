@@ -55,7 +55,7 @@ class MessageController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             \Yii::$app->getSession()->setFlash('success', 'Сообщение успено отправлено');
-            return $this->redirect(['/']);
+            return $this->redirect(['/account']);
         } else {
             return $this->render('create', [
                 'model' => $model,

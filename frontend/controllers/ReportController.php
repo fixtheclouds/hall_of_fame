@@ -41,7 +41,7 @@ class ReportController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->status == 'pending' && !$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
         $eventModel = $model->getEvent()->one();
         return $this->render('view', [
@@ -101,7 +101,7 @@ class ReportController extends Controller
     {
         $model = $this->findModel($id);
         if ($model->status == 'published' || !$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
         $eventModel = $model->getEvent()->one();
 
@@ -125,7 +125,7 @@ class ReportController extends Controller
     {
         $model = $this->findModel($id);
         if (!$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
 
         $model->delete();

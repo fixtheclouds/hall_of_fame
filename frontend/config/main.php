@@ -37,7 +37,7 @@ return [
             'showScriptName' => false,
             'baseUrl' => '/',
             'rules' => [
-                '/' => 'event/actual',
+                '/account' => 'event/actual',
             ],
         ],
         'urlManagerCommon' => [
@@ -78,14 +78,12 @@ return [
                 'settings' => 'frontend\controllers\SettingsController',
                 'recovery' => 'frontend\controllers\RecoveryController',
                 'profile' => 'frontend\controllers\ProfileController',
-                'registration' => 'frontend\controllers\RegistrationController'
+                'registration' => 'frontend\controllers\RegistrationController',
+                'security' => 'frontend\controllers\SecurityController'
             ],
             'enableConfirmation' => false,
             'enableGeneratingPassword' => true,
             'enableFlashMessages' => false
         ]
-    ],
-    'aliases' => [
-        //'@thumb' => '/',
     ]
 ];

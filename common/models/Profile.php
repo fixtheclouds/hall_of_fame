@@ -11,7 +11,6 @@ class Profile extends BaseProfile
 {
 
     public $image;
-    public $crop_info;
     /**
      * @inheritdoc
      */
@@ -19,8 +18,7 @@ class Profile extends BaseProfile
     {
         $rules = parent::rules();
         $rules[] = [['city', 'phone'], 'string'];
-        $rules[] = [['name'], 'required'];
-        $rules[] = [['city', 'phone'], 'required', 'on' => 'update'];
+        $rules[] = [['name', 'city', 'phone'], 'required'];
         $rules[] = [
             'image',
             'image',

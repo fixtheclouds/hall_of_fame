@@ -159,7 +159,7 @@ class EventController extends Controller
         $model = $this->findModel($id);
 
         if ($model->status == 'pending' && !$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
 
         return $this->render('view', [
@@ -211,7 +211,7 @@ class EventController extends Controller
         $model = $this->findModel($id);
 
         if ($model->status == 'published' || !$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
 
         if ($model->load(Yii::$app->request->post())) {
@@ -248,7 +248,7 @@ class EventController extends Controller
     {
         $model = $this->findModel($id);
         if (!$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
         $model->updateAttributes(['deleted_at' => time()]);
         return $this->redirect(['index']);
@@ -264,7 +264,7 @@ class EventController extends Controller
         $newStatus = $reverse ? 'pending' : 'published';
         $model = $this->findModel($id);
         if (!$model->isMine()) {
-            $this->redirect('/');
+            $this->redirect(['/account']);
         }
         $model->status = $newStatus;
         if (!$model->save()) {
