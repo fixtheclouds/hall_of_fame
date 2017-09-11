@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use frontend\traits\TrackScore;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -26,7 +25,7 @@ use yii\behaviors\BlameableBehavior;
  */
 class Event extends \yii\db\ActiveRecord
 {
-    use \common\traits\TrackScore;
+    use \common\traits\Trackable;
     /**
      * Служебное поле для изображения
      * @var

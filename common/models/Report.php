@@ -2,7 +2,6 @@
 
 namespace common\models;
 
-use frontend\traits\TrackScore;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -27,7 +26,7 @@ use yii\web\UploadedFile;
  */
 class Report extends \yii\db\ActiveRecord
 {
-    use \common\traits\TrackScore;
+    use \common\traits\Trackable;
 
     const HUMAN_STATUS = [
         'pending' => 'На рассмотрении',

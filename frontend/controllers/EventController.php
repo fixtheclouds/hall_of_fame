@@ -2,7 +2,6 @@
 
 namespace frontend\controllers;
 
-use frontend\traits\TrackScore;
 use Yii;
 use common\models\Event;
 use common\models\ScoreSystem;
@@ -267,7 +266,10 @@ class EventController extends Controller
         if (!$model->isMine()) {
             $this->redirect('/');
         }
-        $model->updateAttributes(['status' => $newStatus]);
+        $model->status = $newStatus;
+        if (!$model->save()) {
+            \Yii::$app->getSession()->setFlash('error', 'Возникла ошибка при обновлении записи');
+        }
         return $this->redirect(['view', 'id' => $model->id]);
     }
 
@@ -278,7 +280,10 @@ class EventController extends Controller
      */
     public function actionDismiss($id) {
         $model = $this->findModel($id);
-        $model->updateAttributes(['status' => 'dismissed']);
+        $model->status = 'dismissed';
+        if (!$model->save()) {
+            \Yii::$app->getSession()->setFlash('error', 'Возникла ошибка при обновлении записи');
+        }
         return $this->redirect(['view', 'id' => $model->id]);
     }
 

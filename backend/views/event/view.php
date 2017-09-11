@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'btn btn-success',
                 'data' => ['method' => 'post']
             ]);
-            echo Html::a('Отклонить', ['publish', 'id' => $model->id], [
+            echo Html::a('Отклонить', ['dismiss', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Вы уверены, что хотите отклонить мероприятие?',

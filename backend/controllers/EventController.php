@@ -111,7 +111,10 @@ class EventController extends BackendController
      */
     public function actionDismiss($id) {
         $model = $this->findModel($id);
-        $model->updateAttributes(['status' => 'dismissed']);
+        $model->status = 'dismissed';
+        if (!$model->save()) {
+            \Yii::$app->getSession()->setFlash('error', 'Возникла ошибка при обновлении записи');
+        }
         return $this->redirect(['view', 'id' => $model->id]);
     }
 }

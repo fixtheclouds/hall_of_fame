@@ -10,7 +10,7 @@ namespace common\traits;
 
 use common\models\ScoreSystem;
 
-trait TrackScore
+trait Trackable
 {
 
     /**
@@ -26,15 +26,19 @@ trait TrackScore
                 $userId = $this->user_id ? $this->user_id : \Yii::$app->user->id;
                 $score = ScoreSystem::createScore(static::tableName(), 'create', $userId);
             }
-            $this->sendMail('create', $score);
-        } else if (isset($changedAttributes['status']) && $this->hasProperty('status') && $this->status == 'published') {
-            if (ScoreSystem::hasModuleAction(static::tableName(), 'publish') && $this->hasProperty('user_id')) {
-                $score = ScoreSystem::createScore(static::tableName(), 'publish', $this->user_id);
+            return $this->sendMail('create', $score);
+        } else if (isset($changedAttributes['status']) && $this->hasProperty('status')) {
+            if ($this->status == 'published') {
+                if (ScoreSystem::hasModuleAction(static::tableName(), 'publish') && $this->hasProperty('user_id')) {
+                    $score = ScoreSystem::createScore(static::tableName(), 'publish', $this->user_id);
+                }
+                return $this->sendMail('publish', $score);
+            } else if ($this->status == 'dismissed') {
+                return $this->sendMail('dismiss');
             }
-            $this->sendMail('publish', $score);
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -45,7 +49,7 @@ trait TrackScore
     protected function sendMail($action, $score = NULL) {
         $view = '@frontend/views/mail/' . static::tableName() . '/' . $action;
         $user = $this->user ? $this->user : \Yii::$app->user->identity;
-        $subject = $this->composeSubject(static::tableName(), $action);
+        $subject = $this->composeSubject($action);
         $params = [
             'score' => $score,
             'user' => $user,
@@ -63,11 +67,20 @@ trait TrackScore
 
     protected function composeSubject($action) {
         $module = static::moduleName();
-        $verb = $action == 'create' ? 'создан' : 'опубликован';
+        $verb = '';
+        switch ($action) {
+            case 'create': $verb = 'создан';
+                break;
+            case 'publish': $verb = 'опубликован';
+                break;
+            case 'dismiss': $verb = 'отклонен';
+                break;
+            default: break;
+        }
         switch ($module) {
             case 'мероприятие':
             case 'сообщение':
-                $verb = $verb . 'о';
+                $verb .= 'о';
                 break;
             default: break;
         }
