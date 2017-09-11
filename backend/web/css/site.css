@@ -145,3 +145,11 @@ form div.required label.control-label::after {
     padding: 5px;
     margin-top: 10px;
 }
+
+a {
+    color: #5A73CA;
+}
+
+.font-15 {
+    font-size: 15px;
+}

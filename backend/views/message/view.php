@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Message */
@@ -26,8 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel panel-default padded">
         <p>
-            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;
-            &lt;<?= Html::mailto($model->user->username,  $model->user->email) ?>&gt;
+            <label>Автор:</label>&nbsp;
+            <?= Html::a($model->user->profile->name, Url::to(['user/profile/show', 'id' => $model->user_id])) ?>
         </p>
         <p>
             <label>Содержание:</label>

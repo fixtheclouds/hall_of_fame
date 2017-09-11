@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Report */
@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <label>Создано:</label>&nbsp;<?= \Yii::$app->formatter->asDate($model->created_at, 'd MMMM y года, HH:mm') ?>
         </p>
         <p>
-            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;&lt;<?= $model->user->username ?>&gt;
+            <label>Автор:</label>&nbsp;
+            <?= Html::a($model->user->profile->name, Url::to(['user/profile/show', 'id' => $model->user_id])) ?>
         </p>
         <p>
             <label>Содержание:</label>&nbsp;<?= $model->content ?>

@@ -42,7 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->humanState();
                 }
             ],
-            'user.profile.name',
+            [
+                'attribute' => 'user',
+                'label' => 'Автор',
+                'content' => function($data){
+                    return $data->user->profile->name;
+                },
+            ],
 
             ['class' => ActionColumn::className(), 'template' => '{view} {delete}' ],
         ],

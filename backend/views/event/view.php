@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -45,7 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= \Yii::$app->formatter->asDate($model->created_at, 'd MMMM y года, HH:mm') ?>
         </p>
         <p>
-            <label>Автор:</label>&nbsp;<?= $model->user->profile->name ?>&nbsp;&lt;<?= $model->user->username ?>&gt;
+            <label>Автор:</label>&nbsp
+            <?= Html::a($model->user->profile->name, Url::to(['user/profile/show', 'id' => $model->user_id])) ?>
         </p>
         <p>
             <label>ФИО гражданина, которому посвящено мероприятие:</label>&nbsp;

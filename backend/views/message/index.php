@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'user',
                 'label' => 'Автор',
                 'content' => function($data){
-                    return $data->user->profile->name . '&nbsp;&lt;' . $data->user->username .'&gt;';
+                    return $data->user->profile->name;
                 },
             ],
             'created_at:datetime',

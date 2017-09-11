@@ -30,10 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->humanStatus();
                 }
             ],
-            'user.profile.name',
-            // 'deleted_at',
-            // 'created_at',
-            // 'updated_at',
+            [
+                'attribute' => 'user',
+                'label' => 'Автор',
+                'content' => function($data){
+                    return $data->user->profile->name;
+                },
+            ],
 
             ['class' => ActionColumn::className(), 'template' => '{view} {delete}' ],
         ],

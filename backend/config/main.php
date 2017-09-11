@@ -56,7 +56,14 @@ return [
             'class' => 'sadovojav\image\Thumbnail',
             'cachePath' => '@webroot/cache',
             'prefixPath' => '/admin/'
-        ]
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@backend/views/user'
+                ],
+            ],
+        ],
     ],
     'params' => $params,
     'modules' => [
