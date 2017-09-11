@@ -197,7 +197,10 @@ class Event extends \yii\db\ActiveRecord
     /**
      * @return string
      */
-    public function getPhotoPath() {
-        return \Yii::$app->basePath . '/web/uploads/event/' . $this->photo;
+    public function getPhotoPath($absolute = true) {
+        if ($absolute) {
+            return \Yii::$app->basePath . '/web/uploads/event/' . $this->photo;
+        }
+        return \Yii::$app->homeUrl . '/uploads/event/' . $this->photo;
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "10c83cbd2c5dfe2c495ea0dc05d80bec",
+    "content-hash": "c7c6103c50a220bc98ae68e75f4c1910",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -475,6 +475,44 @@
             ]
         },
         {
+            "name": "bower-asset/lightbox2",
+            "version": "2.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lokesh/lightbox2.git",
+                "reference": "2e7daa84b9cf6412084ed5c97fdb448942c62d31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lokesh/lightbox2/zipball/2e7daa84b9cf6412084ed5c97fdb448942c62d31",
+                "reference": "2e7daa84b9cf6412084ed5c97fdb448942c62d31",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "js/lightbox.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "Gruntfile.js",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "CC BY 2.5"
+            ],
+            "description": "The original Lightbox script. Uses jQuery.",
+            "keywords": [
+                "gallery",
+                "images",
+                "jquery",
+                "lightbox",
+                "overlay"
+            ]
+        },
+        {
             "name": "bower-asset/punycode",
             "version": "v1.3.2",
             "source": {
@@ -535,6 +573,47 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "branchonline/yii2-lightbox",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BranchOnline/yii2-lightbox.git",
+                "reference": "6cfe1a4a4fba046294b718904f7e57f671558fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BranchOnline/yii2-lightbox/zipball/6cfe1a4a4fba046294b718904f7e57f671558fd1",
+                "reference": "6cfe1a4a4fba046294b718904f7e57f671558fd1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/lightbox2": "2.7.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "branchonline\\lightbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jap Mul",
+                    "email": "jap@branchonline.nl"
+                }
+            ],
+            "description": "Lightbox widget for Yii2",
+            "keywords": [
+                "module",
+                "yii2"
+            ],
+            "time": "2016-10-27T15:13:14+00:00"
         },
         {
             "name": "bupy7/yii2-widget-cropbox",

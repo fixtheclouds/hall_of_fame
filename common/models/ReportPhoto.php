@@ -58,7 +58,10 @@ class ReportPhoto extends \yii\db\ActiveRecord
     /**
      * @return string
      */
-    public function getPhotoPath() {
-        return \Yii::$app->basePath . '/web/uploads/report/' . $this->photo;
+    public function getPhotoPath($absolute = true) {
+        if ($absolute) {
+            return \Yii::$app->basePath . '/web/uploads/report/' . $this->photo;
+        }
+        return \Yii::$app->homeUrl . '/uploads/report/' . $this->photo;
     }
 }

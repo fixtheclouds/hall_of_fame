@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\StringHelper;
 
 ?>
 
@@ -14,9 +13,6 @@ use yii\helpers\StringHelper;
             <p>
                 <i class="glyphicon glyphicon-calendar"></i>
                 <?= \Yii::$app->formatter->asDatetime($model->created_at)?>
-            </p>
-            <p>
-                <?= StringHelper::truncateWords($model->content, 10) ?>
             </p>
             <p>
                 <?= Html::a('Подробнее', ['report/view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>

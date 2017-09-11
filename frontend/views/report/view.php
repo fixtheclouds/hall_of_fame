@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use branchonline\lightbox\Lightbox;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Report */
@@ -9,6 +10,8 @@ use yii\helpers\Html;
 $this->title = 'Отчет';
 $this->params['breadcrumbs'][] = ['label' => 'Reports', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$files = [];
 ?>
 <div class="report-view">
 
@@ -23,26 +26,36 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $model->content ?>
     </p>
     <div>
-        <?php foreach ($model->reportPhotos as $photo) {
+        <?php foreach ($model->reportPhotos as $index => $photo) {
             $absPath = $photo->getPhotoPath();
 
-            if (file_exists($absPath)) { ?>
-                <?= \Yii::$app->thumbnail->img($absPath, [
-                    'thumbnail' => [
-                        'width' => 300,
-                        'height' => 300,
-                        'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
-                    ]
-                ], [
-                ]);
+            if (file_exists($absPath)) {
+                $files[] = [
+                    'thumb' => \Yii::$app->thumbnail->url($absPath, [
+                        'thumbnail' => [
+                            'width' => 300,
+                            'height' => 300,
+                            'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
+                        ]
+                    ]),
+                    'original' => $photo->getPhotoPath(false),
+                    'group' => 'report'
+                ];
             }
-        } ?>
+        }
+
+        if (!empty($files)) {
+            echo Lightbox::widget([
+                'files' => $files
+            ]);
+        }
+        ?>
     </div>
     <p class="top-20">
         <?php
-            if ($model->status == 'pending') {
-                echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-            } ?>
+        if ($model->status == 'pending') {
+            echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+        } ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [

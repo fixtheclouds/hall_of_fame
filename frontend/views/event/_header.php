@@ -1,18 +1,28 @@
 <?php
-use Yii;
+use branchonline\lightbox\Lightbox;
 ?>
 <div class="row">
     <div class="col-sm-6 col-md-3 col-xs-12 text-center">
-        <?php if (file_exists($model->getPhotoPath())) { ?>
-            <?= Yii::$app->thumbnail->img($model->getPhotoPath(), [
+        <?php if (file_exists($model->getPhotoPath())) {
+
+            $thumb =  Yii::$app->thumbnail->url($model->getPhotoPath(), [
                 'thumbnail' => [
                     'width' => 300,
                     'height' => 300,
                 ]
-            ], [
-                'class' => 'img img-responsive'
-            ]); ?>
-        <?php } ?>
+            ]);
+            echo Lightbox::widget([
+                'files' => [
+                    [
+                        'thumb' => $thumb,
+                        'original' => $model->getPhotoPath(false),
+                        'thumbOptions' => [
+                            'class' => 'img img-responsive'
+                        ]
+                    ]
+                ]
+            ]);
+        } ?>
     </div>
     <div class="col-sm-6 col-md-9 col-xs-12">
         <?= $this->render('@frontend/views/user/_user', ['user' => $model->user]) ?>
