@@ -12,10 +12,10 @@ use backend\assets\AppAsset;
 AppAsset::register($this);
 
 $avatarUrl = Yii::$app->user->identity->profile->getPhotoPath();
-$thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url($photo, [
+$thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url($avatarUrl, [
     'thumbnail' => [
-        'width' => 50,
-        'height' => 50,
+        'width' => 200,
+        'height' => 200,
     ]
 ]) : '/images/default_avatar.jpg';
 
@@ -147,7 +147,7 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                     <?php foreach (common\models\Message::fresh()->all() as $msg) { ?>
                                         <li>
-                                            <a href="<?= Url::to(['message/view', 'id' => $msg->id]) ?>">
+                                            <a href="<?= Url::to(['/message/view', 'id' => $msg->id]) ?>">
                                                 <span><?= $msg->user->profile->name ?></span>
                                                 <span class="time"><?= date('d-m-Y H:i:s', $msg->created_at) ?></span>
                                                 <span class="message">
