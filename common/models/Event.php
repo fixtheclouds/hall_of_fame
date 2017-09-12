@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use rmrevin\yii\ulogin\Exception;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
@@ -202,5 +203,21 @@ class Event extends \yii\db\ActiveRecord
             return \Yii::$app->basePath . '/web/uploads/event/' . $this->photo;
         }
         return \Yii::$app->homeUrl . '/uploads/event/' . $this->photo;
+    }
+
+    /**
+     * @return bool
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        if ($this->photo) {
+            try {
+                unlink($this->getPhotoPath(true));
+            } catch(Exception $e) {
+                return false;
+            }
+        }
     }
 }

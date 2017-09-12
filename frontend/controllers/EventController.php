@@ -42,7 +42,7 @@ class EventController extends Controller
                 ],
                 'rules' => [
                     [
-                        'actions' => ['create', 'update', 'index', 'own', 'actual', 'applied', 'archived', 'view'],
+                        'actions' => ['create', 'update', 'index', 'own', 'actual', 'applied', 'archived', 'view', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
