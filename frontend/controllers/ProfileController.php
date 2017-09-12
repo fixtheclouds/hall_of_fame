@@ -51,9 +51,7 @@ class ProfileController extends BaseController
             $names = explode(".", $image->name);
             $ext = end($names);
             $model->photo = \Yii::$app->security->generateRandomString() . ".{$ext}";
-            \Yii::$app->params['uploadPath'] = \Yii::$app->basePath . '/web/uploads/profile/';
-            $path = \Yii::$app->params['uploadPath'] . $model->photo;
-            $result = $image->saveAs($path) && $model->save(false);
+            $result = $image->saveAs(UPLOAD_PATH . $model->photo) && $model->save(false);
         }
         $response = $result ? ['uploaded' => 'OK'] : ['uploaded' => 'ERROR'];
         echo Json::encode($response);
@@ -64,7 +62,7 @@ class ProfileController extends BaseController
      * @return bool
      */
     protected function deletePhoto($photo) {
-        $baseUrl = \Yii::$app->basePath . '/web/uploads/profile/' . $photo;
+        $baseUrl = UPLOAD_PATH . $photo;
         if (file_exists($baseUrl)) {
             return unlink($baseUrl);
         }

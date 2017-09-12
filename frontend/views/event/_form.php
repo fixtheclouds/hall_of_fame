@@ -13,7 +13,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\Event */
 /* @var $form yii\widgets\ActiveForm */
-$thumb = null;
+$thumb = false;
 
 if ($model->photo && file_exists($model->getPhotoPath())) {
     $thumb = Yii::$app->thumbnail->url($model->getPhotoPath(), [

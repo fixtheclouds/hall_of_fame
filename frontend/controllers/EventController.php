@@ -158,6 +158,10 @@ class EventController extends Controller
         $this->layout = 'main';
         $model = $this->findModel($id);
 
+        if ($model->deleted_at != null) {
+            throw new NotFoundHttpException('Страница не существует.');
+        }
+
         if ($model->status == 'pending' && !$model->isMine()) {
             $this->redirect(['/account']);
         }
@@ -232,9 +236,7 @@ class EventController extends Controller
             $names = explode(".", $image->name);
             $ext = end($names);
             $model->photo = Yii::$app->security->generateRandomString() . ".{$ext}";
-            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/event/';
-            $path = Yii::$app->params['uploadPath'] . $model->photo;
-            $image->saveAs($path);
+            $image->saveAs(UPLOAD_PATH . $model->photo);
         }
     }
 
@@ -251,7 +253,8 @@ class EventController extends Controller
             $this->redirect(['/account']);
         }
         $model->updateAttributes(['deleted_at' => time()]);
-        return $this->redirect(['index']);
+        $model->afterDelete();
+        return $this->redirect(['/account']);
     }
 
     /**
@@ -299,7 +302,7 @@ class EventController extends Controller
         if (($model = Event::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Страница не существует.');
         }
     }
 }

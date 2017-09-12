@@ -20,7 +20,7 @@ use yii\helpers\Url;
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
 $this->params['breadcrumbs'][] = $this->title;
 
-$photo = \Yii::$app->urlManagerFrontend->baseUrl . '/profile/' . $profile->photo;
+$photo = $profile->getPhotoPath();
 if (!$profile->photo || !file_exists($photo)) {
     $photo = \Yii::getAlias('@backend') . '/web/images/default_avatar.jpg';
 }

@@ -27,6 +27,7 @@ use yii\behaviors\BlameableBehavior;
 class Event extends \yii\db\ActiveRecord
 {
     use \common\traits\Trackable;
+    use \common\traits\Imageable;
     /**
      * Служебное поле для изображения
      * @var
@@ -193,31 +194,5 @@ class Event extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhotoPath($absolute = true) {
-        if ($absolute) {
-            return \Yii::$app->basePath . '/web/uploads/event/' . $this->photo;
-        }
-        return \Yii::$app->homeUrl . '/uploads/event/' . $this->photo;
-    }
-
-    /**
-     * @return bool
-     */
-    public function afterDelete()
-    {
-        parent::afterDelete();
-
-        if ($this->photo) {
-            try {
-                unlink($this->getPhotoPath(true));
-            } catch(Exception $e) {
-                return false;
-            }
-        }
     }
 }

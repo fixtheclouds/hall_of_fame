@@ -11,6 +11,14 @@ use backend\assets\AppAsset;
 
 AppAsset::register($this);
 
+$avatarUrl = Yii::$app->user->identity->profile->getPhotoPath();
+$thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url($photo, [
+    'thumbnail' => [
+        'width' => 50,
+        'height' => 50,
+    ]
+]) : '/images/default_avatar.jpg';
+
 ?>
 <?php $this->beginPage(); ?>
 <!DOCTYPE html>
@@ -47,7 +55,7 @@ AppAsset::register($this);
                 <?php if (!Yii::$app->user->isGuest) { ?>
                     <div class="profile">
                         <div class="profile_pic">
-                            <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => 'img img-responsive rounded']) ?>
+                            <?= Html::img($thumbUrl, ['class' => 'img img-responsive rounded']) ?>
                         </div>
                         <div class="profile_info">
                             <span>Добро пожаловать,</span>
@@ -110,7 +118,7 @@ AppAsset::register($this);
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <?= Html::img(Yii::$app->user->identity->profile->getAvatarUrl(), ['class' => '']) ?>
+                                    <?= Html::img($thumbUrl, ['class' => '']) ?>
                                     <span><?= Yii::$app->user->identity->profile->name ?></span>
                                     <span class="fa fa-angle-down"></span>
                                 </a>

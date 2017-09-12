@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="panel panel-default padded">
         <?php
-        $photoPath = Yii::$app->urlManagerFrontend->baseUrl . '/event/' . $model->photo;
+        $photoPath = $model->getPhotoPath();
         if (file_exists($photoPath)) { ?>
             <?= Yii::$app->thumbnail->img($photoPath, [
                 'thumbnail' => [

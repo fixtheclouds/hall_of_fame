@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <label>Фото:</label>
         <div>
             <?php foreach ($model->reportPhotos as $photo) {
-                $absPath = \Yii::$app->urlManagerFrontend->baseUrl . '/report/' . $photo->photo;
+                $absPath = $photo->getPhotoPath();
                 if (file_exists($absPath)) { ?>
                     <?= \Yii::$app->thumbnail->img($absPath, [
                         'thumbnail' => [

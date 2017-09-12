@@ -67,8 +67,10 @@ class EventController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
+        $model->updateAttributes(['deleted_at' => time()]);
+        $model->afterDelete();
         return $this->redirect(['index']);
     }
 

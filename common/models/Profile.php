@@ -9,6 +9,7 @@ use dektrium\user\models\Profile as BaseProfile;
 
 class Profile extends BaseProfile
 {
+    use \common\traits\Imageable;
 
     public $image;
     /**
@@ -38,21 +39,5 @@ class Profile extends BaseProfile
             'phone'          => 'Номер телефона',
             'city'           => 'Город'
         ];
-    }
-
-    /**
-     * Получение URL аватарки
-     * @return string
-     */
-    public function getAvatarUrl($full = false) {
-        $path = \Yii::$app->homeUrl  . 'uploads/profile/' . $this->photo;
-        $basePath = \Yii::$app->basePath . '/web/uploads/profile/' . $this->photo;
-        if (!$this->photo || !file_exists($basePath)) {
-            $defaultPath = '/images/default_avatar.jpg';
-            return $full ? \Yii::$app->basePath . '/web/' . $defaultPath : \Yii::$app->homeUrl . $defaultPath;
-        } else if ($full) {
-            return $basePath;
-        }
-        return $path;
     }
 }

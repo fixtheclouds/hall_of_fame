@@ -40,12 +40,6 @@ return [
             'rules' => [
             ],
         ],
-        'urlManagerFrontend' => [
-            'class' => 'yii\web\urlManager',
-            'baseUrl' => $_SERVER['DOCUMENT_ROOT'] . '/frontend/web/uploads/',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-        ],
         'urlManagerCommon' => [
             'class' => 'yii\web\urlManager',
             'baseUrl' => '/',

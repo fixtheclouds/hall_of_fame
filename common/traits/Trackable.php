@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ekz
- * Date: 9/6/17
- * Time: 11:01 PM
+ *
  */
 
 namespace common\traits;

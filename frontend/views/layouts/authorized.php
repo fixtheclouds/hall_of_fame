@@ -32,13 +32,13 @@ if (!Yii::$app->user->isGuest) {
                 'action' => '/profile/upload-avatar'
             ]);
 
-            $avatarUrl = Yii::$app->user->identity->profile->getAvatarUrl(true);
-            $thumbUrl = Yii::$app->thumbnail->url($avatarUrl, [
+            $avatarUrl = Yii::$app->user->identity->profile->getPhotoPath();
+            $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url($avatarUrl, [
                 'thumbnail' => [
                     'width' => 200,
                     'height' => 200,
                 ]
-            ]); ?>
+            ]) : '/images/default_avatar.jpg'; ?>
 
             <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb rounded']) ?>
 

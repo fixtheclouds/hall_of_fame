@@ -85,8 +85,13 @@ class ReportController extends BackendController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
+        $model->updateAttributes(['deleted_at' => time()]);
+        foreach ($model->reportPhotos as $photo) {
+            $photo->delete();
+        }
+        $model->afterDelete();
         return $this->redirect(['index']);
     }
 

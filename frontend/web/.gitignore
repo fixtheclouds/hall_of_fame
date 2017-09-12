@@ -3,3 +3,4 @@
 /robots.txt
 /cache
 /uploads
+!/uploads/.htaccess

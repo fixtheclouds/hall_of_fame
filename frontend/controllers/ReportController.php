@@ -7,6 +7,7 @@ use common\models\ReportPhoto;
 use Yii;
 use common\models\Report;
 use yii\data\ActiveDataProvider;
+use yii\db\BaseActiveRecord;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,6 +44,11 @@ class ReportController extends Controller
         if ($model->status == 'pending' && !$model->isMine()) {
             $this->redirect(['/account']);
         }
+
+        if ($model->deleted_at != null) {
+            throw new NotFoundHttpException('Страница не существует.');
+        }
+
         $eventModel = $model->getEvent()->one();
         return $this->render('view', [
             'model' => $model,
@@ -83,11 +89,9 @@ class ReportController extends Controller
         foreach ($images as $image) {
             $reportPhoto = new ReportPhoto();
             $reportPhoto->report_id = $model->id;
-            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/report/';
             $reportPhoto->photo = Yii::$app->security->generateRandomString() . '.' . $image->extension;
-            $path = Yii::$app->params['uploadPath'] .  $reportPhoto->photo;
             $reportPhoto->save();
-            $image->saveAs($path);
+            $image->saveAs(UPLOAD_PATH . $reportPhoto->photo);
         }
     }
 
@@ -128,8 +132,11 @@ class ReportController extends Controller
             $this->redirect(['/account']);
         }
 
-        $model->delete();
-        return $this->redirect(['index']);
+        $model->updateAttributes(['deleted_at' => time()]);
+        foreach ($model->reportPhotos as $photo) {
+            $photo->delete();
+        }
+        return $this->redirect(['/account']);
     }
 
     /**

@@ -1,12 +1,13 @@
 <?php
 use yii\helpers\Html;
 
-$thumbUrl = Yii::$app->thumbnail->url($user->profile->getAvatarUrl(true), [
+$photo = $user->profile->getPhotoPath();
+$thumbUrl = ($photo && file_exists($photo)) ? Yii::$app->thumbnail->url($photo, [
     'thumbnail' => [
         'width' => 50,
         'height' => 50,
     ]
-]);
+]) : '/images/default_avatar.jpg';
 ?>
 <div class="row bottom-20">
     <div class="col-xs-12">

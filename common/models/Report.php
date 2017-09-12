@@ -74,7 +74,7 @@ class Report extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['images'], 'file', 'extensions' => 'png, jpg', 'maxFiles' => 10],
+            [['images'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 10],
             [['event_id', 'user_id'], 'integer'],
             [['content'], 'required'],
             [['content'], 'string'],
@@ -144,4 +144,14 @@ class Report extends \yii\db\ActiveRecord
     {
         return new ReportQuery(get_called_class());
     }
+
+    /**
+     * Возвращает true, если отчет создан
+     * текущим пользователем
+     * @return bool
+     */
+    public function isMine() {
+        return $this->user_id === Yii::$app->user->id;
+    }
+
 }
