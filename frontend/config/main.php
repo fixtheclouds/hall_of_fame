@@ -62,7 +62,19 @@ return [
         'thumbnail' => [
             'class' => 'sadovojav\image\Thumbnail',
             'cachePath' => '@webroot/cache'
-        ]
+        ],
+        'i18n' => [
+            'translations' => [
+                'user*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@frontend/messages/user',
+                    'sourceLanguage' => 'ru',
+                    'fileMap' => array(
+                        'user' => 'user.php',
+                    )
+                ],
+            ],
+        ],
     ],
     'params' => $params,
     'modules' => [
