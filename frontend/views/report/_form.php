@@ -46,7 +46,11 @@ if ($model->getReportPhotos()) {
         'pluginOptions' => [
             'initialPreview' => $thumbs,
             'initialPreviewAsData' => true,
-            'allowedFileExtensions' => ['jpg', 'gif', 'png']
+            'allowedFileExtensions' => ['jpg', 'gif', 'png'],
+            'browseClass' => 'btn btn-success',
+            'removeClass' => 'btn btn-danger',
+            'removeIcon' => '<i class="glyphicon glyphicon-trash"></i> ',
+            'showUpload' => false
         ]
     ])->label('Добавить фотографии к отчету    <p class="text-muted">
         <small>Для загрузки нескольких файлов удерживайте клавишу CTRL в окне выбора файлов</small>

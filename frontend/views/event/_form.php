@@ -37,7 +37,7 @@ if ($model->photo && file_exists($model->getPhotoPath())) {
                     $.get( "'.Yii::$app->urlManager->createUrl('subtype/list?type=').'" + type, function( data ) {
                       $( "select#subtype" ).html( data );
                     });
-                    '
+                    ',
     ])->label('Какое мероприятие вы хотите запланировать?'); ?>
 
 
@@ -98,7 +98,11 @@ if ($model->photo && file_exists($model->getPhotoPath())) {
         'pluginOptions' => [
             'initialPreview' => $thumb,
             'initialPreviewAsData' => true,
-            'allowedFileExtensions' => ['jpg', 'gif', 'png']
+            'allowedFileExtensions' => ['jpg', 'gif', 'png'],
+            'browseClass' => 'btn btn-success',
+            'removeClass' => 'btn btn-danger',
+            'removeIcon' => '<i class="glyphicon glyphicon-trash"></i> ',
+            'showUpload' => false
         ]
     ]) ?>
 
