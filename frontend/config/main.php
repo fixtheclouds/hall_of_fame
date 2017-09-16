@@ -38,6 +38,7 @@ return [
             'baseUrl' => '/',
             'rules' => [
                 '/account' => 'event/actual',
+                '/page/<id:\w+>' => 'page/view'
             ],
         ],
         'urlManagerCommon' => [
