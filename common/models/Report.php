@@ -33,6 +33,13 @@ class Report extends \yii\db\ActiveRecord
         'published' => 'Опубликован',
         'dismissed' => 'Отклонен'
     ];
+
+    /**
+     * Служебное поле для подтверждения
+     * @var
+     */
+    public $accept;
+
     /**
      * @inheritdoc
      */
@@ -82,6 +89,14 @@ class Report extends \yii\db\ActiveRecord
             [['status'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['event_id'], 'exist', 'skipOnError' => true, 'targetClass' => Event::className(), 'targetAttribute' => ['event_id' => 'id']],
+            [
+                'accept',
+                'compare',
+                'operator' => '==',
+                'compareValue' => true,
+                'message' => 'Вы должны принять соглашение.',
+                'on' => 'create'
+            ]
         ];
     }
 

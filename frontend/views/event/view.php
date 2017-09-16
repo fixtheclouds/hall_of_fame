@@ -55,6 +55,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-xs-12 text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
             <?php } else if ($myReport->status == 'pending') { ?>
                 <div class="col-xs-12 text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
+                <div class="col-xs-12">
+                    <?= Html::a('Редактировать', ['report/update', 'id' => $myReport->id], ['class' => 'btn btn-primary']) ?>
+
+                    <?= Html::a('Удалить', ['report/delete', 'id' => $myReport->id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => 'Вы уверены, что хотите удалить?',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                </div>
             <?php }
         }?>
         <?php if (Yii::$app->user->identity->isAdmin) {

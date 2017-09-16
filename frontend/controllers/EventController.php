@@ -185,6 +185,7 @@ class EventController extends Controller
     public function actionCreate()
     {
         $model = new Event();
+        $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post())) {
             $this->saveImage($model);

@@ -22,6 +22,12 @@ class Message extends \yii\db\ActiveRecord
     use \common\traits\Trackable;
 
     /**
+     * Служебное поле для подтверждения
+     * @var
+     */
+    public $accept;
+
+    /**
      * @inheritdoc
      */
     public static function tableName()
@@ -92,6 +98,13 @@ class Message extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['state'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [
+                'accept',
+                'compare',
+                'operator' => '==',
+                'compareValue' => true,
+                'message' => 'Вы должны принять соглашение.'
+            ],
         ];
     }
 

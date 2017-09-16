@@ -34,6 +34,12 @@ class Event extends \yii\db\ActiveRecord
      */
     public $image;
 
+    /**
+     * Служебное поле для подтверждения
+     * @var
+     */
+    public $accept;
+
     const HUMAN_STATES = [
         'pending' => 'На рассмотрении',
         'dismissed' => 'Отклонено',
@@ -164,7 +170,15 @@ class Event extends \yii\db\ActiveRecord
             [['place'], 'string', 'max' => 512],
             [['status'], 'string', 'max' => 255],
             [['image'], 'safe'],
-            [['image'], 'file', 'extensions' => 'jpg, gif, png', 'maxSize' => 1024 * 1024 * 10]
+            [['image'], 'file', 'extensions' => 'jpg, gif, png', 'maxSize' => 1024 * 1024 * 10],
+            [
+                'accept',
+                'compare',
+                'operator' => '==',
+                'compareValue' => true,
+                'message' => 'Вы должны принять соглашение.',
+                'on' => 'create'
+            ],
         ];
     }
 
@@ -184,7 +198,7 @@ class Event extends \yii\db\ActiveRecord
             'person_name' => 'ФИО гражданина, которому посвящено мероприятие',
             'photo' => 'Фотография мероприятия',
             'status' => 'Статус',
-            'image' => 'Фотография мероприятия'
+            'image' => 'Фотография мероприятия',
         ];
     }
 

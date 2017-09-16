@@ -56,6 +56,14 @@ if ($model->getReportPhotos()) {
         <small>Для загрузки нескольких файлов удерживайте клавишу CTRL в окне выбора файлов</small>
     </p>') ?>
 
+    <?php if ($model->isNewRecord) {
+        echo $form->field($model, 'accept')->checkbox([
+            'label' => 'Я согласен с ' . Html::a('политикой обработки конфиденциальных данных', ['page/policy'], [
+                    'target' => '_blank'
+                ])
+        ]);
+    } ?>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Отправить отчет модератору' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

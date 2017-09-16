@@ -106,6 +106,14 @@ if ($model->photo && file_exists($model->getPhotoPath())) {
         ]
     ]) ?>
 
+    <?php if ($model->isNewRecord) {
+        echo $form->field($model, 'accept')->checkbox([
+            'label' => 'Я согласен с ' . Html::a('политикой обработки конфиденциальных данных', ['page/policy'], [
+                    'target' => '_blank'
+                ])
+        ]);
+    } ?>
+
 
     <div class="form-group">
         <?php $createMessage = Yii::$app->user->identity->isAdmin ? 'Создать мероприятие' : 'Отправить мероприятие администратору сайта';?>
