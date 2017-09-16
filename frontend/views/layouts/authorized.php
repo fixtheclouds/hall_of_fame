@@ -25,7 +25,7 @@ $profileModel = \Yii::$app->user->identity->profile;
 $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
     ?>
-    <div class="profile-header clearfix">
+    <div class="profile-header clearfix top-20">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <?php $form = ActiveForm::begin([
                 'options' => ['enctype'=>'multipart/form-data'],
@@ -58,7 +58,7 @@ if (!Yii::$app->user->isGuest) {
             ])->label(false) ?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="col-md-5 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
             <h4>
                 <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
             </h4>
@@ -79,30 +79,30 @@ if (!Yii::$app->user->isGuest) {
             </p>
         </div>
 
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-5 col-sm-12">
             <div class="row">
                 <div class="col-xs-12">
+                    <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/recovery/resend-password'], [
+                        'data' => [
+                            'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
+                                'Ваш текущий пароль станет недейтвителен. Вы уверены?',
+                            'method' => 'post',
+                        ],
+                        'class' => 'btn btn-default pull-left right-10'
+                    ]) ?>
             <?= Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 '<i class="glyphicon glyphicon-log-out"></i>&nbsp;Выйти',
-                ['class' => 'btn btn-default logout col-xs-12']
+                ['class' => 'btn btn-default logout pull-left']
             )
             . Html::endForm()
             ?>
-            <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/recovery/resend-password'], [
-                'data' => [
-                    'confirm' => 'На ваш адрес E-mail будет отправлен новый автоматически сгенерированный пароль.' .
-                        'Ваш текущий пароль станет недейтвителен. Вы уверены?',
-                    'method' => 'post',
-                ],
-                'class' => 'btn btn-default top-20 col-xs-12'
-            ]) ?>
                 </div>
             </div>
-            <div class="clearfix top-20">
+            <div class="clearfix">
                 <hr>
                 <p>
-                    <a href="/event/actual">
+                    <a href="/event/actual" class="btn btn-default">
                         Предстоящие мероприятия: <?= $counts['active'] ?>
                     </a>
                 </p>

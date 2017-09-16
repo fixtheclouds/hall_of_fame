@@ -22,20 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Мероприятие находится на рассмотрении</p>
     <?php } ?>
     <p>
-        <?php if ($model->user_id == Yii::$app->user->id) { ?>
-            <?php
-            if ($model->status == 'pending') {
-                echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-            }
-            ?>
-            <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+        <?php if ($model->isMine() && $model->status == 'pending') {
+            echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+            echo Html::a('Удалить', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Вы уверены, что хотите удалить?',
                     'method' => 'post',
                 ],
-            ]) ?>
-        <?php } ?>
+            ]);
+        } ?>
     </p>
 
     <?= $this->render('_header', ['model' => $model]) ?>
@@ -44,7 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $model->content ?>
     </p>
     <div class="row">
-        <?php if (!$model->isMine() && !$model->hasMyReport()) { ?>
+        <?php
+        $myReport = $model->getMyReport();
+        if (!$model->isMine() && !$model->hasMyReport()) { ?>
             <div class="col-xs-6 col-sm-3">
                 <?= Html::a('Подать отчёт', [
                     'report/create', 'event_id' => $model->id
@@ -52,10 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'btn btn-primary'
                 ]) ?>
             </div>
-        <?php } else if ($model->getMyReport()) {
-            if ($model->getMyReport()->status == 'dismissed') { ?>
+        <?php } else if ($myReport) {
+            if ($myReport->status == 'dismissed') { ?>
                 <div class="col-xs-12 text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
-            <?php } else if ($model->getMyReport()->status == 'pending') { ?>
+            <?php } else if ($myReport->status == 'pending') { ?>
                 <div class="col-xs-12 text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
             <?php }
         }?>

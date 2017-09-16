@@ -42,7 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'label' => 'Гордость',
             'content' => $this->render('@frontend/views/message/_form', ['model' => new Message()])
         ]
-    ]
+    ],
+    'options' => ['class' => 'categories top-20']
 ])
 ?>
 

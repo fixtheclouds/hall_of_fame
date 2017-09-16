@@ -128,7 +128,7 @@ class ReportController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if (!$model->isMine()) {
+        if (!$model->isMine() || (!Yii::$app->user->identity->isAdmin && $model->status == 'published')) {
             $this->redirect(['/account']);
         }
 

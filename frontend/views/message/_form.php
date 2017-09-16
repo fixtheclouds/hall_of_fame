@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="message-form">
+<div class="message-form event-item panel panel-default">
 
     <h2>Напишите нам</h2>
 

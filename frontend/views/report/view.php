@@ -34,8 +34,7 @@ $files = [];
                     'thumb' => \Yii::$app->thumbnail->url($absPath, [
                         'thumbnail' => [
                             'width' => 300,
-                            'height' => 300,
-                            'mode' => \Imagine\Image\ImageInterface::THUMBNAIL_INSET
+                            'height' => 300
                         ]
                     ]),
                     'original' => $photo->getPhotoPath(false),
@@ -53,16 +52,17 @@ $files = [];
     </div>
     <p class="top-20">
         <?php
-        if ($model->status == 'pending') {
+        if ($model->isMine() && $model->status == 'pending') {
             echo Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
-        } ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить?',
-                'method' => 'post',
-            ],
-        ]) ?>
+
+            echo Html::a('Удалить', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите удалить?',
+                    'method' => 'post',
+                ],
+            ]);
+        }?>
     </p>
 
 

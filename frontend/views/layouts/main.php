@@ -57,7 +57,21 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Футер <?= date('Y') ?></p>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <p class="pull-left">&copy; Ассоциация почётных граждан, наставников и талантливой молодёжи<br>
+                    <?= Html::a('Политика обработки конфиденциальных данных', ['pages/policy']) ?>
+                </p>
+            </div>
+            <div class="col-xs-12 col-md-6 text-right">
+                <?php if (Yii::$app->user->isGuest) {
+                    echo Html::a('Войти', ['/user/login/']);
+                    echo Html::a('Зарегистрироваться', ['/user/registration/register']);
+                } else {
+                    echo Html::a('Мероприятия', ['/event/actual']);
+                } ?>
+            </div>
+        </div>
     </div>
 </footer>
 

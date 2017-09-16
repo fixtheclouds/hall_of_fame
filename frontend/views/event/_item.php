@@ -3,8 +3,8 @@ use yii\helpers\Html;
 ?>
 
 <div class="event-item panel panel-default">
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="row relative">
+        <div class="col-xs-12 col-sm-6 col-md-4 event-thumb">
             <?php
             if ($model->photo && file_exists($model->getPhotoPath())) { ?>
                 <?= Yii::$app->thumbnail->img($model->getPhotoPath(), [
@@ -20,7 +20,7 @@ use yii\helpers\Html;
             <?php } ?>
 
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-8">
+        <div class="col-xs-12 col-sm-6 col-md-8 static">
             <h4>
                 <?= Html::a(Html::encode($model->subtype->name), ['view', 'id' => $model->id], ['data-pjax' => 0]) ?>
             </h4>
@@ -31,8 +31,8 @@ use yii\helpers\Html;
                 <i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
                 <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
 
-            <div class="row">
-                <?php if (!$model->isMine() && !$model->hasMyReport() && !$model->isArchived()) { ?>
+            <div class="row absolute bottom full-width">
+                <?php if (!$model->hasMyReport() && !$model->isArchived()) { ?>
                     <div class="col-xs-6 col-sm-3">
                         <?= Html::a('Подать отчёт', [
                             'report/create', 'event_id' => $model->id

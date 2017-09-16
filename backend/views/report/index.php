@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
 
@@ -22,7 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'event_id',
-            'content:ntext',
+            [
+              'attribute' => 'content',
+                'label' => 'Содержание',
+                'content' => function($data) {
+                    return StringHelper::truncate(strip_tags($data->content), 50, '...');
+                }
+            ],
             [
                 'attribute' => 'status',
                 'label' => 'Статус',

@@ -63,7 +63,7 @@ class EventController extends Controller
      */
     public function actionActual()
     {
-        return $this->renderIndex('Мероприятия',
+        return $this->renderIndex('Предстоящие мероприятия',
             Event::find()->published()->active());
     }
 
@@ -72,7 +72,7 @@ class EventController extends Controller
      * @return string
      */
     public function actionArchived() {
-        return $this->renderIndex('Мероприятия',
+        return $this->renderIndex('Завершенные мероприятия',
             Event::find()->published()->active(false));
     }
 
@@ -81,7 +81,7 @@ class EventController extends Controller
      * @return string
      */
     public function actionOwn() {
-        return $this->renderIndex('Мероприятия',
+        return $this->renderIndex('Мероприятия, которые я запланировал',
             Event::find()->byUserId(Yii::$app->user->id));
     }
 
@@ -90,7 +90,7 @@ class EventController extends Controller
      * @return string
      */
     public function actionApplied() {
-        return $this->renderIndex('Мероприятия',
+        return $this->renderIndex('Мероприятия, в которых я участвую',
             Event::find()->published()->withReportFromUser(Yii::$app->user->id));
     }
 
@@ -249,7 +249,7 @@ class EventController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        if (!$model->isMine()) {
+        if (!$model->isMine() || (!Yii::$app->user->identity->isAdmin && $model->status == 'published')) {
             $this->redirect(['/account']);
         }
         $model->updateAttributes(['deleted_at' => time()]);

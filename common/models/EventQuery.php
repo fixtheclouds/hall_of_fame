@@ -13,7 +13,7 @@ class EventQuery extends ActiveQuery
      */
     public function init()
     {
-        $this->andFilterWhere(['is', 'deleted_at', null]);
+        $this->andWhere(['is', 'event.deleted_at', null]);
         parent::init();
     }
 

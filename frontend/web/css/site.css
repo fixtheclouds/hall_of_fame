@@ -119,6 +119,11 @@ a.desc:after {
     outline: none;
 }
 
+body {
+    overflow-x: hidden;
+    font-size: 15px;
+}
+
 
 form div.required label.control-label::after {
     content:" * ";
@@ -134,7 +139,7 @@ form div.required label.control-label::after {
 }
 
 .profile-header, .profile-header a {
-    font-size: 12px;
+
 }
 
 .event-item {
@@ -144,6 +149,10 @@ form div.required label.control-label::after {
 
 .event-item img {
     margin: 0 auto;
+}
+
+.event-item .event-thumb {
+    min-height: 240px;
 }
 
 .top-20 {
@@ -164,4 +173,46 @@ form div.required label.control-label::after {
 
 .rounded {
     border-radius: 50%;
+}
+
+.static {
+    position: static;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.absolute.bottom {
+    bottom: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.user-row .avatar-thumb {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+ul.categories li {
+    width: 33.333333%;
+}
+
+ul.categories li > a {
+    margin-right: 0;
+    text-align: center;
+}
+
+.wrap {
+    padding-bottom: 0;
+}
+
+footer.footer {
+    height: auto;
 }
