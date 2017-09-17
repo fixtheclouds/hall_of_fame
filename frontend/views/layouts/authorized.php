@@ -40,9 +40,14 @@ if (!Yii::$app->user->isGuest) {
                 ]
             ]) : '/images/default_avatar.jpg'; ?>
 
-            <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb rounded']) ?>
+            <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb rounded', 'id' => 'my-avatar']) ?>
 
-            <?= $form->field($profileModel, 'image', ['options' => ['style' => 'display: none']])->widget(FileInput::className(), [
+            <?= $form->field($profileModel, 'image', [
+                'options' => [
+                    'style' => 'display: none',
+                    'id' => 'avatar-upload'
+                ]
+            ])->widget(FileInput::className(), [
                 'pluginOptions' => [
                     'initialPreview'=>[
                         $thumbUrl
@@ -90,13 +95,13 @@ if (!Yii::$app->user->isGuest) {
                         ],
                         'class' => 'btn btn-default pull-left right-10'
                     ]) ?>
-            <?= Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                '<i class="glyphicon glyphicon-log-out"></i>&nbsp;Выйти',
-                ['class' => 'btn btn-default logout pull-left']
-            )
-            . Html::endForm()
-            ?>
+                    <?= Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        '<i class="glyphicon glyphicon-log-out"></i>&nbsp;Выйти',
+                        ['class' => 'btn btn-default logout pull-left']
+                    )
+                    . Html::endForm()
+                    ?>
                 </div>
             </div>
             <div class="clearfix">
@@ -122,12 +127,12 @@ if (!Yii::$app->user->isGuest) {
                     </a>
                 </p>
                 <p>
-                    <div class="text-muted">
-                        Мероприятий на рассмотрении: <?= $counts['events-pending'] ?>
-                    </div>
-                    <div class="text-muted">
-                        Отчетов на рассмотрении: <?= $counts['reports-pending'] ?>
-                    </div>
+                <div class="text-muted">
+                    Мероприятий на рассмотрении: <?= $counts['events-pending'] ?>
+                </div>
+                <div class="text-muted">
+                    Отчетов на рассмотрении: <?= $counts['reports-pending'] ?>
+                </div>
                 </p>
                 <p>
                     <span>

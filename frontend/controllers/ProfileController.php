@@ -52,8 +52,16 @@ class ProfileController extends BaseController
             $ext = end($names);
             $model->photo = \Yii::$app->security->generateRandomString() . ".{$ext}";
             $result = $image->saveAs(UPLOAD_PATH . $model->photo) && $model->save(false);
+            if ($result) {
+                $url = \Yii::$app->thumbnail->url(UPLOAD_PATH . $model->photo, [
+                    'thumbnail' => [
+                        'width' => 200,
+                        'height' => 200,
+                    ]
+                ]);
+            }
         }
-        $response = $result ? ['uploaded' => 'OK'] : ['uploaded' => 'ERROR'];
+        $response = $result ? ['url' => $url] : ['error' => 'Ошибка при загрузке'];
         echo Json::encode($response);
     }
 

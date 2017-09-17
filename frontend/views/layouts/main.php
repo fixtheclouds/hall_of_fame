@@ -65,7 +65,7 @@ AppAsset::register($this);
             </div>
             <div class="col-xs-12 col-md-6 text-right">
                 <?php if (Yii::$app->user->isGuest) {
-                    echo Html::a('Войти', ['/user/login/']);
+                    echo Html::a('Войти', ['/user/login/'], ['class' => 'right-10']);
                     echo Html::a('Зарегистрироваться', ['/user/registration/register']);
                 } else {
                     echo Html::a('Мероприятия', ['/event/actual']);
