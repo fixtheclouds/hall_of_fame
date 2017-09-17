@@ -4,10 +4,8 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Event;
-use common\models\ScoreSystem;
-use common\models\Report;
+use common\models\EventUser;
 use yii\data\ActiveDataProvider;
-use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
@@ -91,7 +89,7 @@ class EventController extends Controller
      */
     public function actionApplied() {
         return $this->renderIndex('Мероприятия, в которых я участвую',
-            Event::find()->published()->withReportFromUser(Yii::$app->user->id));
+            Event::find()->published()->appliedByUser(Yii::$app->user->id));
     }
 
     /**
@@ -290,6 +288,7 @@ class EventController extends Controller
         }
         return $this->redirect(['view', 'id' => $model->id]);
     }
+
 
     /**
      * Finds the Event model based on its primary key value.

@@ -42,6 +42,27 @@ use yii\helpers\Html;
                         ]) ?>
                     </div>
                 <?php } ?>
+                <?php if (!$model->isMine() && !$model->isArchived()) {
+                    if (!$model->isAppliedBy(\Yii::$app->user->id)) { ?>
+                        <div class="col-xs-6 col-sm-3">
+                            <?= Html::a('Участвовать', [
+                                'event-user/apply', 'event_id' => $model->id
+                            ], [
+                                'class' => 'btn btn-success',
+                                'data-pjax' => 0
+                            ]) ?>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-xs-6 col-sm-3">
+                            <?= Html::a('Не участвовать', [
+                                'event-user/unapply', 'event_id' => $model->id
+                            ], [
+                                'class' => 'btn btn-danger',
+                                'data-pjax' => 0
+                            ]) ?>
+                        </div>
+                    <?php }
+                } ?>
                 <?php if ($model->isArchived()) { ?>
                     <div class="col-xs-6 col-sm-3">
                         <button type="button" class="text-success btn btn-disabled" disabled>Завершено</button>

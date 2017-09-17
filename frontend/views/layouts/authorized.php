@@ -16,7 +16,7 @@ use common\models\User;
 $counts = [
     'active' => Event::find()->published()->active()->count(),
     'own' => Event::find()->byUserId(Yii::$app->user->id)->count(),
-    'applied' => Event::find()->published()->withReportFromUser(Yii::$app->user->id)->distinct()->count(),
+    'applied' => Event::find()->published()->appliedByUser(Yii::$app->user->id)->distinct()->count(),
     'archived' => Event::find()->published()->active(false)->count(),
     'events-pending' => Event::find()->pending()->byUserId(Yii::$app->user->id)->count(),
     'reports-pending' => Report::find()->pending()->byUserId(Yii::$app->user->id)->count()

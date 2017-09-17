@@ -209,4 +209,19 @@ class Event extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventUsers() {
+        return $this->hasMany(EventUser::className(), ['event_id' => 'id']);
+    }
+
+    /**
+     * @param $user_id
+     * @return bool
+     */
+    public function isAppliedBy($user_id) {
+        return $this->getEventUsers()->andWhere(['user_id' => $user_id])->exists();
+    }
 }

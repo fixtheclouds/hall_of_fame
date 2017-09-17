@@ -63,7 +63,21 @@ class EventQuery extends ActiveQuery
             ->andWhere(['report.user_id' => $id]);
     }
 
+    /**
+     * @param $type
+     * @return $this
+     */
     public function byType($type) {
         return $this->andFilterWhere(['type' => $type]);
+    }
+
+
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function appliedByUser($id) {
+        return $this->innerJoin('event_user', 'event_user.event_id = event.id')
+            ->andWhere(['event_user.user_id' => $id]);
     }
 }
