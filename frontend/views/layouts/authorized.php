@@ -26,62 +26,101 @@ $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
     ?>
     <div class="profile-header clearfix top-20">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-            <?php $form = ActiveForm::begin([
-                'options' => ['enctype'=>'multipart/form-data'],
-                'action' => '/profile/upload-avatar'
-            ]);
+        <div class="col-md-7 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
 
-            $avatarUrl = Yii::$app->user->identity->profile->getPhotoPath();
-            $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url($avatarUrl, [
-                'thumbnail' => [
-                    'width' => 200,
-                    'height' => 200,
-                ]
-            ]) : '/images/default_avatar.jpg'; ?>
+                    <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
 
-            <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb rounded', 'id' => 'my-avatar']) ?>
 
-            <?= $form->field($profileModel, 'image', [
-                'options' => [
-                    'style' => 'display: none',
-                    'id' => 'avatar-upload'
-                ]
-            ])->widget(FileInput::className(), [
-                'pluginOptions' => [
-                    'initialPreview'=>[
-                        $thumbUrl
-                    ],
-                    'initialPreviewAsData' => true,
-                    'overwriteInitial' => true,
-                    'showRemove' => false,
-                    'showUpload' => false,
-                    'showCaption' => false,
-                    'uploadUrl' => '/user/profile/upload-avatar',
-                    'browseLabel' => 'Выбрать файл'
-                ]
-            ])->label(false) ?>
-            <?php ActiveForm::end(); ?>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xs-12">
-            <h4>
-                <?= Html::encode(Yii::$app->user->identity->profile->name) ?>
-            </h4>
-            <p>
-                <strong>Email: <?= Yii::$app->user->identity->email ?></strong>
-            </p>
-            <p>
-                <strong>Город: <?= Yii::$app->user->identity->profile->city ?></strong>
-            </p>
-            <p>
-                <strong>Телефон: <?= Yii::$app->user->identity->profile->phone ?></strong>
-            </p>
-            <p>
-                <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
-            </p>
-            <p>
-                <?= Html::a('Изменить фотографию', '#', ['class' => 'profile-link', 'id' => 'upload-mode']) ?>
-            </p>
+                </div>
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-6">
+                        <?php $form = ActiveForm::begin([
+                            'options' => ['enctype'=>'multipart/form-data'],
+                            'action' => '/profile/upload-avatar'
+                        ]);
+
+                        $avatarUrl = Yii::$app->user->identity->profile->getPhotoPath();
+                        $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url($avatarUrl, [
+                            'thumbnail' => [
+                                'width' => 200,
+                                'height' => 200,
+                            ]
+                        ]) : '/images/default_avatar.jpg'; ?>
+
+                        <?= Html::img($thumbUrl, ['class' => 'img img-responsive avatar-thumb rounded', 'id' => 'my-avatar']) ?>
+
+                        <?= $form->field($profileModel, 'image', [
+                            'options' => [
+                                'style' => 'display: none',
+                                'id' => 'avatar-upload'
+                            ]
+                        ])->widget(FileInput::className(), [
+                            'pluginOptions' => [
+                                'initialPreview'=>[
+                                    $thumbUrl
+                                ],
+                                'initialPreviewAsData' => true,
+                                'overwriteInitial' => true,
+                                'showRemove' => false,
+                                'showUpload' => false,
+                                'showCaption' => false,
+                                'uploadUrl' => '/user/profile/upload-avatar',
+                                'browseLabel' => 'Выбрать файл'
+                            ]
+                        ])->label(false) ?>
+                        <?php ActiveForm::end(); ?>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="bottom-10">
+                            <div class="btn-group full-width right-10 info-group">
+                                <label class="btn btn-success col-xs-9 ellipsis">
+                                    Баллы, которые я заработал
+                                </label>
+                                <label class="btn btn-default col-xs-3">
+                                    <i class="glyphicon glyphicon-star-empty"></i>
+                                    <?= User::findIdentity(\Yii::$app->user->id)->getScore() ?>
+                                </label>
+                            </div>
+                            <div class="btn-group full-width right-10 info-group">
+                                <label class="btn btn-info col-xs-9 ellipsis">
+                                    Мероприятий на рассмотрении
+                                </label>
+                                <label class="btn btn-default col-xs-3">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                    <?= $counts['events-pending'] ?>
+                                </label>
+                            </div>
+                            <div class="btn-group full-width info-group">
+                                <label class="btn btn-warning col-xs-9 ellipsis">
+                                    Отчетов на рассмотрении
+                                </label>
+                                <label class="btn btn-default col-xs-3">
+                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                    <?= $counts['reports-pending'] ?>
+                                </label>
+                            </div>
+                        </div>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope" title="E-mail"></i> <?= Yii::$app->user->identity->email ?>
+                        </p>
+                        <p>
+                            <i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= Yii::$app->user->identity->profile->city ?>
+                        </p>
+                        <p>
+                            <i class="glyphicon glyphicon-phone" title="Телефон"></i> <?= Yii::$app->user->identity->profile->phone ?>
+                        </p>
+                        <p>
+                            <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
+                        </p>
+                        <p>
+                            <?= Html::a('Изменить фотографию', '#', ['class' => 'profile-link', 'id' => 'upload-mode']) ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-5 col-sm-12">
@@ -104,42 +143,21 @@ if (!Yii::$app->user->isGuest) {
                     ?>
                 </div>
             </div>
-            <div class="clearfix">
-                <hr>
-                <p>
-                    <a href="/event/actual" class="btn btn-default">
-                        Предстоящие мероприятия: <?= $counts['active'] ?>
+            <div class="clearfix top-20">
+                <ul class="list-group">
+                    <a href="/event/actual" class="list-group-item">
+                        Предстоящие мероприятия: <span class="badge"><?= $counts['active'] ?></span>
                     </a>
-                </p>
-                <p>
-                    <a href="/event/own">
-                        Мероприятия, которые я запланировал: <?= $counts['own'] ?>
+                    <a href="/event/own" class="list-group-item">
+                        Мероприятия, которые я запланировал: <span class="badge"><?= $counts['own'] ?></span>
                     </a>
-                </p>
-                <p>
-                    <a href="/event/applied">
-                        Мероприятия, в которых я участвую: <?= $counts['applied'] ?>
+                    <a href="/event/applied" class="list-group-item">
+                        Мероприятия, в которых я участвую: <span class="badge"><?= $counts['applied'] ?></span>
                     </a>
-                </p>
-                <p>
-                    <a href="/event/archived">
-                        Завершенные мероприятия: <?= $counts['archived'] ?>
+                    <a href="/event/archived" class="list-group-item">
+                        Завершенные мероприятия: <span class="badge"><?= $counts['archived'] ?></span>
                     </a>
-                </p>
-                <p>
-                <div class="text-muted">
-                    Мероприятий на рассмотрении: <?= $counts['events-pending'] ?>
-                </div>
-                <div class="text-muted">
-                    Отчетов на рассмотрении: <?= $counts['reports-pending'] ?>
-                </div>
-                </p>
-                <p>
-                    <span>
-                        Баллы, которые я заработал:
-                        <?= User::findIdentity(\Yii::$app->user->id)->getScore() ?>&nbsp;<i class="glyphicon glyphicon-star-empty"></i>
-                    </span>
-                </p>
+                </ul>
                 <p>
                     <?= Html::a('Запланировать новое мероприятие', ['create'], ['class' => 'btn btn-success']) ?>
                 </p>

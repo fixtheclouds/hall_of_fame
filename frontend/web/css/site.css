@@ -226,3 +226,26 @@ footer.footer {
     max-width: 200px;
     max-height: 200px;
 }
+
+.label {
+    font-size: 100%;
+}
+
+.noclick, .noclick:hover, .info-group .label:hover {
+    cursor: default;
+}
+
+.smaller {
+    font-size: 75%;
+}
+
+.info-group label {
+    padding: 0 5px;
+    font-size: 75%;
+    cursor: default;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
