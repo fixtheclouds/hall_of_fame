@@ -25,6 +25,8 @@ if ($model->getReportPhotos()) {
     }
 }
 
+$this->registerJs("CKEDITOR.plugins.addExternal('uploadimage', '/plugins/uploadimage/plugin.js', '');", yii\web\View::POS_END);
+$this->registerJs("CKEDITOR.plugins.addExternal('filebrowser', '/plugins/filebrowser/plugin.js', '');", yii\web\View::POS_END);
 ?>
 
 <div class="report-form">
@@ -35,7 +37,12 @@ if ($model->getReportPhotos()) {
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
-        'preset' => 'full'
+        'preset' => 'full',
+        'clientOptions' => [
+            'extraPlugins' => 'uploadimage,filebrowser',
+            'imageUploadUrl' => '/site/upload-image',
+            'filebrowserUploadUrl' => '/site/upload-image?filePlugin=1'
+        ]
     ])->label(false) ?>
 
     <?= $form->field($model, 'images[]')->widget(FileInput::classname(), [

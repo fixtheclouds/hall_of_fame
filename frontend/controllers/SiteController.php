@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -12,12 +13,15 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\UploadedFile;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /**
      * @inheritdoc
      */
@@ -209,5 +213,32 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionUploadImage($filePlugin = false)
+    {
+        $image = UploadedFile::getInstanceByName('upload');
+        if ($image) {
+            $names = explode(".", $image->name);
+            $ext = end($names);
+            $photo = \Yii::$app->security->generateRandomString() . ".{$ext}";
+            $url = \Yii::$app->urlManager->createUrl('/uploads/' . $photo);
+            $image->saveAs(UPLOAD_PATH . $photo);
+        }
+
+        if ($filePlugin) {
+            $funcNum = \Yii::$app->request->get('CKEditorFuncNum');
+            $url = str_replace('/', '\/', $url);
+            echo "<script type=\"text/javascript\">window.parent.CKEDITOR.tools.callFunction(\"$funcNum\", \"$url\", \"\");</script>";
+        } else {
+            echo Json::encode([
+                'uploaded' => 1,
+                'file' => $photo,
+                'url' => $url
+            ]);
+        }
     }
 }

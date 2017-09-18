@@ -191,6 +191,10 @@ form div.required label.control-label::after {
     bottom: 0;
 }
 
+.absolute.right {
+    right: 0;
+}
+
 .full-width {
     width: 100%;
 }

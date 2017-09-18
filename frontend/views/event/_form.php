@@ -24,6 +24,9 @@ if ($model->photo && file_exists($model->getPhotoPath())) {
         ]
     ]);
 }
+
+$this->registerJs("CKEDITOR.plugins.addExternal('uploadimage', '/plugins/uploadimage/plugin.js', '');", yii\web\View::POS_END);
+$this->registerJs("CKEDITOR.plugins.addExternal('filebrowser', '/plugins/filebrowser/plugin.js', '');", yii\web\View::POS_END);
 ?>
 
 <div class="event-form">
@@ -84,7 +87,12 @@ if ($model->photo && file_exists($model->getPhotoPath())) {
 
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
-        'preset' => 'full'
+        'preset' => 'full',
+        'clientOptions' => [
+            'extraPlugins' => 'uploadimage,filebrowser',
+            'imageUploadUrl' => '/site/upload-image',
+            'filebrowserUploadUrl' => '/site/upload-image?filePlugin=1'
+        ]
     ]) ?>
 
     <?= $form->field($model, 'place')->textInput(['maxlength' => true]) ?>

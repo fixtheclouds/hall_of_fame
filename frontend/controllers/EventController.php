@@ -229,6 +229,9 @@ class EventController extends Controller
         ]);
     }
 
+    /**
+     * @param $model
+     */
     private function saveImage($model) {
         $image = UploadedFile::getInstance($model, 'image');
         if ($image) {
