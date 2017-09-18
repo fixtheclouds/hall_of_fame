@@ -9,6 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'language' => 'ru-RU',
+    'sourceLanguage' => '',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -55,6 +56,17 @@ return [
             'theme' => [
                 'pathMap' => [
                     '@dektrium/user/views' => '@backend/views/user'
+                ],
+            ],
+        ],
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@backend/messages',
+                    'sourceLanguage' => 'ru-RU',
+                    'fileMap' => [
+                    ],
                 ],
             ],
         ],

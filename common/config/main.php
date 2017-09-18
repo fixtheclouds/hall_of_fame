@@ -6,6 +6,15 @@ return [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ]
-    ]
+        ],
+        'settings' => [
+            'class' => 'pheme\settings\components\Settings'
+        ],
+    ],
+    'modules' => [
+        'settings' => [
+            'class' => 'pheme\settings\Module',
+            'sourceLanguage' => 'ru'
+        ],
+    ],
 ];

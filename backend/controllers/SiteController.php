@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use dektrium\user\filters\AccessRule;
+use pheme\settings\SettingsAction;
 
 /**
  * Site controller
@@ -35,7 +36,7 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'settings'],
                         'allow' => true,
                         'roles' => ['admin']
                     ]
@@ -58,6 +59,11 @@ class SiteController extends Controller
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
+            ],
+            'settings' => [
+                'class' => SettingsAction::className(),
+                'modelClass' => 'common\models\Settings',
+                'viewName' => 'settings'
             ],
         ];
     }

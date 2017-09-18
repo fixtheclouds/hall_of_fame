@@ -8,6 +8,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use backend\assets\AppAsset;
+use common\widgets\Alert;
 
 AppAsset::register($this);
 
@@ -88,7 +89,8 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
                                             ["label" => "Подтипы мероприятий", "url" => ["/subtype/index"], "icon" => "list-ol"],
                                             ["label" => "Города", "url" => ["/city/index"], "icon" => "globe"]
                                         ]
-                                    ]
+                                    ],
+                                    ["label" => "Настройки", "url" => ["/site/settings"], "icon" => "cogs"]
                                 ],
                             ]
                         )
@@ -178,6 +180,9 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
 
         <!-- page content -->
         <div class="right_col" role="main">
+            <div class="container">
+                <?= Alert::widget() ?>
+            </div>
             <?php if (isset($this->params['h1'])): ?>
                 <div class="page-title">
                     <div class="title_left">
