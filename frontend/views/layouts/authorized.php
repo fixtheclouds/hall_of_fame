@@ -106,12 +106,16 @@ if (!Yii::$app->user->isGuest) {
                         <p>
                             <i class="glyphicon glyphicon-envelope" title="E-mail"></i> <?= Yii::$app->user->identity->email ?>
                         </p>
-                        <p>
-                            <i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= Yii::$app->user->identity->profile->city ?>
-                        </p>
-                        <p>
-                            <i class="glyphicon glyphicon-phone" title="Телефон"></i> <?= Yii::$app->user->identity->profile->phone ?>
-                        </p>
+                        <?php if (\Yii::$app->user->identity->profile->city) { ?>
+                            <p>
+                                <i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= Yii::$app->user->identity->profile->city ?>
+                            </p>
+                        <?php } ?>
+                        <?php if (\Yii::$app->user->identity->profile->phone) { ?>
+                            <p>
+                                <i class="glyphicon glyphicon-phone" title="Телефон"></i> <?= Yii::$app->user->identity->profile->phone ?>
+                            </p>
+                        <?php } ?>
                         <p>
                             <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
                         </p>

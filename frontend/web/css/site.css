@@ -243,9 +243,18 @@ footer.footer {
     padding: 0 5px;
     font-size: 75%;
     cursor: default;
+    text-align: right;
+}
+
+.info-group label:first-of-type {
+    text-align: left;
 }
 
 .ellipsis {
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.field-event-type label {
+    margin-right: 20px;
 }

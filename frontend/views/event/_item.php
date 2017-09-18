@@ -31,7 +31,7 @@ use yii\helpers\Html;
                 <i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
                 <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
 
-            <div class="row absolute bottom right full-width">
+            <div class="absolute bottom right full-width">
                 <div class="col-md-4 col-sm-6 col-xs-0"></div>
                 <?php if (!$model->hasMyReport() && !$model->isArchived()) { ?>
                     <div class="col-xs-4 col-sm-2">
