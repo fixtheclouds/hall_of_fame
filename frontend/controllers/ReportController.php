@@ -127,6 +127,23 @@ class ReportController extends Controller
     }
 
     /**
+     * @return string
+     */
+    public function actionOwn()
+    {
+        $this->layout = 'authorized';
+        return $this->render('index', [
+            'pageTitle' => 'Мои отчеты',
+            'dataProvider' => new ActiveDataProvider([
+                'query' => Report::find()->byUserId(Yii::$app->user->id),
+                'pagination' => [
+                    'pageSize' => 5
+                ]
+            ])
+        ]);
+    }
+
+    /**
      * Deletes an existing Report model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id

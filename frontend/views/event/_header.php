@@ -24,7 +24,7 @@ use branchonline\lightbox\Lightbox;
             ]);
         } ?>
     </div>
-    <div class="col-sm-6 col-md-9 col-xs-12">
+    <div class="col-sm-6 col-md-9 col-xs-12 top-20">
         <?= $this->render('@frontend/views/user/_user', ['user' => $model->user]) ?>
         <hr>
         <h4><i class="glyphicon glyphicon-user"

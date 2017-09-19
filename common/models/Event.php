@@ -126,22 +126,6 @@ class Event extends \yii\db\ActiveRecord
     }
 
     /**
-     * Возвращает true, если мероприятие имеет
-     * отчет от текущего пользователя
-     * @return bool
-     */
-    public function hasMyReport() {
-        return $this->getReports()->andWhere(['user_id' => Yii::$app->user->id])->exists();
-    }
-
-    /**
-     * @return $this
-     */
-    public function getMyReport() {
-        return $this->getReports()->andWhere(['user_id' => Yii::$app->user->id])->one();
-    }
-
-    /**
      * @inheritdoc
      */
     public function behaviors()

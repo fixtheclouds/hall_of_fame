@@ -19,7 +19,8 @@ $counts = [
     'applied' => Event::find()->published()->appliedByUser(Yii::$app->user->id)->distinct()->count(),
     'archived' => Event::find()->published()->active(false)->count(),
     'events-pending' => Event::find()->pending()->byUserId(Yii::$app->user->id)->count(),
-    'reports-pending' => Report::find()->pending()->byUserId(Yii::$app->user->id)->count()
+    'reports-pending' => Report::find()->pending()->byUserId(Yii::$app->user->id)->count(),
+    'my-reports' => Report::find()->byUserId(Yii::$app->user->id)->count()
 ];
 $profileModel = \Yii::$app->user->identity->profile;
 $this->beginContent('@frontend/views/layouts/main.php');
@@ -116,12 +117,10 @@ if (!Yii::$app->user->isGuest) {
                                 <i class="glyphicon glyphicon-phone" title="Телефон"></i> <?= Yii::$app->user->identity->profile->phone ?>
                             </p>
                         <?php } ?>
-                        <p>
-                            <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?>
-                        </p>
-                        <p>
+
+                            <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?><br>
                             <?= Html::a('Изменить фотографию', '#', ['class' => 'profile-link', 'id' => 'upload-mode']) ?>
-                        </p>
+                        
                     </div>
                 </div>
             </div>
@@ -160,6 +159,9 @@ if (!Yii::$app->user->isGuest) {
                     </a>
                     <a href="/event/archived" class="list-group-item">
                         Завершенные мероприятия: <span class="badge"><?= $counts['archived'] ?></span>
+                    </a>
+                    <a href="/report/own" class="list-group-item">
+                        Мои отчеты: <span class="badge"><?= $counts['my-reports'] ?></span>
                     </a>
                 </ul>
                 <p>

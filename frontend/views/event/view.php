@@ -41,8 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <div class="row">
         <?php
-        $myReport = $model->getMyReport();
-        if (!$model->isMine() && !$model->hasMyReport()) { ?>
+        if (!$model->isMine()) { ?>
             <div class="col-xs-6 col-sm-3">
                 <?= Html::a('Подать отчёт', [
                     'report/create', 'event_id' => $model->id
@@ -50,25 +49,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'btn btn-primary'
                 ]) ?>
             </div>
-        <?php } else if ($myReport) {
-            if ($myReport->status == 'dismissed') { ?>
-                <div class="col-xs-12 text-danger"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет отклонен</div>
-            <?php } else if ($myReport->status == 'pending') { ?>
-                <div class="col-xs-12 text-info"><i class="glyphicon glyphicon-time"></i>&nbsp;Ваш отчет находится на рассмотрении</div>
-                <div class="col-xs-12">
-                    <?= Html::a('Редактировать', ['report/update', 'id' => $myReport->id], ['class' => 'btn btn-primary']) ?>
-
-                    <?= Html::a('Удалить', ['report/delete', 'id' => $myReport->id], [
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                            'confirm' => 'Вы уверены, что хотите удалить?',
-                            'method' => 'post',
-                        ],
-                    ]) ?>
-                </div>
-            <?php }
-        }?>
-        <?php if (Yii::$app->user->identity->isAdmin) {
+        <?php }
+        if (Yii::$app->user->identity->isAdmin) {
             if ($model->status == 'pending') { ?>
                 <?= Html::a('Опубликовать', ['publish', 'id' => $model->id], [
                     'class' => 'btn btn-success'

@@ -123,30 +123,6 @@ class EventController extends Controller
     }
 
     /**
-     * Count events user has applied to
-     * @return int
-     */
-    public function getAppliedCount() {
-        return Event::find()->published()->withReportFromUser(Yii::$app->user->id)->count();
-    }
-
-    /**
-     * Count events user has created
-     * @return int
-     */
-    public function getOwnCount() {
-        return Event::find()->published()->byUserId(Yii::$app->user->id)->count();
-    }
-
-    /**
-     * Count non-actual events
-     * @return int
-     */
-    public function getArchivedCount() {
-        return Event::find()->published()->active(false)->count();
-    }
-
-    /**
      * Displays a single Event model.
      * @param integer $id
      * @return mixed

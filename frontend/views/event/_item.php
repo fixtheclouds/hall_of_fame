@@ -29,11 +29,30 @@ use yii\helpers\Html;
             <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
             <p>
                 <i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
-                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?></p>
-
+                <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?>
+            </p>
+            <?php if (\Yii::$app->controller->action->id == 'own') {
+                switch($model->status) {
+                    case 'pending':
+                        $color = 'text-info';
+                        $icon = 'time';
+                        break;
+                    case 'dismissed':
+                        $color = 'text-danger';
+                        $icon = 'exclamation-sign';
+                        break;
+                    default:
+                        $color = 'text-success';
+                        $icon = 'ok-circle';
+                }
+                ?>
+                <p class="<?= $color ?>">
+                    <i class="glyphicon glyphicon-<?= $icon ?>"></i> <?= \common\models\Event::HUMAN_STATES[$model->status] ?>
+                </p>
+            <?php } ?>
             <div class="absolute bottom right full-width">
                 <div class="col-md-4 col-sm-6 col-xs-0"></div>
-                <?php if (!$model->hasMyReport() && !$model->isArchived()) { ?>
+                <?php if (!$model->isArchived()) { ?>
                     <div class="col-xs-4 col-sm-2">
                         <?= Html::a('Подать отчёт', [
                             'report/create', 'event_id' => $model->id
