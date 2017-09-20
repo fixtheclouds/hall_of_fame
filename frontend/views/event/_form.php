@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 use dosamigos\ckeditor\CKEditor;
 use common\models\Event;
 use kartik\datetime\DateTimePicker;
@@ -46,10 +47,14 @@ $this->registerJs("CKEDITOR.plugins.addExternal('filebrowser', '/plugins/filebro
 
     <?= $form->field($model, 'date')->widget(DateTimePicker::className(), [
         'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
-        'layout' => '{input}{picker}',
-        'value' => date('d-m-Y H:i'),
+        'layout' => '{picker}{input}',
+        'convertFormat' => true,
+        'readonly' => true,
         'pluginOptions' => [
-            'autoclose'=>true
+            'todayHighlight' => true,
+            'todayBtn' => true,
+            'format' => 'dd.MM.yyyy H:i',
+            'autoclose' => true,
         ]
     ]); ?>
 

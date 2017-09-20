@@ -4,8 +4,10 @@ namespace common\models;
 
 use rmrevin\yii\ulogin\Exception;
 use Yii;
+use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\AttributeBehavior;
 
 /**
  * This is the model class for table "event".
@@ -24,7 +26,7 @@ use yii\behaviors\BlameableBehavior;
  * @property string $created_at
  * @property string $updated_at
  */
-class Event extends \yii\db\ActiveRecord
+class Event extends ActiveRecord
 {
     use \common\traits\Trackable;
     use \common\traits\Imageable;
@@ -136,7 +138,17 @@ class Event extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'user_id',
                 'updatedByAttribute' => false,
-            ]
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['date'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['date'],
+                ],
+                'value' => function () {
+                    return date('Y-m-d H:i:s', strtotime($this->date));
+                },
+            ],
         ];
     }
 
