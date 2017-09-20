@@ -22,6 +22,8 @@ class SiteController extends Controller
 {
     public $enableCsrfValidation = false;
 
+    public $layout = 'static';
+
     /**
      * @inheritdoc
      */

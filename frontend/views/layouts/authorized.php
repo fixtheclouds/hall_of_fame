@@ -120,7 +120,7 @@ if (!Yii::$app->user->isGuest) {
 
                             <?= Html::a('Изменить информацию о себе', ['/user/settings/profile'], ['class' => 'profile-link']) ?><br>
                             <?= Html::a('Изменить фотографию', '#', ['class' => 'profile-link', 'id' => 'upload-mode']) ?>
-                        
+
                     </div>
                 </div>
             </div>
