@@ -62,7 +62,7 @@ AppAsset::register($this);
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <p class="pull-left">&copy; Ассоциация почётных граждан, наставников и талантливой молодёжи<br>
-                    <?= Html::a('Политика обработки конфиденциальных данных', ['pages/policy']) ?>
+                    <?= Html::a('Политика обработки персональных данных', ['pages/policy']) ?>
                 </p>
             </div>
             <div class="col-xs-12 col-md-6 text-right">

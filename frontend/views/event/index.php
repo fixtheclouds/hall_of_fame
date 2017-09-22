@@ -5,6 +5,7 @@ use yii\helpers\Url;
 use yii\bootstrap\Tabs;
 use common\models\Message;
 use yii\web\View;
+use yii\bootstrap\Collapse;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EventSearch */
@@ -18,7 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
 
-
+<?= Collapse::widget([
+    'items' => [
+        [
+            'label' => 'Фильтры',
+            'content' => $this->render('_search', ['model' => $searchModel]),
+            'contentOptions' => []
+        ]
+    ]
+]) ?>
 <?= Tabs::widget([
     'items' => [
         [

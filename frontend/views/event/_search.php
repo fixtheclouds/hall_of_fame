@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
+use common\models\Event;
+use kartik\typeahead\Typeahead;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\EventSearch */
@@ -11,39 +14,40 @@ use yii\widgets\ActiveForm;
 <div class="event-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => [$this->context->action->id],
         'method' => 'get',
+        'layout' => 'horizontal'
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'type') ?>
-
-    <?= $form->field($model, 'date') ?>
-
-    <?= $form->field($model, 'city') ?>
-
-    <?= $form->field($model, 'subtype_id') ?>
-
-    <?php // echo $form->field($model, 'content') ?>
-
-    <?php // echo $form->field($model, 'place') ?>
-
-    <?php // echo $form->field($model, 'person_name') ?>
-
-    <?php // echo $form->field($model, 'image_id') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
-    <?php // echo $form->field($model, 'deleted_at') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <?= $form->field($model, 'city')->widget(Typeahead::classname(), [
+        'options' => [
+            'placeholder' => 'Введите название'
+        ],
+        'pluginOptions' => [
+            'highlight' => true
+        ],
+        'dataset' => [
+            [
+                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('name')",
+                'display' => 'name',
+                'remote' => [
+                    'url' => Url::to(['/city/autocomplete']) . '?query=%QUERY',
+                    'wildcard' => '%QUERY'
+                ],
+                'limit' => 10,
+                'templates' => [
+                    'notFound' => '<div class="text-danger" style="padding:0 8px">Ничего не найдено.</div>',
+                ]
+            ]
+        ],
+    ]);
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <div class="col-xs-12">
+            <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Сбросить', [$this->context->action->id], ['class' => 'btn btn-default']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

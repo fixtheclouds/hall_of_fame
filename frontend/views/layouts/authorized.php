@@ -26,7 +26,7 @@ $profileModel = \Yii::$app->user->identity->profile;
 $this->beginContent('@frontend/views/layouts/main.php');
 if (!Yii::$app->user->isGuest) {
     ?>
-    <div class="profile-header clearfix top-20">
+    <div class="profile-header row top-20">
         <div class="col-md-7 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">

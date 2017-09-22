@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\Event;
+use yii\db\ActiveQuery;
 
 /**
  * EventSearch represents the model behind the search form about `common\models\Event`.
@@ -19,7 +20,7 @@ class EventSearch extends Event
     {
         return [
             [['id', 'subtype_id', 'user_id', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
-            [['type', 'date', 'city', 'content', 'place', 'person_name', 'photo', 'status'], 'safe'],
+            [['type', 'date', 'city', 'content', 'place', 'person_name', 'photo', 'status', 'date_from', 'date_to'], 'safe'],
         ];
     }
 
@@ -43,7 +44,7 @@ class EventSearch extends Event
     {
         $query = Event::find()->orderBy('created_at DESC');
 
-        // add conditions that should always apply here
+        $query = $this->addFilterParams($query, $params);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -52,15 +53,23 @@ class EventSearch extends Event
             ]
         ]);
 
-        $this->load($params);
-
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        return $dataProvider;
+    }
+
+    /**
+     * @param ActiveQuery $query
+     * @param array $params
+     * @return ActiveQuery
+     */
+    public function addFilterParams($query, $params) {
+        $this->load($params);
+
         $query->andFilterWhere([
             'id' => $this->id,
             'date' => $this->date,
@@ -79,6 +88,6 @@ class EventSearch extends Event
             ->andFilterWhere(['like', 'photo', $this->photo])
             ->andFilterWhere(['like', 'status', $this->status]);
 
-        return $dataProvider;
+        return $query;
     }
 }

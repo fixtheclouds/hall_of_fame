@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
     <?= $form->field( $model, 'accept' )->checkbox([
-        'label' => 'Я согласен с ' . Html::a('политикой обработки конфиденциальных данных', ['page/policy'], [
+        'label' => 'Я согласен с ' . Html::a('политикой обработки персональных данных', ['page/policy'], [
                 'target' => '_blank'
             ])
     ]) ?>

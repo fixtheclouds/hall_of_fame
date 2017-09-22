@@ -65,7 +65,7 @@ $this->registerJs("CKEDITOR.plugins.addExternal('filebrowser', '/plugins/filebro
 
     <?php if ($model->isNewRecord) {
         echo $form->field($model, 'accept')->checkbox([
-            'label' => 'Я согласен с ' . Html::a('политикой обработки конфиденциальных данных', ['page/policy'], [
+            'label' => 'Я согласен с ' . Html::a('политикой обработки персональных данных', ['page/policy'], [
                     'target' => '_blank'
                 ])
         ]);

@@ -4,7 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Event;
-use common\models\EventUser;
+use common\models\EventSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -98,6 +98,8 @@ class EventController extends Controller
      * @return string
      */
     private function renderIndex($pageTitle, $query) {
+        $searchModel = new EventSearch();
+        $query = $searchModel->addFilterParams($query, Yii::$app->request->queryParams);
         $request = Yii::$app->request;
         $types = array_keys(Event::HUMAN_TYPES);
         $providers = [];
@@ -114,7 +116,7 @@ class EventController extends Controller
                 ]
             ]);
         }
-        $data = array_merge(['pageTitle' => $pageTitle], $providers);
+        $data = array_merge(['pageTitle' => $pageTitle, 'searchModel' => $searchModel], $providers);
         if ($request->isAjax && in_array($request->get('type'), ['legacy', 'memory'])) {
             return $this->renderPartial("_{$request->get('type')}", $data);
         } else {
