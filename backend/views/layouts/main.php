@@ -75,7 +75,7 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
                             [
                                 "items" => [
                                     ["label" => "На сайт", "url" => "/", "icon" => "home"],
-                                    ["label" => "Сообщения", "url" => ["/message/index"], "icon" => "envelope"],
+                                    ["label" => "Гордость", "url" => ["/message/index"], "icon" => "envelope"],
                                     ["label" => "Мероприятия", "url" => ["/event/index"], "icon" => "calendar-o"],
                                     ["label" => "Отчеты", "url" => ["/report/index"], "icon" => "file-text"],
                                     ["label" => "Страницы", "url" => ["/page/index"], "icon" => "paperclip"],

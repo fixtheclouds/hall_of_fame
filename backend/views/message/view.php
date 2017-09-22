@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model common\models\Message */
 
-$this->title = 'Сообщение от ' . \Yii::$app->formatter->asDatetime($model->created_at);
+$this->title = 'Гордость: ' . \Yii::$app->formatter->asDatetime($model->created_at);
 $this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

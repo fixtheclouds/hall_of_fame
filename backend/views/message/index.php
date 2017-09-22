@@ -8,7 +8,7 @@ use yii\grid\ActionColumn;
 /* @var $searchModel common\models\MessageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Сообщения';
+$this->title = 'Гордость';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="message-index">
