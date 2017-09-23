@@ -42,7 +42,7 @@ class EventSearch extends Event
      */
     public function search($params)
     {
-        $query = Event::find()->orderBy('created_at DESC');
+        $query = Event::find();
 
         $query = $this->addFilterParams($query, $params);
 
@@ -52,6 +52,9 @@ class EventSearch extends Event
                 'pageSize' => 10
             ]
         ]);
+        $dataProvider->setSort(['defaultOrder' => [
+            'created_at' => 'DESC'
+        ]]);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails

@@ -51,6 +51,9 @@ class ReportSearch extends Report
                 'pageSize' => 10
             ]
         ]);
+        $dataProvider->setSort(['defaultOrder' => [
+            'created_at' => 'DESC'
+        ]]);
 
         $this->load($params);
 

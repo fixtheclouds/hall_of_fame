@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'status')->dropDownList(\common\models\Report::HUMAN_STATUS, ['prompt' => 'Выбрать...']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Сбросить', ['index'], ['class' => 'btn btn-default']) ?>
     </div>
 

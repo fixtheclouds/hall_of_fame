@@ -7,6 +7,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\StringHelper;
 use backend\assets\AppAsset;
 use common\widgets\Alert;
 
@@ -19,6 +20,13 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
         'height' => 200,
     ]
 ]) : '/images/default_avatar.jpg';
+
+$counters = [
+    'event' => \common\models\Event::find()->pending()->count(),
+    'report' => \common\models\Report::find()->pending()->count(),
+    'feedback' => \common\models\Feedback::getUnreadCount(),
+    'message' => \common\models\Message::getUnreadCount()
+];
 
 ?>
 <?php $this->beginPage(); ?>
@@ -75,10 +83,35 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
                             [
                                 "items" => [
                                     ["label" => "На сайт", "url" => "/", "icon" => "home"],
-                                    ["label" => "Гордость", "url" => ["/message/index"], "icon" => "envelope"],
-                                    ["label" => "Мероприятия", "url" => ["/event/index"], "icon" => "calendar-o"],
-                                    ["label" => "Отчеты", "url" => ["/report/index"], "icon" => "file-text"],
+                                    [
+                                        "label" => "Мероприятия",
+                                        "url" => ["/event/index"],
+                                        "icon" => "calendar-o",
+                                        "badge" => ($counters['event'] > 0) ? $counters['event'] : null,
+                                        "badgeOptions" => ["class" => "label-info"]
+                                    ],
+                                    [
+                                        "label" => "Гордость",
+                                        "url" => ["/message/index"],
+                                        "icon" => "trophy",
+                                        "badge" => ($counters['message'] > 0) ? $counters['message'] : null,
+                                        "badgeOptions" => ["class" => "label-info"]
+                                    ],
+                                    [
+                                        "label" => "Отчеты",
+                                        "url" => ["/report/index"],
+                                        "icon" => "file-text",
+                                        "badge" => ($counters['report'] > 0) ? $counters['report'] : null,
+                                        "badgeOptions" => ["class" => "label-info"]
+                                    ],
                                     ["label" => "Страницы", "url" => ["/page/index"], "icon" => "paperclip"],
+                                    [
+                                        "label" => "Обратная связь",
+                                        "url" => ["/feedback/index"],
+                                        "icon" => "envelope",
+                                        "badge" => ($counters['feedback'] > 0) ? $counters['feedback'] : null,
+                                        "badgeOptions" => ["class" => "label-info"]
+                                    ],
                                     ["label" => "Пользователи", "url" => ["/user/admin/index"], "icon" => "users"],
                                     ["label" => "Баллы", "url" => ["/score-system/index"], "icon" => "star-half-o"],
                                     [
@@ -120,14 +153,14 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
                     <?php if (!Yii::$app->user->isGuest) { ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <a href="/admin/user/<?= Yii::$app->user->id ?>" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <?= Html::img($thumbUrl, ['class' => '']) ?>
                                     <span><?= Yii::$app->user->identity->profile->name ?></span>
                                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li>
-                                        <a href="javascript:;">
+                                        <a href="<?= \Yii::$app->urlManagerCommon->createUrl('/user/settings/profile') ?>" target="_blank">
                                             <span>Настройки профиля</span>
                                         </a>
                                     </li>
@@ -143,25 +176,27 @@ $thumbUrl = ($avatarUrl && file_exists($avatarUrl)) ? Yii::$app->thumbnail->url(
                             </li>
 
                             <li role="presentation" class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <a href="#" title="Обратная связь" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green"><?= common\models\Message::getUnreadCount() ?></span>
+                                    <?php if ($counters['feedback'] > 0) { ?>
+                                        <span class="badge bg-green"><?= $counters['feedback'] ?></span>
+                                    <?php } ?>
                                 </a>
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                    <?php foreach (common\models\Message::fresh()->all() as $msg) { ?>
+                                    <?php foreach (common\models\Feedback::fresh()->all() as $msg) { ?>
                                         <li>
-                                            <a href="<?= Url::to(['/message/view', 'id' => $msg->id]) ?>">
-                                                <span><?= $msg->user->profile->name ?></span>
+                                            <a href="<?= Url::to(['/feedback/view', 'id' => $msg->id]) ?>">
+                                                <span><?= $msg->name ?></span>
                                                 <span class="time"><?= date('d-m-Y H:i:s', $msg->created_at) ?></span>
                                                 <span class="message">
-                                            <?= $msg->content ?>
+                                            <?= StringHelper::truncate($msg->content, 50) ?>
                                         </span>
                                             </a>
                                         </li>
                                     <?php } ?>
                                     <li>
                                         <div class="text-center">
-                                            <a href="/admin/message/index">
+                                            <a href="/admin/feedback/index">
                                                 <strong>Смотреть все сообщения</strong>
                                                 <i class="fa fa-angle-right"></i>
                                             </a>

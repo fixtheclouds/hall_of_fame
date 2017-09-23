@@ -22,8 +22,6 @@ class SiteController extends Controller
 {
     public $enableCsrfValidation = false;
 
-    public $layout = 'static';
-
     /**
      * @inheritdoc
      */
@@ -78,6 +76,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'static';
         return $this->render('index');
     }
 

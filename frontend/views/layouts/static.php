@@ -44,8 +44,10 @@ StaticPageAsset::register($this);
     } else {
         $menuItems[] = ['label' => 'Личный кабинет', 'url' => ['/account']];
     }
+    $menuItems[] = ['label' => '<i class="glyphicon glyphicon-envelope"></i>', 'url' => ['/feedback/create']];
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => $menuItems,
     ]);
     NavBar::end();

@@ -20,9 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'event_id',
+            'id',
+            [
+                'attribute' => 'event_id',
+                'content' => function($data) {
+                    return Html::a($data->event_id, ['event/view', 'id' => $data->event_id]);
+                }
+            ],
             [
               'attribute' => 'content',
                 'label' => 'Содержание',
