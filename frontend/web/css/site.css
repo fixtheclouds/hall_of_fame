@@ -253,6 +253,7 @@ footer.footer {
 .ellipsis {
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .field-event-type label {

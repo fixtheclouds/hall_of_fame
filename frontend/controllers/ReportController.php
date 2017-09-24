@@ -12,6 +12,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\filters\AccessControl;
+use dektrium\user\filters\AccessRule;
 
 /**
  * ReportController implements the CRUD actions for Report model.
@@ -28,6 +30,24 @@ class ReportController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'own', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['publish', 'dismiss'],
+                        'allow' => true,
+                        'roles' => ['admin']
+                    ]
                 ],
             ],
         ];

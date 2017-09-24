@@ -1,13 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
+use frontend\assets\TildaAsset;
 
-$this->title = 'Галерея славы';
-?>
-<!-- saved from url=(0030)http://project296576.tilda.ws/ -->
-<?php
-/* @var $this yii\web\View */
-
+TildaAsset::register($this);
 $this->title = 'Галерея славы';
 ?>
 <!-- saved from url=(0030)http://project296576.tilda.ws/ -->

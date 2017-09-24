@@ -1,6 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic);
+
 .navbar {
     background-color: #88012a;
     margin-bottom: 0;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: #6F0011;
 }
 
 .navbar-inverse .navbar-nav>li>a,
@@ -19,6 +27,107 @@ footer.footer {
 
 footer.footer a {
     color: #b2b2b2;
+}
+
+
+.flat-button {
+    background-color: #e0e0e0;
+    color: #000;
+    font-size: 14px;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 700;
+    padding: 10px 20px;
+    box-shadow: none;
+    border: none;
+    display: inline-block;
+}
+
+.flat-button:hover {
+    text-decoration: none;
+    color: #000;
+    background-color: #C7C7C7;
+}
+
+.flat-button.success {
+    color: white;
+    background-color: #199c68;
+}
+
+.flat-button.success:hover {
+    background-color: #00834F;
+}
+
+.flat-button.success:hover {
+    color: white;
+}
+
+.flat-button.disabled {
+    color: #b2b2b2;
+}
+
+.wrap > .container {
+    padding-top: 20px;
+}
+
+.cover {
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.cover .container {
+    text-align: center;
+    font-size: 42px;
+    color: #88012a;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    line-height: 1.17;
+}
+
+.cover .container a {
+    color: #ffffff;
+    background-color: #820118;
+    border-radius: 20px;
+    display: inline-block;
+    font-family: 'Roboto',sans-serif;
+    line-height: 60px;
+    border: 0 none;
+    font-size: 16px;
+    padding: 0 60px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-weight: 700;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+
+.cover .container a:hover {
+    text-decoration: none;
+}
+
+/* EVENTS */
+.panel-default {
+    border: 2px solid #000;
+    box-shadow: none;
+    margin-bottom: 20px;
+}
+
+.event-item {
+    font-family: 'Open Sans',serif;
+    font-weight: 300;
+    color: #000;
+}
+
+.event-item.panel-default {
+    margin-bottom: 30px;
+}
+
+.event-item h5 {
+    margin-top: 0;
+}
+
+h5 {
+    color: #88012a;
 }
 
 /* TILDA */

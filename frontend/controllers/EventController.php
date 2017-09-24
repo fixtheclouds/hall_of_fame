@@ -40,6 +40,11 @@ class EventController extends Controller
                 ],
                 'rules' => [
                     [
+                        'actions' => ['memory-demo', 'legacy-demo'],
+                        'allow' => true,
+                        'roles' => ['?', '@']
+                    ],
+                    [
                         'actions' => ['create', 'update', 'index', 'own', 'actual', 'applied', 'archived', 'view', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -268,6 +273,36 @@ class EventController extends Controller
             \Yii::$app->getSession()->setFlash('error', 'Возникла ошибка при обновлении записи');
         }
         return $this->redirect(['view', 'id' => $model->id]);
+    }
+
+    public function actionMemoryDemo() {
+        $this->layout = 'static';
+        $searchModel = new EventSearch();
+        $query = $searchModel->addFilterParams(Event::find()->published()->byType('memory'), Yii::$app->request->queryParams);
+        return $this->render('demo', [
+            'type' => 'memory',
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => 6
+                ]
+            ])
+        ]);
+    }
+
+    public function actionLegacyDemo() {
+        $this->layout = 'static';
+        $searchModel = new EventSearch();
+        $query = $searchModel->addFilterParams(Event::find()->published()->byType('legacy'), Yii::$app->request->queryParams);
+        return $this->render('demo', [
+            'type' => 'legacy',
+            'dataProvider' => new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => 6
+                ]
+            ])
+        ]);
     }
 
 
