@@ -35,7 +35,7 @@ $this->title = 'Галерея славы';
                                         <div style="font-size:52px;font-family:&#39;Georgia&#39;;color:#660012;" data-customstyle="yes"><em><strong data-redactor-tag="strong">Память. Наследие. Гордость</strong> </em></div>
                                     </div>
                                     <div class="t182__buttons">
-                                        <a href="http://project296576.tilda.ws/" target="" class="t-btn " style="color:#ffffff;background-color:#820118;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
+                                        <a href="/event/create" target="" class="t-btn " style="color:#ffffff;background-color:#820118;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
                                             <table style="width:100%; height:100%;">
                                                 <tbody>
                                                 <tr>
@@ -44,7 +44,7 @@ $this->title = 'Галерея славы';
                                                 </tbody>
                                             </table>
                                         </a>
-                                        <a href="http://project296576.tilda.ws/" target="" class="t-btn " style="color:#000000;background-color:#e0e0e0;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
+                                        <a href="/account" target="" class="t-btn " style="color:#000000;background-color:#e0e0e0;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
                                             <table style="width:100%; height:100%;">
                                                 <tbody>
                                                 <tr>
@@ -76,7 +76,7 @@ $this->title = 'Галерея славы';
                                     <div class="t189__title t-title " style="" field="title">СОЦИАЛЬНЫЙ МАРАФОН-КОНКУРС<br><br><span style="font-size: 46px;"><span data-redactor-style="color: rgb(128, 33, 24);" style="color: rgb(128, 33, 24);"><strong data-redactor-tag="strong">ГАЛЕРЕЯ СЛАВЫ</strong> </span><br></span>почетных граждан городов и районов<br>Ростовской области <br></div>
                                     <div class="t189__descr t-descr t-descr_sm t-opacity_70 " style="" field="descr"><strong><span data-redactor-tag="span" style="font-size: 28px;"><span data-redactor-style="color: #820118;" style="color: rgb(130, 1, 24);">ПРИЗОВОЙ ФОНД </span></span></strong><br>для самых активных участников и организаторов мероприятий, <br>посвященных почетным гражданам <br><br>Изучаем историю малой Родины и зарабатываем призы, выполняя<br><span style="font-size: 26px;"><strong><span data-redactor-tag="span" style="color: rgb(130, 1, 24);">3 ТИПА ЗАДАЧ МАРАФОНА</span><br></strong></span>- встречи и совместные акции с почетными гражданами городов и районов Ростовской области<br>- увековечивание памяти почетных граждан, ушедших из жизни<br>- сбор и редактирование материалов для третьего тома книги "Галерея славы почетных граждан городов и районов Ростовской области. Память. Наследие. Гордость." <br></div>
                                     <div style="margin-top:20px; margin-bottom:20px;">
-                                        <a href="http://project296576.tilda.ws/" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
+                                        <a href="/account" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
                                             <table style="width:100%; height:100%;">
                                                 <tbody>
                                                 <tr>
@@ -94,7 +94,7 @@ $this->title = 'Галерея славы';
             </div>
         </div>
     </div>
-    <div id="rec25085918" class="r" style="padding-top:0px;padding-bottom:0px;background-color:#f0f0f0; " data-record-type="474" data-bg-color="#f0f0f0" data-animationappear="off">
+    <div id="rec25085918" class="r" style="padding-top:40px;padding-bottom:40px;background-color:#f0f0f0; " data-record-type="474" data-bg-color="#f0f0f0" data-animationappear="off">
         <!-- T474 -->
         <div class="t474">
             <div class="t-container t-align_center">
@@ -104,7 +104,7 @@ $this->title = 'Галерея славы';
             </div>
         </div>
     </div>
-    <div id="rec25086334" class="r r_hidden r_anim" style="padding-top:0px;padding-bottom:0px; " data-record-type="412">
+    <div id="rec25086334" class="r r_hidden r_anim" style="padding-top:40px;padding-bottom:40px; " data-record-type="412">
         <!-- T412 -->
         <div class="t412">
             <div class="t-container">
@@ -116,6 +116,15 @@ $this->title = 'Галерея славы';
                                 <div style="color:#820118;" data-customstyle="yes">ПАМЯТЬ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr" style="height: 150px;">Участвуйте и организовывайте <strong>мероприятия в память </strong>почетных граждан городов и районов Ростовской области, ушедших из жизни: вечера памяти, благоустройство мест захоронения, публикации в СМИ и т.д.</div>
+                            <a href="/event/memory-demo" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
+                                <table style="width:100%; height:100%;">
+                                    <tbody>
+                                    <tr>
+                                        <td>Подробнее</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -127,6 +136,15 @@ $this->title = 'Галерея славы';
                                 <div style="color:#820118;" data-customstyle="yes">НАСЛЕДИЕ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr2" style="height: 150px;"> Проводите <strong>совместные мероприятия </strong>с почетными гражданами, направленные на передачу опыта, части материальной и духовной культуры </div>
+                            <a href="/event/lecagy-demo" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
+                                <table style="width:100%; height:100%;">
+                                    <tbody>
+                                    <tr>
+                                        <td>Подробнее</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -138,6 +156,15 @@ $this->title = 'Галерея славы';
                                 <div style="color:#820118;" data-customstyle="yes">ГОРДОСТЬ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr3" style="height: 150px;"><strong>Станьте соавтором третьего тома книги</strong>, в которую войдет биографии почетных граждан 23 муниципальных образований Ростовской области <br><br></div>
+                            <a href="/account" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
+                                <table style="width:100%; height:100%;">
+                                    <tbody>
+                                    <tr>
+                                        <td>Подробнее</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </a>
                         </div>
                     </div>
                 </div>

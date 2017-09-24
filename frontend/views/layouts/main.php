@@ -37,14 +37,15 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [];
+    $menuItems = [
+        ['label' => '<i class="glyphicon glyphicon-envelope"></i>', 'url' => ['/feedback/create']]
+    ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Зарегистрироваться', 'url' => ['/user/registration/register']];
         $menuItems[] = ['label' => 'Войти', 'url' => ['/user/login']];
     } else {
         $menuItems[] = ['label' => 'Личный кабинет', 'url' => ['/account']];
     }
-    $menuItems[] = ['label' => '<i class="glyphicon glyphicon-envelope"></i>', 'url' => ['/feedback/create']];
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'encodeLabels' => false,
@@ -64,7 +65,7 @@ AppAsset::register($this);
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <p class="pull-left">&copy; Ассоциация почётных граждан, наставников и талантливой молодёжи<br>
-                    <?= Html::a('Политика обработки персональных данных', ['pages/policy']) ?>
+                    <?= Html::a('Политика обработки персональных данных', ['page/policy']) ?>
                 </p>
             </div>
             <div class="col-xs-12 col-md-6 text-right">

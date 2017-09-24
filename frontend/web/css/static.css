@@ -11,3 +11,21 @@
 .navbar-inverse .navbar-brand {
     height: auto;
 }
+
+footer.footer {
+    background-color: #88012a;
+    color: white;
+}
+
+footer.footer a {
+    color: #b2b2b2;
+}
+
+/* TILDA */
+#allrecords a {
+    margin-top: 5px;
+}
+
+.t412__content {
+    padding-bottom: 70px;
+}

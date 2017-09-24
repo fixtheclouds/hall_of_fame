@@ -18,6 +18,12 @@ use yii\behaviors\TimestampBehavior;
 class Feedback extends \yii\db\ActiveRecord
 {
 
+    /**
+     * Служебное поле для подтверждения
+     * @var
+     */
+    public $accept;
+
     const HUMAN_STATES = [
         'pending' => 'Новое',
         'read' => 'Прочитано'
@@ -45,7 +51,14 @@ class Feedback extends \yii\db\ActiveRecord
             [['created_at'], 'integer'],
             [['email', 'name', 'state'], 'string', 'max' => 255],
             [['content', 'email', 'name'], 'required'],
-            [['email'], 'email']
+            [['email'], 'email'],
+            [
+                'accept',
+                'compare',
+                'operator' => '==',
+                'compareValue' => true,
+                'message' => 'Вы должны принять соглашение.'
+            ]
         ];
     }
 

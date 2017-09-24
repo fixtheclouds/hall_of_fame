@@ -18,6 +18,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 4]) ?>
 
+    <?= $form->field($model, 'accept')->checkbox([
+        'label' => 'Я согласен с ' . Html::a('политикой обработки персональных данных', ['page/policy'], [
+                'target' => '_blank'
+            ])
+    ]) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Отправить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
