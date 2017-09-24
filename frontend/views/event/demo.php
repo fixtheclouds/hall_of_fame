@@ -29,35 +29,34 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <div class="event-index">
-    <h2 class="text-center"><?= Html::encode($this->title) ?></h2>
+    <div class="event-search">
+        <h2 class="text-center"><?= Html::encode($this->title) ?></h2>
+        <?= $this->render('_demo-search', ['model' => $searchModel]) ?>
+    </div>
+    <div class="container">
+        <?php Pjax::begin(); ?>
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_item-demo',
+            'itemOptions' => [
+                'class' => 'col-xs-12 col-sm-6'
+            ],
+            'id' => 'events-legacy',
+            'layout' => "<div class=\"items row\">{items}</div>\n{pager}",
+            'pager' => [
+                'class' => InfiniteScrollPager::className(),
+                'widgetId' => 'events-legacy',
+                'itemsCssClass' => 'items',
+                'nextPageLabel' => 'Показать ещё',
+                'pluginOptions' => [
+                    'loading' => [
+                        'msgText' => "<b>Загрузка...</b>",
+                        'finishedMsg' => "<b>Вы достигли конца списка</b>",
+                    ],
+                ]
+            ],
+            'emptyText' => '<h3>Мероприятий не найдено.</h3>'
+        ]);?>
+        <?php Pjax::end(); ?>
+    </div>
 </div>
-
-<div class="container">
-    <?= $this->render('_demo-search', ['model' => $searchModel]) ?>
-
-    <?php Pjax::begin(); ?>
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemView' => '_item-demo',
-        'itemOptions' => [
-            'class' => 'col-xs-12 col-sm-6'
-        ],
-        'id' => 'events-legacy',
-        'layout' => "<div class=\"items row\">{items}</div>\n{pager}",
-        'pager' => [
-            'class' => InfiniteScrollPager::className(),
-            'widgetId' => 'events-legacy',
-            'itemsCssClass' => 'items',
-            'nextPageLabel' => 'Показать ещё',
-            'pluginOptions' => [
-                'loading' => [
-                    'msgText' => "<b>Загрузка...</b>",
-                    'finishedMsg' => "<b>Вы достигли конца списка</b>",
-                ],
-            ]
-        ],
-        'emptyText' => '<h3>Мероприятий не найдено.</h3>'
-    ]);?>
-    <?php Pjax::end(); ?>
-</div>
-

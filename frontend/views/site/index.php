@@ -4,6 +4,7 @@
 use frontend\assets\TildaAsset;
 
 TildaAsset::register($this);
+//unset($this->assetBundles['frontend\assets\ThemeAsset']);
 $this->title = 'Галерея славы';
 ?>
 <!-- saved from url=(0030)http://project296576.tilda.ws/ -->
@@ -25,10 +26,10 @@ $this->title = 'Галерея славы';
                             <div data-hook-content="covercontent">
                                 <div class="t182__wrapper">
                                     <div class="t182__title t-title t-title_xl " style="" field="title">
-                                        <div style="font-size:42px;font-family:&#39;Arial&#39;;color:#88012a;" data-customstyle="yes">СОЦИАЛЬНЫЙ МАРАФОН-КОНКУРС<br><br><span style="font-size: 72px;"><strong><span data-redactor-tag="span" style="font-family: Georgia;">ГАЛЕРЕЯ СЛАВЫ</span><br> </strong></span>почетных граждан городов и районов Ростовской области</div>
+                                        <div style="font-size:42px;color:#88012a;" data-customstyle="yes">СОЦИАЛЬНЫЙ МАРАФОН-КОНКУРС<br><br><span style="font-size: 72px;"><strong><span data-redactor-tag="span">ГАЛЕРЕЯ СЛАВЫ</span><br> </strong></span>почетных граждан городов и районов Ростовской области</div>
                                     </div>
                                     <div class="t182__descr t-descr t-descr_lg " style="opacity:0.70;" field="descr">
-                                        <div style="font-size:52px;font-family:&#39;Georgia&#39;;color:#660012;" data-customstyle="yes"><em><strong data-redactor-tag="strong">Память. Наследие. Гордость</strong> </em></div>
+                                        <div style="font-size:52px;color:#660012;" data-customstyle="yes"><em><strong data-redactor-tag="strong">Память. Наследие. Гордость</strong> </em></div>
                                     </div>
                                     <div class="t182__buttons">
                                         <a href="/event/create" target="" class="t-btn " style="color:#ffffff;background-color:#820118;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
@@ -72,14 +73,8 @@ $this->title = 'Галерея славы';
                                     <div class="t189__title t-title " style="" field="title">СОЦИАЛЬНЫЙ МАРАФОН-КОНКУРС<br><br><span style="font-size: 46px;"><span data-redactor-style="color: rgb(128, 33, 24);" style="color: rgb(128, 33, 24);"><strong data-redactor-tag="strong">ГАЛЕРЕЯ СЛАВЫ</strong> </span><br></span>почетных граждан городов и районов<br>Ростовской области <br></div>
                                     <div class="t189__descr t-descr t-descr_sm t-opacity_70 " style="" field="descr"><strong><span data-redactor-tag="span" style="font-size: 28px;"><span data-redactor-style="color: #820118;" style="color: rgb(130, 1, 24);">ПРИЗОВОЙ ФОНД </span></span></strong><br>для самых активных участников и организаторов мероприятий, <br>посвященных почетным гражданам <br><br>Изучаем историю малой Родины и зарабатываем призы, выполняя<br><span style="font-size: 26px;"><strong><span data-redactor-tag="span" style="color: rgb(130, 1, 24);">3 ТИПА ЗАДАЧ МАРАФОНА</span><br></strong></span>- встречи и совместные акции с почетными гражданами городов и районов Ростовской области<br>- увековечивание памяти почетных граждан, ушедших из жизни<br>- сбор и редактирование материалов для третьего тома книги "Галерея славы почетных граждан городов и районов Ростовской области. Память. Наследие. Гордость." <br></div>
                                     <div style="margin-top:20px; margin-bottom:20px;">
-                                        <a href="/account" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
-                                            <table style="width:100%; height:100%;">
-                                                <tbody>
-                                                <tr>
-                                                    <td>Участвовать</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                        <a href="/account" target="" class="flat-button success big">
+                                            Участвовать
                                         </a>
                                     </div>
                                 </div>
@@ -107,19 +102,13 @@ $this->title = 'Галерея славы';
                 <div class="t412__col t-col t-col_4 t412__col">
                     <div class="t412__content" style="border-color: #000000;border-width: 2px;">
                         <div class="t412__wrapper" style="height: 345px;">
-                            <img class="t412__img t412__img_circle t-img loaded" src="/images/index_2.jpg" data-original="https://static.tildacdn.com/tild6632-6330-4337-b132-343935363866/article163534.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="" imgfield="img">
+                            <div class="t412__img t412__img_circle t-img loaded" data-original="/images/index_2.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="background-image: url(/images/index_2.jpg;);" imgfield="img"></div>
                             <div class="t412__title t-name t-name_xl" field="title" style="height: 32px;">
                                 <div style="color:#820118;" data-customstyle="yes">ПАМЯТЬ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr" style="height: 150px;">Участвуйте и организовывайте <strong>мероприятия в память </strong>почетных граждан городов и районов Ростовской области, ушедших из жизни: вечера памяти, благоустройство мест захоронения, публикации в СМИ и т.д.</div>
-                            <a href="/event/memory-demo" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
-                                <table style="width:100%; height:100%;">
-                                    <tbody>
-                                    <tr>
-                                        <td>Подробнее</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <a href="/event/memory-demo" target="" class="flat-button success big">
+                                Подробнее
                             </a>
                         </div>
                     </div>
@@ -127,19 +116,13 @@ $this->title = 'Галерея славы';
                 <div class="t412__col t-col t-col_4 t412__col">
                     <div class="t412__content" style="border-color: #000000;border-width: 2px;">
                         <div class="t412__wrapper" style="height: 345px;">
-                            <img class="t412__img t412__img_circle t-img loaded" src="/images/index_3.jpg" data-original="https://static.tildacdn.com/tild3934-3932-4838-b964-353163663939/5.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="" imgfield="img2">
+                            <div class="t412__img t412__img_circle t-img loaded" data-original="/images/index_3.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="background-image: url(/images/index_3.jpg);" imgfield="img2"></div>
                             <div class="t412__title t-name t-name_xl" field="title2" style="height: 32px;">
                                 <div style="color:#820118;" data-customstyle="yes">НАСЛЕДИЕ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr2" style="height: 150px;"> Проводите <strong>совместные мероприятия </strong>с почетными гражданами, направленные на передачу опыта, части материальной и духовной культуры </div>
-                            <a href="/event/lecagy-demo" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
-                                <table style="width:100%; height:100%;">
-                                    <tbody>
-                                    <tr>
-                                        <td>Подробнее</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <a href="/event/lecagy-demo" target="" class="flat-button success big">
+                                Подробнее
                             </a>
                         </div>
                     </div>
@@ -147,19 +130,13 @@ $this->title = 'Галерея славы';
                 <div class="t412__col t-col t-col_4 t412__col">
                     <div class="t412__content" style="border-color: #000000;border-width: 2px;">
                         <div class="t412__wrapper" style="height: 345px;">
-                            <img class="t412__img t412__img_circle t-img loaded" src="/images/index_1.jpg" data-original="https://static.tildacdn.com/tild6435-3335-4461-b739-646137643265/noroot.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="" imgfield="img3">
+                            <div class="t412__img t412__img_circle t-img loaded" data-original="/images/index_1.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="background-image: url(/images/index_1.jpg)" imgfield="img3"></div>
                             <div class="t412__title t-name t-name_xl" field="title3" style="height: 32px;">
                                 <div style="color:#820118;" data-customstyle="yes">ГОРДОСТЬ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr3" style="height: 150px;"><strong>Станьте соавтором третьего тома книги</strong>, в которую войдет биографии почетных граждан 23 муниципальных образований Ростовской области <br><br></div>
-                            <a href="/account" target="" class="t-btn " style="color:#ffffff;background-color:#199c68;">
-                                <table style="width:100%; height:100%;">
-                                    <tbody>
-                                    <tr>
-                                        <td>Подробнее</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <a href="/account" target="" class="flat-button success big">
+                                Подробнее
                             </a>
                         </div>
                     </div>

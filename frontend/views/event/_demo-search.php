@@ -10,8 +10,8 @@ use kartik\typeahead\Typeahead;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="event-search">
 
+<div class="container">
     <?php $form = ActiveForm::begin([
         'action' => [$this->context->action->id],
         'method' => 'get',

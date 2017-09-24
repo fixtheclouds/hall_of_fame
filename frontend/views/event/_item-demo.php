@@ -28,10 +28,15 @@ use yii\helpers\Html;
             <h5 class="ellipsis">
                 <?= $model->subtype->name ?>
             </h5>
-            <p><i class="glyphicon glyphicon-user"
-                  title="ФИО почетного гражданина, которому посвящено мероприятие"></i> <?= $model->person_name ?></p>
-            <p><i class="glyphicon glyphicon-map-marker" title="Город"></i> <?= $model->city ?></p>
-            <p>
+            <p class="ellipsis">
+                <i class="glyphicon glyphicon-user"
+                  title="ФИО почетного гражданина, которому посвящено мероприятие"></i> <?= $model->person_name ?>
+            </p>
+            <p class="ellipsis">
+                <i class="glyphicon glyphicon-map-marker" title="Город"></i>
+                <?= $model->city ?>
+            </p>
+            <p class="ellipsis">
                 <i class="glyphicon glyphicon-calendar" title="Дата проведения"></i>&nbsp;
                 <?= Yii::$app->formatter->asDate($model->date, 'd MMMM y года, HH:mm') ?>
             </p>

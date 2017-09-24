@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic);
 
+body {
+    color: #000;
+}
+
 .navbar {
     background-color: #88012a;
     margin-bottom: 0;
@@ -27,6 +31,10 @@ footer.footer {
 
 footer.footer a {
     color: #b2b2b2;
+}
+
+footer.footer .t-col {
+    margin: 0;
 }
 
 
@@ -63,6 +71,11 @@ footer.footer a {
 
 .flat-button.disabled {
     color: #b2b2b2;
+}
+
+.flat-button.big {
+    font-size: 16px;
+    padding: 15px 60px;
 }
 
 .wrap > .container {
@@ -130,6 +143,20 @@ h5 {
     color: #88012a;
 }
 
+.event-index h2 {
+    color: rgb(130, 1, 24);
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+.event-search {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+    margin-bottom: 40px;
+}
+
 /* TILDA */
 #allrecords a {
     margin-top: 5px;
@@ -137,4 +164,14 @@ h5 {
 
 .t412__content {
     padding-bottom: 70px;
+}
+
+.t412__img_circle {
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.t-prefix_1 {
+    float: none;
 }

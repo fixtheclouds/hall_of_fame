@@ -23,7 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
     'items' => [
         [
             'label' => 'Фильтры',
-            'content' => $this->render('_search', ['model' => $searchModel]),
+            'content' => $this->render('_search', [
+                'model' => $searchModel
+            ]),
             'contentOptions' => []
         ]
     ]
@@ -32,7 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
     'items' => [
         [
             'label' => 'Память',
-            'content' => $this->render('_memory', ['memoryDataProvider' => $memoryDataProvider]),
+            'content' => $this->render('_memory', [
+                'memoryDataProvider' => $memoryDataProvider
+            ]),
             'active' => true,
             'linkOptions' => [
                 'class' => 'tab',
@@ -41,7 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'label' => 'Наследие',
-            'content' => $this->render('_legacy', ['legacyDataProvider' => $legacyDataProvider]),
+            'content' => $this->render('_legacy', [
+                'legacyDataProvider' => $legacyDataProvider
+            ]),
             'linkOptions' => [
                 'class' => 'tab',
                 'data-type' => 'legacy'
@@ -49,10 +55,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'label' => 'Гордость',
-            'content' => $this->render('@frontend/views/message/_form', ['model' => new Message()])
+            'content' => $this->render('@frontend/views/message/_form', [
+                'model' => new Message()
+            ])
         ]
     ],
-    'options' => ['class' => 'categories top-20']
+    'options' => [
+        'class' => 'categories top-20'
+    ]
 ])
 ?>
 
