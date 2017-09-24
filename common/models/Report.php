@@ -96,7 +96,10 @@ class Report extends \yii\db\ActiveRecord
                 'compareValue' => true,
                 'message' => 'Вы должны принять соглашение.',
                 'on' => 'create'
-            ]
+            ],
+            [['images'], 'required', 'when' => function($model) {
+                return empty($model->reportPhotos);
+            }]
         ];
     }
 

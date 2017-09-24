@@ -175,6 +175,9 @@ class Event extends ActiveRecord
                 'message' => 'Вы должны принять соглашение.',
                 'on' => 'create'
             ],
+            [['image'], 'required', 'when' => function($model) {
+                return empty($model->photo);
+            }]
         ];
     }
 
