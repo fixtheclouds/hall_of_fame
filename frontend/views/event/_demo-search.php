@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
-use common\models\Event;
 use kartik\typeahead\Typeahead;
 
 /* @var $this yii\web\View */
@@ -16,7 +15,6 @@ use kartik\typeahead\Typeahead;
     <?php $form = ActiveForm::begin([
         'action' => [$this->context->action->id],
         'method' => 'get',
-        'layout' => 'horizontal'
     ]); ?>
 
     <?= $form->field($model, 'city')->widget(Typeahead::classname(), [
@@ -45,10 +43,10 @@ use kartik\typeahead\Typeahead;
 
     <?= $form->field($model, 'keyword')->textInput(['placeholder' => 'Введите ФИО гражданина, ФИО автора, тип или место']) ?>
 
-    <div class="form-group">
+    <div class="form-group row bottom-20">
         <div class="col-xs-12">
-            <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Сбросить', [$this->context->action->id], ['class' => 'btn btn-default']) ?>
+            <?= Html::submitButton('Найти', ['class' => 'flat-button success']) ?>
+            <?= Html::a('Сбросить', [$this->context->action->id], ['class' => 'flat-button']) ?>
         </div>
     </div>
 

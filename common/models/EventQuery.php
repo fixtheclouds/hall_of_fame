@@ -68,7 +68,7 @@ class EventQuery extends ActiveQuery
      * @return $this
      */
     public function byType($type) {
-        return $this->andFilterWhere(['type' => $type]);
+        return $this->andFilterWhere(['event.type' => $type]);
     }
 
 

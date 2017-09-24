@@ -13,6 +13,11 @@ use yii\db\ActiveQuery;
  */
 class EventSearch extends Event
 {
+
+    /**
+     * @var string
+     */
+    public $keyword;
     /**
      * @inheritdoc
      */
@@ -20,7 +25,7 @@ class EventSearch extends Event
     {
         return [
             [['id', 'subtype_id', 'user_id', 'created_at', 'updated_at', 'deleted_at'], 'integer'],
-            [['type', 'date', 'city', 'content', 'place', 'person_name', 'photo', 'status', 'date_from', 'date_to'], 'safe'],
+            [['type', 'date', 'city', 'content', 'place', 'person_name', 'photo', 'status', 'date_from', 'date_to', 'keyword'], 'safe'],
         ];
     }
 
@@ -83,14 +88,34 @@ class EventSearch extends Event
             'deleted_at' => $this->deleted_at,
         ]);
 
-        $query->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'city', $this->city])
+        $query->andFilterWhere(['like', 'event.type', $this->type])
+            ->andFilterWhere(['like', 'event.city', $this->city])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'place', $this->place])
             ->andFilterWhere(['like', 'person_name', $this->person_name])
-            ->andFilterWhere(['like', 'photo', $this->photo])
+            ->andFilterWhere(['like', 'event.photo', $this->photo])
             ->andFilterWhere(['like', 'status', $this->status]);
 
+        if ($this->keyword) {
+            $query->innerJoin('subtype', 'subtype.id = event.subtype_id')
+                ->leftJoin('profile', 'profile.user_id = event.user_id')
+                ->andWhere([
+                    'or',
+                    ['like', 'place', $this->keyword],
+                    ['like', 'person_name', $this->keyword],
+                    ['like', 'subtype.name', $this->keyword],
+                    ['like', 'profile.name', $this->keyword],
+                ]);
+        }
+
         return $query;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return array_merge(parent::attributeLabels(), ['keyword' => 'Ключевое слово']);
     }
 }

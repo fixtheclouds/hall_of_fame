@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use nirvana\infinitescroll\InfiniteScrollPager;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
+use yii\bootstrap\Collapse;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\EventSearch */
@@ -28,11 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <div class="event-index">
-
     <h2 class="text-center"><?= Html::encode($this->title) ?></h2>
 </div>
 
 <div class="container">
+    <?= $this->render('_demo-search', ['model' => $searchModel]) ?>
+
     <?php Pjax::begin(); ?>
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

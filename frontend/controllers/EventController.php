@@ -281,6 +281,7 @@ class EventController extends Controller
         $query = $searchModel->addFilterParams(Event::find()->published()->byType('memory'), Yii::$app->request->queryParams);
         return $this->render('demo', [
             'type' => 'memory',
+            'searchModel' => $searchModel,
             'dataProvider' => new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
@@ -296,6 +297,7 @@ class EventController extends Controller
         $query = $searchModel->addFilterParams(Event::find()->published()->byType('legacy'), Yii::$app->request->queryParams);
         return $this->render('demo', [
             'type' => 'legacy',
+            'searchModel' => $searchModel,
             'dataProvider' => new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
