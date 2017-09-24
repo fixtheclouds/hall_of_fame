@@ -175,3 +175,9 @@ h5 {
 .t-prefix_1 {
     float: none;
 }
+
+#allrecords *, #allrecords  :after, #allrecords  :before {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}

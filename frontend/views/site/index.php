@@ -121,7 +121,7 @@ $this->title = 'Галерея славы';
                                 <div style="color:#820118;" data-customstyle="yes">НАСЛЕДИЕ</div>
                             </div>
                             <div class="t412__descr t-text" field="descr2" style="height: 150px;"> Проводите <strong>совместные мероприятия </strong>с почетными гражданами, направленные на передачу опыта, части материальной и духовной культуры </div>
-                            <a href="/event/lecagy-demo" target="" class="flat-button success big">
+                            <a href="/event/legacy-demo" target="" class="flat-button success big">
                                 Подробнее
                             </a>
                         </div>
@@ -167,102 +167,8 @@ $this->title = 'Галерея славы';
                         <div class="t021__text-impact t-text-impact t-text-impact_md" field="text">Приглашаем к совместной работе гражданских активистов, сообщества и организации<br> <strong>Принять участие может каждый!</strong><br></div>
                     </div>
                 </div>
-                <div class="t-row">
-                    <div class="t-col t-col_2 t-prefix_5">
-                        <div class="t021__line"></div>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
-    <div id="rec25090186" class="r r_hidden r_anim" style="padding-top:30px;padding-bottom:0px; " data-record-type="569">
-        <!-- T569 -->
-        <div class="t569" data-blocks-count="4">
-            <div class="t-section__container t-container">
-                <div class="t-col t-col_12">
-                    <div class="t-section__topwrapper t-align_center">
-                        <div class="t-section__title t-title t-title_xs " field="btitle">
-                            <div style="color:#820118;" data-customstyle="yes">Как принять участие в марафоне? </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="t569__container t-container">
-                <div class="t569__col t-col t-col_3">
-                    <div class="t569__imgwrapper t-align_center">
-                        <div class="t569__bgimg t-margin_auto t-bgimg" bgimgfield="img" data-original="https://static.tildacdn.com/tild3437-3666-4363-b766-636533346132/33.svg" style=" background-image: url(&#39;https://static.tildacdn.com/tild3437-3666-4363-b766-636533346132/-/resize/20x/33.svg&#39;);"></div>
-                    </div>
-                    <div class="t569__textwrapper t-align_center">
-                        <div class="t569__title t-name t-name_xs" style="" field="title">Зарегистрируйтесь</div>
-                        <div class="t569__text t-text t-text_xs" style="" field="descr">Заполните простую форму регистрации в качестве участника проекта. Это необходим</div>
-                    </div>
-                </div>
-                <div class="t569__col t-col t-col_3">
-                    <div class="t569__line-mobile t-align_center">
-                        <div class="t569__cirqle"></div>
-                        <div class="t569__cirqle"></div>
-                        <div class="t569__cirqle"></div>
-                    </div>
-                    <div class="t569__imgwrapper t-align_center">
-                        <div class="t569__bgimg t-margin_auto t-bgimg" bgimgfield="img2" data-original="https://static.tildacdn.com/tild3334-3736-4436-b433-363761643632/22.svg" style=" background-image: url(&#39;https://static.tildacdn.com/tild3334-3736-4436-b433-363761643632/-/resize/20x/22.svg&#39;);"></div>
-                        <div class="t569__line" style="max-width: 156px;">
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                        </div>
-                    </div>
-                    <div class="t569__textwrapper t-align_center">
-                        <div class="t569__title t-name t-name_xs" style="" field="title2">Выберите </div>
-                        <div class="t569__text t-text t-text_xs" style="" field="descr2">Our managers are always ready to answer your questions. You can call us at the weekends and at night.</div>
-                    </div>
-                </div>
-                <div class="t569__col t-col t-col_3">
-                    <div class="t569__line-mobile t-align_center">
-                        <div class="t569__cirqle"></div>
-                        <div class="t569__cirqle"></div>
-                        <div class="t569__cirqle"></div>
-                    </div>
-                    <div class="t569__imgwrapper t-align_center">
-                        <div class="t569__bgimg t-margin_auto t-bgimg" bgimgfield="img3" data-original="https://static.tildacdn.com/tild3539-3363-4936-a263-333364623665/44.svg" style=" background-image: url(&#39;https://static.tildacdn.com/tild3539-3363-4936-a263-333364623665/-/resize/20x/44.svg&#39;);"></div>
-                        <div class="t569__line" style="max-width: 156px;">
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                        </div>
-                    </div>
-                    <div class="t569__textwrapper t-align_center">
-                        <div class="t569__title t-name t-name_xs" style="" field="title3">Individual Approach</div>
-                        <div class="t569__text t-text t-text_xs" style="" field="descr3">Our company works according to the principle of individual approach to every client.</div>
-                    </div>
-                </div>
-                <div class="t569__col t-col t-col_3">
-                    <div class="t569__line-mobile t-align_center">
-                        <div class="t569__cirqle"></div>
-                        <div class="t569__cirqle"></div>
-                        <div class="t569__cirqle"></div>
-                    </div>
-                    <div class="t569__imgwrapper t-align_center">
-                        <div class="t569__bgimg t-margin_auto t-bgimg" bgimgfield="img4" data-original="https://static.tildacdn.com/tild6365-6235-4330-b261-333761316563/11.svg" style=" background-image: url(&#39;https://static.tildacdn.com/tild6365-6235-4330-b261-333761316563/-/resize/20x/11.svg&#39;);"></div>
-                        <div class="t569__line" style="max-width: 156px;">
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                            <div class="t569__cirqle"></div>
-                        </div>
-                    </div>
-                    <div class="t569__textwrapper t-align_center">
-                        <div class="t569__title t-name t-name_xs" style="" field="title4">Intensely Focused</div>
-                        <div class="t569__text t-text t-text_xs" style="" field="descr4">I am studying business at the University of North London, Manchester Business School</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript"> $(document).ready(function() { t569_init('25090186'); }); </script>
     </div>
 </div>
 <!--/allrecords--><!-- Stat --><script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','https://www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-56589716-2', 'auto', {'name': 'tilda'}); ga('tilda.send', 'pageview'); if (! window.mainTracker) { window.mainTracker = 'tilda'; }</script><span style="border-radius: 3px; text-indent: 20px; width: auto; padding: 0px 4px 0px 0px; text-align: center; font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 11px; line-height: 20px; font-family: &quot;Helvetica Neue&quot;, Helvetica, sans-serif; color: rgb(255, 255, 255); background: url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMzBweCIgd2lkdGg9IjMwcHgiIHZpZXdCb3g9Ii0xIC0xIDMxIDMxIj48Zz48cGF0aCBkPSJNMjkuNDQ5LDE0LjY2MiBDMjkuNDQ5LDIyLjcyMiAyMi44NjgsMjkuMjU2IDE0Ljc1LDI5LjI1NiBDNi42MzIsMjkuMjU2IDAuMDUxLDIyLjcyMiAwLjA1MSwxNC42NjIgQzAuMDUxLDYuNjAxIDYuNjMyLDAuMDY3IDE0Ljc1LDAuMDY3IEMyMi44NjgsMC4wNjcgMjkuNDQ5LDYuNjAxIDI5LjQ0OSwxNC42NjIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxIj48L3BhdGg+PHBhdGggZD0iTTE0LjczMywxLjY4NiBDNy41MTYsMS42ODYgMS42NjUsNy40OTUgMS42NjUsMTQuNjYyIEMxLjY2NSwyMC4xNTkgNS4xMDksMjQuODU0IDkuOTcsMjYuNzQ0IEM5Ljg1NiwyNS43MTggOS43NTMsMjQuMTQzIDEwLjAxNiwyMy4wMjIgQzEwLjI1MywyMi4wMSAxMS41NDgsMTYuNTcyIDExLjU0OCwxNi41NzIgQzExLjU0OCwxNi41NzIgMTEuMTU3LDE1Ljc5NSAxMS4xNTcsMTQuNjQ2IEMxMS4xNTcsMTIuODQyIDEyLjIxMSwxMS40OTUgMTMuNTIyLDExLjQ5NSBDMTQuNjM3LDExLjQ5NSAxNS4xNzUsMTIuMzI2IDE1LjE3NSwxMy4zMjMgQzE1LjE3NSwxNC40MzYgMTQuNDYyLDE2LjEgMTQuMDkzLDE3LjY0MyBDMTMuNzg1LDE4LjkzNSAxNC43NDUsMTkuOTg4IDE2LjAyOCwxOS45ODggQzE4LjM1MSwxOS45ODggMjAuMTM2LDE3LjU1NiAyMC4xMzYsMTQuMDQ2IEMyMC4xMzYsMTAuOTM5IDE3Ljg4OCw4Ljc2NyAxNC42NzgsOC43NjcgQzEwLjk1OSw4Ljc2NyA4Ljc3NywxMS41MzYgOC43NzcsMTQuMzk4IEM4Ljc3NywxNS41MTMgOS4yMSwxNi43MDkgOS43NDksMTcuMzU5IEM5Ljg1NiwxNy40ODggOS44NzIsMTcuNiA5Ljg0LDE3LjczMSBDOS43NDEsMTguMTQxIDkuNTIsMTkuMDIzIDkuNDc3LDE5LjIwMyBDOS40MiwxOS40NCA5LjI4OCwxOS40OTEgOS4wNCwxOS4zNzYgQzcuNDA4LDE4LjYyMiA2LjM4NywxNi4yNTIgNi4zODcsMTQuMzQ5IEM2LjM4NywxMC4yNTYgOS4zODMsNi40OTcgMTUuMDIyLDYuNDk3IEMxOS41NTUsNi40OTcgMjMuMDc4LDkuNzA1IDIzLjA3OCwxMy45OTEgQzIzLjA3OCwxOC40NjMgMjAuMjM5LDIyLjA2MiAxNi4yOTcsMjIuMDYyIEMxNC45NzMsMjIuMDYyIDEzLjcyOCwyMS4zNzkgMTMuMzAyLDIwLjU3MiBDMTMuMzAyLDIwLjU3MiAxMi42NDcsMjMuMDUgMTIuNDg4LDIzLjY1NyBDMTIuMTkzLDI0Ljc4NCAxMS4zOTYsMjYuMTk2IDEwLjg2MywyNy4wNTggQzEyLjA4NiwyNy40MzQgMTMuMzg2LDI3LjYzNyAxNC43MzMsMjcuNjM3IEMyMS45NSwyNy42MzcgMjcuODAxLDIxLjgyOCAyNy44MDEsMTQuNjYyIEMyNy44MDEsNy40OTUgMjEuOTUsMS42ODYgMTQuNzMzLDEuNjg2IiBmaWxsPSIjYmQwODFjIj48L3BhdGg+PC9nPjwvc3ZnPg==&quot;) 3px 50% / 14px 14px no-repeat rgb(189, 8, 28); position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: none; -webkit-font-smoothing: antialiased;">Save</span><span style="width: 24px; height: 24px; background: url(&quot;data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxtYXNrIGlkPSJtIj48cmVjdCBmaWxsPSIjZmZmIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI2IiByeT0iNiIvPjxyZWN0IGZpbGw9IiMwMDAiIHg9IjUiIHk9IjUiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxNCIgcng9IjEiIHJ5PSIxIi8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMTAiIHk9IjAiIHdpZHRoPSI0IiBoZWlnaHQ9IjI0Ii8+PHJlY3QgZmlsbD0iIzAwMCIgeD0iMCIgeT0iMTAiIHdpZHRoPSIyNCIgaGVpZ2h0PSI0Ii8+PC9tYXNrPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiNmZmYiIG1hc2s9InVybCgjbSkiLz48L3N2Zz4=&quot;) 50% 50% / 14px 14px no-repeat rgba(0, 0, 0, 0.4); position: absolute; opacity: 1; z-index: 8675309; display: none; cursor: pointer; border: none; border-radius: 12px;"></span>
