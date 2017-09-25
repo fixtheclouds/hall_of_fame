@@ -51,9 +51,9 @@ use yii\helpers\Html;
                 </p>
             <?php } ?>
             <div class="absolute bottom right full-width">
-                <div class="col-md-4 col-sm-6 col-xs-0"></div>
+                <div class="col-md-4 col-sm-0 col-xs-0"></div>
                 <?php if (!$model->isArchived()) { ?>
-                    <div class="col-xs-4 col-sm-2">
+                    <div class="col-xs-12 col-md-2">
                         <?= Html::a('Подать отчёт', [
                             'report/create', 'event_id' => $model->id
                         ], [
@@ -64,7 +64,7 @@ use yii\helpers\Html;
                 <?php } ?>
                 <?php if (!$model->isMine() && !$model->isArchived()) {
                     if (!$model->isAppliedBy(\Yii::$app->user->id)) { ?>
-                        <div class="col-xs-4 col-sm-2">
+                        <div class="col-xs-12 col-md-2">
                             <?= Html::a('Участвовать', [
                                 'event-user/apply', 'event_id' => $model->id
                             ], [
@@ -73,7 +73,7 @@ use yii\helpers\Html;
                             ]) ?>
                         </div>
                     <?php } else { ?>
-                        <div class="col-xs-4 col-sm-2">
+                        <div class="col-xs-12 col-md-2">
                             <?= Html::a('Не участвовать', [
                                 'event-user/unapply', 'event_id' => $model->id
                             ], [
@@ -84,11 +84,11 @@ use yii\helpers\Html;
                     <?php }
                 } ?>
                 <?php if ($model->isArchived()) { ?>
-                    <div class="col-xs-4 col-sm-2">
+                    <div class="col-xs-12 col-md-2">
                         <button type="button" class="text-success btn btn-disabled" disabled>Завершено</button>
                     </div>
                 <?php } ?>
-                <div class="col-xs-4 col-sm-2">
+                <div class="col-xs-12 col-md-2">
                     <?= Html::a('Подробнее', ['view', 'id' => $model->id], [
                         'class' => 'btn btn-default',
                         'data-pjax' => 0

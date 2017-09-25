@@ -11,7 +11,7 @@ use yii\bootstrap\Collapse;
 /* @var $memoryProvider yii\data\ActiveDataProvider */
 /* @var $legacyProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Мероприятия';
+$this->title = \common\models\Event::HUMAN_TYPES[$type] . ' : Мероприятия';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cover" style="background-image: url('/images/bg-sepia.jpg')">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="event-index">
     <div class="event-search">
-        <h2 class="text-center"><?= Html::encode($this->title) ?></h2>
+        <h2 class="text-center">Мероприятия</h2>
         <?= $this->render('_demo-search', ['model' => $searchModel]) ?>
     </div>
     <div class="container">

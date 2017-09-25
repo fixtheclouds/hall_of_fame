@@ -32,7 +32,7 @@ $this->title = 'Галерея славы';
                                         <div style="font-size:52px;color:#660012;" data-customstyle="yes"><em><strong data-redactor-tag="strong">Память. Наследие. Гордость</strong> </em></div>
                                     </div>
                                     <div class="t182__buttons">
-                                        <a href="/event/create" target="" class="t-btn " style="color:#ffffff;background-color:#820118;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
+                                        <a href="/event/create" target="" class="t-btn " style="color:#ffffff;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
                                             <table style="width:100%; height:100%;">
                                                 <tbody>
                                                 <tr>
@@ -41,7 +41,7 @@ $this->title = 'Галерея славы';
                                                 </tbody>
                                             </table>
                                         </a>
-                                        <a href="/account" target="" class="t-btn " style="color:#000000;background-color:#e0e0e0;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
+                                        <a href="/account" target="" class="t-btn " style="color:#000000;border-radius:20px; -moz-border-radius:20px; -webkit-border-radius:20px;">
                                             <table style="width:100%; height:100%;">
                                                 <tbody>
                                                 <tr>

@@ -45,7 +45,7 @@ use yii\helpers\Html;
             </p>
         </div>
     </div>
-    <div class="row">
+    <div class="row btn-row">
         <div class="col-xs-12 col-sm-5">
             <?php if (!$model->isMine() && !$model->isArchived()) {
                 if (!$model->isAppliedBy(\Yii::$app->user->id)) { ?>

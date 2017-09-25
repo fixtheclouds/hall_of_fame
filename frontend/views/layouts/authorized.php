@@ -126,7 +126,7 @@ if (!Yii::$app->user->isGuest) {
             </div>
         </div>
 
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-5 col-xs-12">
             <div class="row">
                 <div class="col-xs-12">
                     <?= Html::a('<i class="glyphicon glyphicon-lock"></i>&nbsp;Запросить новый пароль', ['/user/recovery/resend-password'], [

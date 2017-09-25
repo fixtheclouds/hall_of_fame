@@ -68,7 +68,7 @@ StaticPageAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <div class="row">
+        <div class="clearfix">
             <div class="t-col t-col_6">
                 <p class="pull-left">&copy; Ассоциация почётных граждан, наставников и талантливой молодёжи<br>
                     <?= Html::a('Политика обработки персональных данных', ['page/policy']) ?>
