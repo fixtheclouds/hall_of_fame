@@ -47,7 +47,7 @@ StaticPageAsset::register($this);
     ]);
 
     $menuItems = [
-        ['label' => '<i class="glyphicon glyphicon-envelope"></i>', 'url' => ['/feedback/create']]
+        ['label' => '<i class="glyphicon glyphicon-envelope" title="Обратная связь"></i>', 'url' => ['/feedback/create']]
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Зарегистрироваться', 'url' => ['/user/registration/register']];
@@ -75,11 +75,11 @@ StaticPageAsset::register($this);
                 </p>
             </div>
             <div class="t-col t-col_6 text-right">
-                <?php if (Yii::$app->user->isGuest) {
+                <?php
+                echo Html::a('Обратная связь', ['/feedback/create'], ['class' => 'right-10']);
+                if (Yii::$app->user->isGuest) {
                     echo Html::a('Войти', ['/user/login/'], ['class' => 'right-10']);
                     echo Html::a('Зарегистрироваться', ['/user/registration/register']);
-                } else {
-                    echo Html::a('Мероприятия', ['/event/actual']);
                 } ?>
             </div>
         </div>

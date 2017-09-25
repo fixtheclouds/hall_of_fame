@@ -38,7 +38,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => '<i class="glyphicon glyphicon-envelope"></i>', 'url' => ['/feedback/create']]
+        ['label' => '<i class="glyphicon glyphicon-envelope" title="Обратная связь"></i>', 'url' => ['/feedback/create']]
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Зарегистрироваться', 'url' => ['/user/registration/register']];
