@@ -8,16 +8,12 @@ TildaAsset::register($this);
 $this->title = 'Галерея славы';
 ?>
 <!-- saved from url=(0030)http://project296576.tilda.ws/ -->
-<link rel="dns-prefetch" href="http://tilda.ws/">
-<link rel="dns-prefetch" href="http://static.tildacdn.com/">
-<link rel="canonical" href="http://project296576.tilda.ws/">
-<link rel="shortcut icon" href="http://static.tildacdn.com/img/tildafavicon.ico" type="image/x-icon">
 <!--allrecords-->
 <div id="allrecords" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="296576" data-tilda-page-id="1182002">
     <div id="rec25085318" class="r" style="padding-bottom:0px; " data-animationappear="off" data-record-type="205">
         <!-- cover -->
-        <div class="t-cover" id="recorddiv25085318" bgimgfield="img" style="height: 763px; background-image: url(&quot;https://static.tildacdn.com/tild3666-6565-4439-b838-666631356532/-/resize/20x/2222.jpg&quot;);">
-            <div class="t-cover__carrier loaded" id="coverCarry25085318" data-content-cover-id="25085318" data-content-cover-bg="https://static.tildacdn.com/tild3666-6565-4439-b838-666631356532/2222.jpg" data-content-cover-height="60vh" data-content-cover-parallax="fixed" style="background-image: url(&quot;https://static.tildacdn.com/tild3666-6565-4439-b838-666631356532/2222.jpg&quot;); height: 763px;" src=""></div>
+        <div class="t-cover" id="recorddiv25085318" bgimgfield="img" style="height: 763px; background-image: url(/images/bg-sepia.jpg);">
+            <div class="t-cover__carrier loaded" id="coverCarry25085318" data-content-cover-id="25085318" data-content-cover-bg="/images/bg-sepia.jpg" data-content-cover-height="60vh" data-content-cover-parallax="fixed" style="background-image: url(&quot;https://static.tildacdn.com/tild3666-6565-4439-b838-666631356532/2222.jpg&quot;); height: 763px;" src=""></div>
             <div class="t-cover__filter" style="height: 763px; background-image: -webkit-linear-gradient(top, rgba(133, 96, 96, 0), rgba(166, 153, 136, 0));"></div>
             <div class="t-container">
                 <div class="t-width t-width_10" style="margin:0 auto;">
@@ -62,7 +58,7 @@ $this->title = 'Галерея славы';
     <div id="rec25128776" class="r" style=" " data-animationappear="off" data-record-type="213">
         <!-- cover -->
         <div class="t-cover" id="recorddiv25128776" bgimgfield="img" style="height: 904px; background-image: url(&quot;https://static.tildacdn.com/tild6464-3538-4532-b161-653639646634/-/resize/20x/noroot.jpg&quot;);">
-            <div class="t-cover__carrier loaded" id="coverCarry25128776" data-content-cover-id="25128776" data-content-cover-bg="https://static.tildacdn.com/tild6464-3538-4532-b161-653639646634/noroot.jpg" data-content-cover-height="750px" data-content-cover-parallax="" style="background-image: url(&quot;https://static.tildacdn.com/tild6464-3538-4532-b161-653639646634/noroot.jpg&quot;); height: 904px; background-attachment: scroll;" src=""></div>
+            <div class="t-cover__carrier loaded" id="coverCarry25128776" data-content-cover-id="25128776" data-content-cover-bg="/images/bg-halved.jpg" data-content-cover-height="750px" data-content-cover-parallax="" style="background-image: url(/images/bg-halved.jpg); height: 904px; background-attachment: scroll;" src=""></div>
             <div class="t-cover__filter" style="height: 904px; background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));"></div>
             <div class="t-container">
                 <div class="t-col t-col_7">
@@ -102,7 +98,7 @@ $this->title = 'Галерея славы';
                 <div class="t412__col t-col t-col_4 t412__col">
                     <div class="t412__content" style="border-color: #000000;border-width: 2px;">
                         <div class="t412__wrapper" style="height: 345px;">
-                            <div class="t412__img t412__img_circle t-img loaded" data-original="/images/index_2.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="background-image: url(/images/index_2.jpg;);" imgfield="img"></div>
+                            <div class="t412__img t412__img_circle t-img loaded" data-original="/images/index_2.jpg" data-tu-max-width="300" data-tu-max-height="300" alt="" style="background-image: url(/images/index_2.jpg);" imgfield="img"></div>
                             <div class="t412__title t-name t-name_xl" field="title" style="height: 32px;">
                                 <div style="color:#820118;" data-customstyle="yes">ПАМЯТЬ</div>
                             </div>
@@ -143,15 +139,6 @@ $this->title = 'Галерея славы';
                 </div>
             </div>
         </div>
-        <script type="text/javascript">$(document).ready(function() { t412_unifyHeights('25086334'); setTimeout(function(){ t412_unifyHeights('25086334'); }, 500);
-            });
-            $('.t412').bind('displayChanged',function(){ t412_unifyHeights('25086334');
-            });
-            $(window).resize(function() { t412_unifyHeights('25086334');
-            });
-            $(window).load(function() { t412_unifyHeights('25086334');
-            });
-        </script>
     </div>
     <div id="rec25086908" class="r r_hidden r_anim" style="padding-top:56px;padding-bottom:30px; " data-record-type="36">
         <!-- T021 -->
