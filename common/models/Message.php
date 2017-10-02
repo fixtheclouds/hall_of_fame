@@ -118,7 +118,7 @@ class Message extends \yii\db\ActiveRecord
             'user_id' => 'ID пользователя',
             'created_at' => 'Создано',
             'state' => 'Статус',
-            'content' => 'Текст сообщения',
+            'content' => 'Текст',
         ];
     }
 
