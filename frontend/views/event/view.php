@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <div class="row">
         <?php
-        if (!$model->isMine()) { ?>
+        if (!$model->isArchived()) { ?>
             <div class="col-xs-6 col-sm-3">
                 <?= Html::a('Подать отчёт', [
                     'report/create', 'event_id' => $model->id
@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]
             ],
-            'emptyText' => '<h3>Отчетов не найдено.</h3>'
+            'emptyText' => $this->render('_empty-report-list', ['model' => $model])
         ]);?>
         <?php Pjax::end(); ?>
     </div>

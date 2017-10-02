@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                 ]
             ],
-            'emptyText' => '<h3>Отчетов не найдено.</h3>'
+            'emptyText' => '<h3>Ещё не подано ни одного отчёта..</h3>'
         ]);?>
         <?php Pjax::end(); ?>
     </div>

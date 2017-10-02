@@ -99,7 +99,7 @@ class Report extends \yii\db\ActiveRecord
             ],
             [['images'], 'required', 'when' => function($model) {
                 return empty($model->reportPhotos);
-            }]
+            }, 'on' => ['update', 'create']]
         ];
     }
 

@@ -134,6 +134,7 @@ class ReportController extends Controller
         if ($model->status == 'published' || !$model->isMine()) {
             $this->redirect(['/account']);
         }
+        $model->scenario = 'update';
         $eventModel = $model->getEvent()->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -195,6 +195,7 @@ class EventController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->scenario = 'update';
 
         if ($model->status == 'published' || !$model->isMine()) {
             $this->redirect(['/account']);

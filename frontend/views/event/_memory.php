@@ -24,7 +24,7 @@ use nirvana\infinitescroll\InfiniteScrollPager;
                 ],
             ]
         ],
-        'emptyText' => '<h3>Мероприятий не найдено.</h3>'
+        'emptyText' => '<h3>Ещё не создано ни одного мероприятия.</h3>'
     ]);?>
     <?php Pjax::end(); ?>
 </div>

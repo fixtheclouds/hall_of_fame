@@ -177,7 +177,7 @@ class Event extends ActiveRecord
             ],
             [['image'], 'required', 'when' => function($model) {
                 return empty($model->photo);
-            }]
+            }, 'on' => ['update', 'create']]
         ];
     }
 
