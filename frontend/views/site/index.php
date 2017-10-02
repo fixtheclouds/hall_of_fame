@@ -91,7 +91,7 @@ $this->title = 'Галерея славы';
             </div>
         </div>
     </div>
-    <div id="rec25086334" class="r r_hidden r_anim" style="padding-top:40px;padding-bottom:40px; " data-record-type="412">
+    <div id="rec25086334" class="r r_hidden r_anim" style="padding-top:40px;padding-bottom:0px; " data-record-type="412">
         <!-- T412 -->
         <div class="t412">
             <div class="t-container">
@@ -152,6 +152,108 @@ $this->title = 'Галерея славы';
                 <div class="t-row">
                     <div class="t-col t-col_10 t-prefix_1">
                         <div class="t021__text-impact t-text-impact t-text-impact_md" field="text">Приглашаем к совместной работе гражданских активистов, сообщества и организации<br> <strong>Принять участие может каждый!</strong><br></div>
+                    </div>
+                </div>
+                <div class="t-row">
+                    <div class="t-col t-col_2 t-prefix_5">
+                        <div class="t021__line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="rec25252762" class="r t-rec t-rec_pt_15 t-rec_pb_0" style="padding-top:15px;padding-bottom:0px; " data-record-type="223">
+        <!-- T195 -->
+        <div class="t195">
+            <div class="t-container">
+                <div class="t-col t-col_7 t-prefix_1">
+                    <div class="t195__text t-text t-text_md" field="text">
+                        <div style="font-size:36px;line-height:32px;text-align:center;color:#820118;" data-customstyle="yes"><strong>КНИГА-СОБЫТИЕ <br></strong> ждет соавторов! <span style="color: rgb(5, 0, 0);"><br><br> <span style="font-size: 20px;"><em>В первые два тома книги, изданные в 2014 и 2016 годах, вошли</em> <strong>533 биографии</strong> заслуженных земляков, иллюстрированные почти <strong>3000 фотографий.</strong> Над книгой работали более <strong>200 авторов. <br></strong>Третий том расскажет о судьбах более <strong>300 почетных граждан 23 городов и районов области. </strong><br>Приглашаем к сотрудничеству всех, кто готов <br></span><br><br><br></span></div>
+                    </div>
+                </div>
+                <div class="t-col t-col_4  t195__imgsection" itemscope="" itemtype="http://schema.org/ImageObject">
+                    <meta itemprop="image" content="/images/book.jpg">
+                    <img class="t195__img t-img img-responsive" data-tu-max-width="1200" data-tu-max-height="1200" src="/images/book.jpg" imgfield="img"><br>
+                    <div class="t195__sectitle t-descr" field="imgtitle" itemprop="name"></div>
+                    <div class="t195__secdescr t-descr" field="imgdescr" itemprop="description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="rec25090186" class="r t-rec t-rec_pt_30 t-rec_pb_0" style="padding-top:0px;padding-bottom:40px; "  data-record-type="569"   >
+        <!-- T569 -->
+        <div class="t569" data-blocks-count="4">
+            <div class="t-section__container t-container">
+                <div class="t-col t-col_12">
+                    <div class="t-section__topwrapper t-align_center">
+                        <div class="t-section__title t-title t-title_xs " field="btitle">
+                            <div style="color:#820118;" data-customstyle="yes">Как принять участие в марафоне? </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="t569__container t-container">
+                <div class="t569__col t-col t-col_3">
+                    <a href="/user/register" title="Зарегистрироваться">
+                    <div class="t569__imgwrapper t-align_center">
+                        <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img" data-original="/svg/Tilda_Icons_1ed_group.svg" style=" background-image: url('/svg/Tilda_Icons_1ed_group.svg');"  ></div>
+                    </div>
+                    <div class="t569__textwrapper t-align_center">
+                        <div class="t569__title t-name t-name_xs" style="" field="title">Зарегистрируйтесь</div>
+                        <div class="t569__text t-text t-text_xs" style="" field="descr">Регистрируйтесь на нашем портале. Все мероприятия будут доступны в вашем личном кабинете.</div>
+                    </div>
+                    </a>
+                </div>
+                <div class="t569__col t-col t-col_3">
+                    <div class="t569__line-mobile t-align_center">
+                        <div class="t569__cirqle" ></div>
+                        <div class="t569__cirqle" ></div>
+                        <div class="t569__cirqle" ></div>
+                    </div>
+                    <div class="t569__imgwrapper t-align_center">
+                        <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img2" data-original="/svg/Tilda_Icons_19ad_seo.svg" style=" background-image: url('/svg/Tilda_Icons_19ad_seo.svg');"  ></div>
+                        <div class="t569__line">
+                            <div class="t569__cirqle" ></div>
+                        </div>
+                    </div>
+                    <div class="t569__textwrapper t-align_center">
+                        <div class="t569__title t-name t-name_xs" style="" field="title2">Выберите мероприятие</div>
+                        <div class="t569__text t-text t-text_xs" style="" field="descr2">Участвуйте в мероприятиях других пользователей. Посетив мероприятия, расскажите о нем, опубликовав отчет.</div>
+                    </div>
+                </div>
+                <div class="t569__col t-col t-col_3">
+                    <div class="t569__line-mobile t-align_center">
+                        <div class="t569__cirqle" ></div>
+                        <div class="t569__cirqle" ></div>
+                        <div class="t569__cirqle" ></div>
+                    </div>
+                    <div class="t569__imgwrapper t-align_center">
+                        <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img3" data-original="/svg/Tilda_Icons_19ad_design.svg" style=" background-image: url('/svg/Tilda_Icons_19ad_design.svg');"  ></div>
+                        <div class="t569__line">
+                            <div class="t569__cirqle" ></div>
+                        </div>
+                    </div>
+                    <div class="t569__textwrapper t-align_center">
+                        <div class="t569__title t-name t-name_xs" style="" field="title3">Создавайте свои мероприятия</div>
+                        <div class="t569__text t-text t-text_xs" style="" field="descr3">Вы можете сами запланировать мероприятия и пригласить на них людей. Проявляйте активность!</div>
+                    </div>
+                </div>
+                <div class="t569__col t-col t-col_3">
+                    <div class="t569__line-mobile t-align_center">
+                        <div class="t569__cirqle" ></div>
+                        <div class="t569__cirqle" ></div>
+                        <div class="t569__cirqle" ></div>
+                    </div>
+                    <div class="t569__imgwrapper t-align_center">
+                        <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img4" data-original="/svg/Tilda_Icons_1ed_cup.svg" style=" background-image: url('/svg/Tilda_Icons_1ed_cup.svg');"  ></div>
+                        <div class="t569__line">
+                            <div class="t569__cirqle" ></div>
+                        </div>
+                    </div>
+                    <div class="t569__textwrapper t-align_center">
+                        <div class="t569__title t-name t-name_xs" style="" field="title4">Получайте баллы</div>
+                        <div class="t569__text t-text t-text_xs" style="" field="descr4">За все активности на портале вы будете получать баллы. Призовой фонд для самых активных участников и организаторов мероприятий!</div>
                     </div>
                 </div>
             </div>
