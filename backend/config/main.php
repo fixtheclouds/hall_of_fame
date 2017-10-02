@@ -92,7 +92,8 @@ return [
                 'registration' => [
                     'class' => 'dektrium\user\controllers\RegistrationController',
                     'layout' => '@backend/views/layouts/login'
-                ]
+                ],
+                'admin' => 'backend\controllers\AdminController'
             ],
             'enableRegistration' => false
         ]
