@@ -22,7 +22,7 @@ switch($model->status) {
     <div class="report-item panel panel-default">
 
         <p>
-        <h4><?= Html::a($model->event->humanType(), ['/event/view', 'id' => $model->event_id]) ?></h4>
+        <h4><?= Html::a($model->event->humanType(), ['/event/view', 'id' => $model->event_id], ['data-pjax' => 0]) ?></h4>
         </p>
         <p>
             <i class="glyphicon glyphicon-calendar"></i>
@@ -32,10 +32,10 @@ switch($model->status) {
             <i class="glyphicon glyphicon-<?= $icon ?>"></i> <?= \common\models\Report::HUMAN_STATUS[$model->status] ?>
         </p>
         <p>
-            <?= Html::a('Подробнее', ['report/view', 'id' => $model->id], ['class' => 'btn btn-default right-10']) ?>
+            <?= Html::a('Подробнее', ['report/view', 'id' => $model->id], ['class' => 'btn btn-default right-10', 'data-pjax' => 0]) ?>
             <?php if ($model->isMine() && $model->status == 'pending') { ?>
 
-                <?= Html::a('Редактировать', ['report/update', 'id' => $model->id], ['class' => 'btn btn-primary right-10']) ?>
+                <?= Html::a('Редактировать', ['report/update', 'id' => $model->id], ['class' => 'btn btn-primary right-10', 'data-pjax' => 0]) ?>
 
                 <?= Html::a('Удалить', ['report/delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
@@ -43,6 +43,7 @@ switch($model->status) {
                         'confirm' => 'Вы уверены, что хотите удалить?',
                         'method' => 'post',
                     ],
+                    'data-pjax' => 0
                 ]) ?>
             <?php } ?>
         </p>

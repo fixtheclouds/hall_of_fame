@@ -84,13 +84,11 @@ class ReportController extends Controller
     public function actionCreate($event_id = null)
     {
         $model = new Report();
-        $model->event_id = $event_id;
         $model->scenario = 'create';
-
+        $model->event_id = $event_id;
         $eventModel = $model->getEvent()->one();
 
         if ($model->load(Yii::$app->request->post())) {
-            $this->saveImages($model);
             if (Yii::$app->user->identity->isAdmin) {
                 $model->status = 'published';
                 $message = 'Отчет успешно опубликован';
@@ -98,6 +96,7 @@ class ReportController extends Controller
                 $message = 'Отчет успешно отправлен на модерацию';
             }
             if ($model->save()) {
+                $this->saveImages($model);
                 \Yii::$app->getSession()->setFlash('success', $message);
                 return $this->redirect(['event/view', 'id' => $model->event_id]);
             }
