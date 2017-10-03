@@ -45,3 +45,14 @@
 .t569__bgimg {
     background-size: 60px;
 }
+
+.t569 a:hover .t-name,
+.t569 a:hover .t-text {
+    color: #f4846b;
+    transition: color 0.3s ease-in-out;
+}
+
+.t569 a:hover .t569__bgimg {
+    border-color: #f4846b;
+    transition: all 0.3s ease-in-out;
+}

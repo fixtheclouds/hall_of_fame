@@ -213,7 +213,11 @@ $this->title = 'Галерея славы';
                     </div>
                     <div class="t569__imgwrapper t-align_center">
                         <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img2" data-original="/svg/Tilda_Icons_19ad_seo.svg" style=" background-image: url('/svg/Tilda_Icons_19ad_seo.svg');"  ></div>
-                        <div class="t569__line">
+                        <div class="t569__line" style="max-width: 156px">
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
                             <div class="t569__cirqle" ></div>
                         </div>
                     </div>
@@ -230,7 +234,11 @@ $this->title = 'Галерея славы';
                     </div>
                     <div class="t569__imgwrapper t-align_center">
                         <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img3" data-original="/svg/Tilda_Icons_19ad_design.svg" style=" background-image: url('/svg/Tilda_Icons_19ad_design.svg');"  ></div>
-                        <div class="t569__line">
+                        <div class="t569__line" style="max-width: 156px">
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
                             <div class="t569__cirqle" ></div>
                         </div>
                     </div>
@@ -247,7 +255,11 @@ $this->title = 'Галерея славы';
                     </div>
                     <div class="t569__imgwrapper t-align_center">
                         <div class="t569__bgimg t-margin_auto t-bgimg"  bgimgfield="img4" data-original="/svg/Tilda_Icons_1ed_cup.svg" style=" background-image: url('/svg/Tilda_Icons_1ed_cup.svg');"  ></div>
-                        <div class="t569__line">
+                        <div class="t569__line" style="max-width: 156px">
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
+                            <div class="t569__cirqle" ></div>
                             <div class="t569__cirqle" ></div>
                         </div>
                     </div>
