@@ -114,7 +114,7 @@ class EventController extends Controller
             $pagerParams['type'] = $type;
             $typedQuery = clone $query;
             $providers[$type . 'DataProvider'] = new ActiveDataProvider([
-                'query' => $typedQuery->byType($type),
+                'query' => $typedQuery->byType($type)->orderBy('event.date DESC'),
                 'pagination' => [
                     'pageSize' => 5,
                     'params' => $pagerParams

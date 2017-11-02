@@ -52,16 +52,14 @@ use yii\helpers\Html;
             <?php } ?>
             <div class="absolute bottom right full-width">
                 <div class="col-md-4 col-sm-0 col-xs-0"></div>
-                <?php if (!$model->isArchived()) { ?>
-                    <div class="col-xs-12 col-md-2">
-                        <?= Html::a('Подать отчёт', [
-                            'report/create', 'event_id' => $model->id
-                        ], [
-                            'class' => 'btn btn-primary',
-                            'data-pjax' => 0
-                        ]) ?>
-                    </div>
-                <?php } ?>
+                <div class="col-xs-12 col-md-2">
+                    <?= Html::a('Подать отчёт', [
+                        'report/create', 'event_id' => $model->id
+                    ], [
+                        'class' => 'btn btn-primary',
+                        'data-pjax' => 0
+                    ]) ?>
+                </div>
                 <?php if (!$model->isMine() && !$model->isArchived()) {
                     if (!$model->isAppliedBy(\Yii::$app->user->id)) { ?>
                         <div class="col-xs-12 col-md-2">

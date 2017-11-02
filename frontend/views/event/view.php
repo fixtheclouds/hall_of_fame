@@ -40,17 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $model->content ?>
     </p>
     <div class="row">
-        <?php
-        if (!$model->isArchived()) { ?>
-            <div class="col-xs-6 col-sm-3">
-                <?= Html::a('Подать отчёт', [
-                    'report/create', 'event_id' => $model->id
-                ], [
-                    'class' => 'btn btn-primary'
-                ]) ?>
-            </div>
-        <?php }
-        if (Yii::$app->user->identity->isAdmin) {
+        <div class="col-xs-6 col-sm-3">
+            <?= Html::a('Подать отчёт', [
+                'report/create', 'event_id' => $model->id
+            ], [
+                'class' => 'btn btn-primary'
+            ]) ?>
+        </div>
+        <?php if (Yii::$app->user->identity->isAdmin) {
             if ($model->status == 'pending') { ?>
                 <?= Html::a('Опубликовать', ['publish', 'id' => $model->id], [
                     'class' => 'btn btn-success'

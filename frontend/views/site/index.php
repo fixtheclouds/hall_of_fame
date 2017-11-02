@@ -130,7 +130,9 @@ $this->title = 'Галерея славы';
                             <div class="t412__title t-name t-name_xl" field="title3" style="height: 32px;">
                                 <div style="color:#820118;" data-customstyle="yes">ГОРДОСТЬ</div>
                             </div>
-                            <div class="t412__descr t-text" field="descr3" style="height: 150px;"><strong>Станьте соавтором третьего тома книги</strong>, в которую войдет биографии почетных граждан 23 муниципальных образований Ростовской области <br><br></div>
+                            <div class="t412__descr t-text" field="descr3" style="height: 150px;">
+                                <strong>Станьте соавтором третьего тома книги</strong>, в которую войдет биографии
+                                почетных граждан <a href="/static/Prilozhenie_1_Spisok_Pg.xlsx" download>19 муниципальных образований Ростовской области</a> <br><br></div>
                             <a href="/account" target="" class="flat-button success big">
                                 Подробнее
                             </a>
@@ -169,7 +171,19 @@ $this->title = 'Галерея славы';
             <div class="t-container">
                 <div class="t-col t-col_7 t-prefix_1">
                     <div class="t195__text t-text t-text_md" field="text">
-                        <div style="font-size:36px;line-height:32px;text-align:center;color:#820118;" data-customstyle="yes"><strong>КНИГА-СОБЫТИЕ <br></strong> ждет соавторов! <span style="color: rgb(5, 0, 0);"><br><br> <span style="font-size: 20px;"><em>В первые два тома книги, изданные в 2014 и 2016 годах, вошли</em> <strong>533 биографии</strong> заслуженных земляков, иллюстрированные почти <strong>3000 фотографий.</strong> Над книгой работали более <strong>200 авторов. <br></strong>Третий том расскажет о судьбах более <strong>300 почетных граждан 23 городов и районов области. </strong><br>Приглашаем к сотрудничеству всех, кто готов <br></span><br><br><br></span></div>
+                        <div style="font-size:36px;line-height:32px;text-align:center;color:#820118;" data-customstyle="yes">
+                            <strong>КНИГА-СОБЫТИЕ <br></strong> ждет соавторов!
+                                <span style="color: rgb(5, 0, 0);"><br><br>
+                                    <span style="font-size: 20px;"><em>В первые два тома книги,
+                                        изданные в 2014 и 2016 годах, вошли</em> <strong>533 биографии</strong> заслуженных земляков,
+                                    иллюстрированные почти <strong>3000 фотографий.</strong>
+                                    Над книгой работали более <strong>200 авторов. <br></strong>
+                                    Третий том расскажет о судьбах более
+                                    <strong>300 почетных граждан <a href="/static/Prilozhenie_1_Spisok_Pg.xlsx" download>19 городов и районов области</a>. </strong><br>
+                                    </span>
+                                <br><br><br>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="t-col t-col_4  t195__imgsection" itemscope="" itemtype="http://schema.org/ImageObject">
