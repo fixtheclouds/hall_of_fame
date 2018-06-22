@@ -21,7 +21,7 @@ class User extends BaseUser
     }
 
     /**
-     * Получить число баллов
+     * Get score for given user
      * @return \yii\db\ActiveQuery
      */
     public function getScore() {

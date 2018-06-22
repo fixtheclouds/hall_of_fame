@@ -80,6 +80,8 @@ class SocialAccount extends \yii\db\ActiveRecord
     }
 
     /**
+     * Retrieve user for linked social account
+     *
      * @return \yii\db\ActiveQuery
      */
     public function getUser()

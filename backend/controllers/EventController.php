@@ -91,7 +91,7 @@ class EventController extends BackendController
     }
 
     /**
-     * Опубликовать мероприятие
+     * Publish event
      * @param $id
      * @param $reverse
      * @return \yii\web\Response
@@ -107,7 +107,7 @@ class EventController extends BackendController
     }
 
     /**
-     * Отклонить мероприятие
+     * Dismiss event
      * @param $id
      * @return \yii\web\Response
      */

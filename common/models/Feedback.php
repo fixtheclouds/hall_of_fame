@@ -19,7 +19,7 @@ class Feedback extends \yii\db\ActiveRecord
 {
 
     /**
-     * Служебное поле для подтверждения
+     * Acceptance field
      * @var
      */
     public $accept;
@@ -100,6 +100,7 @@ class Feedback extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get latest unread feedback records
      * @return $this
      */
     public static function fresh()
@@ -108,6 +109,7 @@ class Feedback extends \yii\db\ActiveRecord
     }
 
     /**
+     * Count all unread feedback records
      * @return int|string
      */
     public static function getUnreadCount() {

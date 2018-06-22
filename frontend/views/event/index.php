@@ -65,9 +65,3 @@ $this->params['breadcrumbs'][] = $this->title;
     ]
 ])
 ?>
-
-<?php
-$this->registerJsFile('@web/js/event/index.js', [
-    'position' => View::POS_END,
-    'depends' => [\yii\web\JqueryAsset::className()]
-]);

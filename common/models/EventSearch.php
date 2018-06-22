@@ -15,9 +15,11 @@ class EventSearch extends Event
 {
 
     /**
+     * Search keyword
      * @var string
      */
     public $keyword;
+
     /**
      * @inheritdoc
      */
@@ -71,6 +73,7 @@ class EventSearch extends Event
     }
 
     /**
+     * Process filter parameters
      * @param ActiveQuery $query
      * @param array $params
      * @return ActiveQuery

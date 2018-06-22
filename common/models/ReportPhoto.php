@@ -17,6 +17,7 @@ use Yii;
 class ReportPhoto extends \yii\db\ActiveRecord
 {
     use Imageable;
+
     /**
      * @inheritdoc
      */
@@ -50,6 +51,7 @@ class ReportPhoto extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get associated report
      * @return \yii\db\ActiveQuery
      */
     public function getReport()

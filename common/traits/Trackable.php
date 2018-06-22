@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Trait for tracking and handling score assignment for actions
  */
 
 namespace common\traits;
@@ -39,6 +39,8 @@ trait Trackable
     }
 
     /**
+     * Send email regarding new score assignment
+     *
      * @param $action
      * @param null $score
      * @return bool
@@ -62,6 +64,13 @@ trait Trackable
             ->send();
     }
 
+    /**
+     * Composes subject for email
+     *
+     * @param $action
+     *
+     * @return string
+     */
     protected function composeSubject($action) {
         $module = static::moduleName();
         $verb = '';

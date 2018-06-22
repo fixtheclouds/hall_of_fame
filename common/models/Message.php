@@ -22,7 +22,7 @@ class Message extends \yii\db\ActiveRecord
     use \common\traits\Trackable;
 
     /**
-     * Служебное поле для подтверждения
+     * Acceptance field
      * @var
      */
     public $accept;
@@ -47,6 +47,10 @@ class Message extends \yii\db\ActiveRecord
         'read' => 'Прочитано'
     ];
 
+    /**
+     * Retrieve human readable state for current record
+     * @return mixed
+     */
     public function humanState()
     {
         return static::HUMAN_STATES[$this->state];
@@ -61,6 +65,7 @@ class Message extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get latest unread records
      * @return $this
      */
     public static function fresh()
@@ -123,6 +128,7 @@ class Message extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get associated user
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -131,6 +137,7 @@ class Message extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get unread messages count
      * @return int|string
      */
     public static function getUnreadCount() {

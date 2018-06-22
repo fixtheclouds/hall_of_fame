@@ -24,6 +24,7 @@ class ReportQuery extends ActiveQuery
     }
 
     /**
+     * Filter published reports
      * @return $this
      */
     public function published() {
@@ -31,6 +32,7 @@ class ReportQuery extends ActiveQuery
     }
 
     /**
+     * Filter pending reports
      * @return $this
      */
     public function pending() {

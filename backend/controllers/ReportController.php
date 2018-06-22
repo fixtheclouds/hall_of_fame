@@ -112,7 +112,7 @@ class ReportController extends BackendController
     }
 
     /**
-     * Опубликовать отчет
+     * Publish report
      * @param $id
      * @param $reverse
      * @return \yii\web\Response
@@ -128,7 +128,7 @@ class ReportController extends BackendController
     }
 
     /**
-     * Отклонить отчет
+     * Dismiss report
      * @param $id
      * @return \yii\web\Response
      */

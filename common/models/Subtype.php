@@ -51,6 +51,10 @@ class Subtype extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Get human readable type
+     * @return mixed
+     */
     public function humanType() {
         return Event::HUMAN_TYPES[$this->type];
     }

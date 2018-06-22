@@ -45,6 +45,11 @@ class RegistrationController extends BaseController
         ];
     }
 
+    /**
+     * Callback for uLogin successful sign in
+     * @param $attributes
+     * @return mixed
+     */
     public function uloginSuccessCallback($attributes)
     {
         if (!$this->module->enableRegistration) {

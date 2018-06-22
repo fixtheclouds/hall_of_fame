@@ -38,7 +38,7 @@ class ProfileController extends BaseController
     }
 
     /**
-     *
+     * Upload user avatar
      */
     public function actionUploadAvatar()
     {
@@ -66,6 +66,7 @@ class ProfileController extends BaseController
     }
 
     /**
+     * Delete user`s avatar
      * @param $photo
      * @return bool
      */

@@ -10,6 +10,9 @@ use yii\filters\VerbFilter;
 
 class BackendController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

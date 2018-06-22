@@ -43,7 +43,8 @@ class RecoveryController extends BaseController
     }
 
     /**
-     * Сброс пароля
+     * Reset password
+     * Generates new password automatically
      * @param int $id
      * @param string $code
      * @return string

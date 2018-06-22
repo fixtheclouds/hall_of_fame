@@ -20,6 +20,9 @@ use yii\web\UploadedFile;
  */
 class SiteController extends Controller
 {
+    /**
+     * @var bool
+     */
     public $enableCsrfValidation = false;
 
     /**
@@ -217,7 +220,9 @@ class SiteController extends Controller
     }
 
     /**
-     * @return string
+     * Upload as save image
+     *
+     * @param boolean $filePlugin save using CKE file plugin
      */
     public function actionUploadImage($filePlugin = false)
     {

@@ -12,6 +12,10 @@ use yii\db\ActiveQuery;
 
 class MessageQuery extends ActiveQuery
 {
+    /**
+     * Filter only unread messages
+     * @return mixed
+     */
     public function unread() {
         return $this->andWhere(['state' => 'pending']);
     }

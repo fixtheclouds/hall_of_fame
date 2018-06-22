@@ -77,6 +77,7 @@ class Page extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get creator
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -84,6 +85,11 @@ class Page extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
+    /**
+     * Find page by either ID or page slug
+     * @param $id
+     * @return mixed
+     */
     public static function findByIdOrAlias($id) {
         if (is_integer($id)) {
             return static::findOne($id);

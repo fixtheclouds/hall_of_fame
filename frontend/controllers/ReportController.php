@@ -108,6 +108,7 @@ class ReportController extends Controller
     }
 
     /**
+     * Save report related images
      * @param $model
      */
     private function saveImages($model) {
@@ -147,6 +148,7 @@ class ReportController extends Controller
     }
 
     /**
+     * Display reports belonging to current user
      * @return string
      */
     public function actionOwn()

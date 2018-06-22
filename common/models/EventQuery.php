@@ -18,6 +18,7 @@ class EventQuery extends ActiveQuery
     }
 
     /**
+     * Filter only published events
      * @return $this
      */
     public function published() {
@@ -25,6 +26,7 @@ class EventQuery extends ActiveQuery
     }
 
     /**
+     * Filter only pending events
      * @return $this
      */
     public function pending() {
@@ -64,6 +66,7 @@ class EventQuery extends ActiveQuery
     }
 
     /**
+     * Filter events by type
      * @param $type
      * @return $this
      */
@@ -73,6 +76,7 @@ class EventQuery extends ActiveQuery
 
 
     /**
+     * Get all events to which a specific user applied
      * @param $id
      * @return $this
      */

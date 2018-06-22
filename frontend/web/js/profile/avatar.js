@@ -4,7 +4,7 @@ $('#upload-mode').click(function () {
     $('.field-profile-image').fadeIn();
 });
 
-$('#avatar-upload input').on('fileuploaded', function(event, data, previewId, index) {
+$('#avatar-upload input').on('fileuploaded', function(event, data) {
     console.log(data.response);
     if (typeof data.response.url !== 'undefined') {
         $('#my-avatar').attr('src', data.response.url);

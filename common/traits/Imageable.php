@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Trait for handling images
  */
 
 namespace common\traits;
@@ -9,6 +9,9 @@ namespace common\traits;
 trait Imageable
 {
     /**
+     * Retrieve path for image
+     *
+     * @param boolean $absolute use absolute path
      * @return string
      */
     public function getPhotoPath($absolute = true) {
@@ -33,6 +36,8 @@ trait Imageable
     }
 
     /**
+     * Physically remove file
+     *
      * @param $path
      * @return bool
      */

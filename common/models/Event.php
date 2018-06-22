@@ -31,13 +31,13 @@ class Event extends ActiveRecord
     use \common\traits\Trackable;
     use \common\traits\Imageable;
     /**
-     * Служебное поле для изображения
+     * Image field var
      * @var
      */
     public $image;
 
     /**
-     * Служебное поле для подтверждения
+     * Acceptance field var
      * @var
      */
     public $accept;
@@ -83,7 +83,7 @@ class Event extends ActiveRecord
     }
 
     /**
-     * Получить связанный отчет
+     * Retrieve associated reports
      * @return \yii\db\ActiveQuery
      */
     public function getReports() {
@@ -91,7 +91,7 @@ class Event extends ActiveRecord
     }
 
     /**
-     * Получить подптип
+     * Retrieve associated subtype
      * @return \yii\db\ActiveQuery
      */
     public function getSubtype() {
@@ -99,7 +99,7 @@ class Event extends ActiveRecord
     }
 
     /**
-     * Отобразить тип на русском
+     * Show human readable event type
      * @return string
      */
     public function humanType() {
@@ -107,20 +107,23 @@ class Event extends ActiveRecord
     }
 
     /**
-     * Отобразить состояние на русском
+     * Show human readable event state
      * @return string
      */
     public function humanState() {
         return self::HUMAN_STATES[$this->status];
     }
 
+    /**
+     * Detect an archived event (older than today)
+     * @return bool
+     */
     public function isArchived() {
         return strtotime($this->date) < time();
     }
 
     /**
-     * Возвращает true, если мероприятие создано
-     * текущим пользователем
+     * Detect whether event was created by current user
      * @return bool
      */
     public function isMine() {

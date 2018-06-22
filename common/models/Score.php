@@ -64,6 +64,7 @@ class Score extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get associated user
      * @return \yii\db\ActiveQuery
      */
     public function getUser()

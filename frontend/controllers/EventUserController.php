@@ -34,6 +34,7 @@ class EventUserController extends Controller
     }
 
     /**
+     * Apply to event
      * @param $event_id
      * @return \yii\web\Response
      */
@@ -50,6 +51,7 @@ class EventUserController extends Controller
     }
 
     /**
+     * Dismiss event participation
      * @param $event_id
      * @return false|int
      */

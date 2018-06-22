@@ -15,17 +15,23 @@ use common\models\Score;
  */
 class ScoreSystem extends \yii\db\ActiveRecord
 {
-
+    /**
+     * Valid modules
+     */
     const MODULES = [
         'event' => 'Мероприятия',
         'report' => 'Отчеты',
         'message' => 'Сообщения'
     ];
 
+    /**
+     * Valid actions
+     */
     const ACTIONS = [
         'create' => 'Создание',
         'publish' => 'Публикация'
     ];
+
     /**
      * @inheritdoc
      */
@@ -34,11 +40,19 @@ class ScoreSystem extends \yii\db\ActiveRecord
         return 'score_system';
     }
 
+    /**
+     * Get human readable module
+     * @return mixed
+     */
     public function humanModule()
     {
         return static::MODULES[$this->module];
     }
 
+    /**
+     * Get human readable action
+     * @return mixed
+     */
     public function humanAction()
     {
         return static::ACTIONS[$this->action];
@@ -70,6 +84,7 @@ class ScoreSystem extends \yii\db\ActiveRecord
     }
 
     /**
+     * Detect if a record for given module and action exists
      * @param $module
      * @param $action
      * @return bool
@@ -79,6 +94,7 @@ class ScoreSystem extends \yii\db\ActiveRecord
     }
 
     /**
+     * Create a new score record
      * @param $module
      * @param $action
      * @param $userId

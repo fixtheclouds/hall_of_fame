@@ -10,6 +10,10 @@ use yii\db\ActiveQuery;
  */
 class FeedbackQuery extends ActiveQuery
 {
+    /**
+     * Filter only pending feedback records
+     * @return mixed
+     */
     public function unread() {
         return $this->andWhere(['state' => 'pending']);
     }

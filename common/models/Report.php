@@ -35,7 +35,7 @@ class Report extends \yii\db\ActiveRecord
     ];
 
     /**
-     * Служебное поле для подтверждения
+     * Acceptance field
      * @var
      */
     public $accept;
@@ -122,7 +122,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
-     * Получить данные пользователя
+     * Retrieve report`s author data
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
@@ -131,7 +131,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
-     * Получить связанное мероприятие
+     * Retrieve associated event
      * @return \yii\db\ActiveQuery
      */
     public function getEvent()
@@ -140,7 +140,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
-     * Получить фото мероприятия
+     * Get report photos
      * @return \yii\db\ActiveQuery
      */
     public function getReportPhotos()
@@ -149,6 +149,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
+     * Get human readable report state
      * @return mixed
      */
     public function humanStatus() {
@@ -164,8 +165,7 @@ class Report extends \yii\db\ActiveRecord
     }
 
     /**
-     * Возвращает true, если отчет создан
-     * текущим пользователем
+     * Detect whether report was created by current user
      * @return bool
      */
     public function isMine() {

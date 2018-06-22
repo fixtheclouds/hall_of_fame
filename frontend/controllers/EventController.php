@@ -244,7 +244,7 @@ class EventController extends Controller
     }
 
     /**
-     * Опубликовать мероприятие
+     * Publish event
      * @param $id
      * @param $reverse
      * @return \yii\web\Response
@@ -263,7 +263,7 @@ class EventController extends Controller
     }
 
     /**
-     * Отклонить мероприятие
+     * Dismiss pending event
      * @param $id
      * @return \yii\web\Response
      */
@@ -276,6 +276,10 @@ class EventController extends Controller
         return $this->redirect(['view', 'id' => $model->id]);
     }
 
+    /**
+     * Show demo page for Memory events
+     * @return mixed
+     */
     public function actionMemoryDemo() {
         $this->layout = 'static';
         $searchModel = new EventSearch();
@@ -292,6 +296,10 @@ class EventController extends Controller
         ]);
     }
 
+    /**
+     * Show demo page for Legacy events
+     * @return mixed
+     */
     public function actionLegacyDemo() {
         $this->layout = 'static';
         $searchModel = new EventSearch();
